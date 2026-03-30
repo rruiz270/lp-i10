@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BNCC Computação na Prática — Instituto i10</title>
+  <meta name="description" content="Capacitação para secretarias municipais sobre a BNCC Computação. Regras, Recursos e Aplicação prática. Instituto i10.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --navy: #0A2463;
+      --navy-dark: #061740;
+      --navy-deeper: #030B1A;
+      --cyan: #00B4D8;
+      --cyan-light: #48CAE4;
+      --cyan-pale: rgba(0, 180, 216, 0.15);
+      --green: #00E5A0;
+      --green-dark: #00C48A;
+      --white: #FFFFFF;
+      --white-90: rgba(255,255,255,0.9);
+      --white-70: rgba(255,255,255,0.7);
+      --white-50: rgba(255,255,255,0.5);
+      --white-20: rgba(255,255,255,0.2);
+      --white-10: rgba(255,255,255,0.1);
+      --white-05: rgba(255,255,255,0.05);
+      --gradient-bar: linear-gradient(90deg, #00B4D8, #00E5A0);
+      --gradient-navy: linear-gradient(135deg, #061740 0%, #0A2463 100%);
+      --glow-cyan: 0 0 40px rgba(0,180,216,0.4), 0 0 80px rgba(0,180,216,0.15);
+      --glow-green: 0 0 30px rgba(0,229,160,0.4);
+      --font-tech: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-human: 'Source Serif 4', Georgia, serif;
+    }
+
+    body {
+      font-family: var(--font-tech);
+      background: var(--navy-deeper);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEXAGONAL MESH TEXTURE (SVG BG) ===== */
+    .hex-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon fill='none' stroke='%2300B4D8' stroke-width='0.8' points='60,2 110,28 110,76 60,102 10,76 10,28'/%3E%3C/svg%3E");
+      background-size: 120px 104px;
+    }
+
+    /* ===== UTILITY ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .container-wide {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .section-label {
+      font-family: var(--font-tech);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .gradient-divider {
+      height: 3px;
+      background: var(--gradient-bar);
+      border-radius: 2px;
+    }
+    .gradient-divider-thin {
+      height: 1px;
+      background: var(--gradient-bar);
+      opacity: 0.4;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(6, 23, 64, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,180,216,0.12);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo-text span { color: var(--cyan); }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white-70);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: all 0.25s ease;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--white); background: var(--white-10); }
+    .nav-cta {
+      background: var(--cyan) !important;
+      color: var(--navy-dark) !important;
+      font-weight: 700 !important;
+      padding: 8px 20px !important;
+      border-radius: 6px !important;
+    }
+    .nav-cta:hover { background: var(--cyan-light) !important; }
+
+    /* Mobile nav */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); margin: 5px 0; transition: 0.3s; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: rgba(6, 23, 64, 0.98);
+        padding: 16px;
+        border-bottom: 1px solid rgba(0,180,216,0.12);
+      }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .hero-video-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        180deg,
+        rgba(6, 23, 64, 0.75) 0%,
+        rgba(10, 36, 99, 0.85) 40%,
+        rgba(10, 36, 99, 0.92) 70%,
+        rgba(3, 11, 26, 0.98) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 900px;
+      padding: 100px 32px 80px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white-10);
+      border: 1px solid var(--white-20);
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--white-70);
+      margin-bottom: 32px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(0,229,160,0.6);
+    }
+    .hero h1 {
+      font-family: var(--font-tech);
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      letter-spacing: -2px;
+    }
+    .hero h1 .accent { color: var(--cyan); }
+    .hero h1 .glow {
+      text-shadow: var(--glow-cyan);
+    }
+    .hero-sub {
+      font-family: var(--font-human);
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 400;
+      color: var(--white-70);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gradient-bar);
+      color: var(--navy-dark);
+      font-family: var(--font-tech);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-cyan);
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0,180,216,0.5), 0 0 100px rgba(0,180,216,0.2);
+    }
+    .hero-cta svg { width: 18px; height: 18px; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--white-50);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: float 2.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== CHALLENGE SECTION ===== */
+    .challenge {
+      position: relative;
+      z-index: 1;
+      padding: 120px 0;
+      background: var(--navy-deeper);
+    }
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .challenge-card {
+      background: rgba(10, 36, 99, 0.5);
+      border: 1px solid var(--white-10);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .challenge-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(0,180,216,0.3), transparent, rgba(0,229,160,0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .challenge-card:hover::before { opacity: 1; }
+    .challenge-card:hover { transform: translateY(-4px); }
+    .challenge-number {
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .challenge-number.cyan { color: var(--cyan); text-shadow: var(--glow-cyan); }
+    .challenge-number.green { color: var(--green); text-shadow: var(--glow-green); }
+    .challenge-label {
+      font-size: 16px;
+      color: var(--white-70);
+      line-height: 1.5;
+    }
+    .challenge-intro {
+      font-family: var(--font-human);
+      font-size: 22px;
+      color: var(--white-70);
+      max-width: 700px;
+      line-height: 1.7;
+    }
+    .challenge-intro strong { color: var(--white); }
+
+    @media (max-width: 768px) {
+      .challenge-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== PROFESSOR SECTION ===== */
+    .professor {
+      position: relative;
+      z-index: 1;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .professor-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .professor-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .professor-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(10, 36, 99, 0.92) 0%,
+        rgba(10, 36, 99, 0.78) 50%,
+        rgba(10, 36, 99, 0.65) 100%
+      );
+    }
+    .professor-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 80px 0;
+    }
+    .professor-content h2 {
+      font-family: var(--font-human);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+    .professor-content h2 strong {
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .professor-content p {
+      font-family: var(--font-human);
+      font-size: 18px;
+      color: var(--white-70);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .professor-quote {
+      margin-top: 32px;
+      padding-left: 24px;
+      border-left: 3px solid var(--cyan);
+    }
+    .professor-quote p {
+      font-style: italic;
+      font-size: 20px;
+      color: var(--white-90);
+    }
+
+    /* ===== COURSE SECTION ===== */
+    .course {
+      position: relative;
+      z-index: 1;
+      padding: 120px 0;
+      background: var(--navy-dark);
+    }
+    .course-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .course-header h2 {
+      font-family: var(--font-tech);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    .course-header p {
+      font-family: var(--font-human);
+      font-size: 20px;
+      color: var(--white-70);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+    }
+    .pillar {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--white-10);
+      border-radius: 20px;
+      padding: 48px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .pillar:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-6px);
+      border-color: var(--white-20);
+    }
+    .pillar-num {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    .pillar-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 26px;
+    }
+    .pillar-icon.rules { background: rgba(0,180,216,0.15); }
+    .pillar-icon.resources { background: rgba(0,229,160,0.15); }
+    .pillar-icon.practice { background: rgba(0,180,216,0.15); }
+    .pillar h3 {
+      font-family: var(--font-tech);
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .pillar p {
+      font-size: 15px;
+      color: var(--white-70);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .pillar-topics {
+      list-style: none;
+      padding: 0;
+    }
+    .pillar-topics li {
+      padding: 8px 0;
+      font-size: 14px;
+      color: var(--white-50);
+      border-top: 1px solid var(--white-05);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pillar-topics li:first-child { border-top: none; }
+    .pillar-topics .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .pillar-topics .dot.cyan { background: var(--cyan); }
+    .pillar-topics .dot.green { background: var(--green); }
+    .pillar-accent-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    @media (max-width: 900px) {
+      .pillars { grid-template-columns: 1fr; }
+    }
+
+    /* ===== METHODOLOGY SECTION ===== */
+    .methodology {
+      position: relative;
+      z-index: 1;
+      padding: 120px 0;
+      background: var(--navy-deeper);
+    }
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 56px;
+    }
+    .method-image {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .method-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+    .method-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,36,99,0.6) 0%, rgba(10,36,99,0.3) 100%);
+    }
+    .method-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .method-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .method-step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(0,180,216,0.12);
+      border: 1px solid rgba(0,180,216,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--cyan);
+      flex-shrink: 0;
+    }
+    .method-step-content h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .method-step-content p {
+      font-size: 14px;
+      color: var(--white-70);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .method-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== KIT SECTION ===== */
+    .kit {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0;
+      background: var(--cyan);
+    }
+    .kit-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .kit-text h2 {
+      font-family: var(--font-tech);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .kit-text p {
+      font-size: 16px;
+      color: rgba(10,36,99,0.7);
+      max-width: 500px;
+    }
+    .kit-items {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .kit-item {
+      background: rgba(10,36,99,0.12);
+      color: var(--navy-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kit-item svg { width: 16px; height: 16px; }
+
+    @media (max-width: 768px) {
+      .kit-content { flex-direction: column; text-align: center; }
+      .kit-items { justify-content: center; }
+    }
+
+    /* ===== AUDIENCE SECTION ===== */
+    .audience {
+      position: relative;
+      z-index: 1;
+      padding: 120px 0;
+      background: var(--navy-dark);
+    }
+    .audience-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .audience-image {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--white-10);
+    }
+    .audience-image img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .audience-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,36,99,0.35) 0%, rgba(10,36,99,0.6) 100%);
+    }
+    .audience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .audience-item {
+      background: var(--white-05);
+      border: 1px solid var(--white-10);
+      border-radius: 14px;
+      padding: 24px 28px;
+      transition: all 0.3s ease;
+    }
+    .audience-item:hover {
+      background: var(--white-10);
+      border-color: var(--white-20);
+    }
+    .audience-item h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .audience-item h4 .tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--cyan-pale);
+      color: var(--cyan);
+    }
+    .audience-item p {
+      font-size: 14px;
+      color: var(--white-50);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .audience-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ===== ABOUT i10 SECTION ===== */
+    .about {
+      position: relative;
+      z-index: 1;
+      padding: 120px 0;
+      background: var(--navy-deeper);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-text h2 {
+      font-family: var(--font-human);
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 300;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+    .about-text h2 strong {
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .about-text p {
+      font-size: 16px;
+      color: var(--white-70);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .about-value {
+      background: var(--white-05);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--white-10);
+    }
+    .about-value h5 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 4px;
+    }
+    .about-value p {
+      font-size: 13px;
+      color: var(--white-50);
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+    .about-image {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--white-10);
+    }
+    .about-image img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+    .about-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,36,99,0.55) 0%, rgba(10,36,99,0.35) 100%);
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== CTA FINAL SECTION ===== */
+    .cta-final {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-final-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .cta-final-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cta-final-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(3,11,26,0.95) 0%,
+        rgba(10,36,99,0.85) 50%,
+        rgba(3,11,26,0.95) 100%
+      );
+    }
+    .cta-final-content {
+      position: relative;
+      z-index: 2;
+    }
+    .cta-final h2 {
+      font-family: var(--font-human);
+      font-size: clamp(32px, 4vw, 56px);
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .cta-final h2 strong {
+      font-weight: 700;
+      color: var(--green);
+      text-shadow: var(--glow-green);
+    }
+    .cta-final p {
+      font-family: var(--font-human);
+      font-size: 20px;
+      color: var(--white-70);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-final-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: var(--navy-dark);
+      font-family: var(--font-tech);
+      font-size: 18px;
+      font-weight: 800;
+      padding: 18px 44px;
+      border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-green);
+    }
+    .cta-final-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 50px rgba(0,229,160,0.5), 0 0 100px rgba(0,229,160,0.2);
+    }
+    .cta-final-trust {
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--white-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .cta-final-trust span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      position: relative;
+      z-index: 1;
+      padding: 60px 0 32px;
+      background: var(--navy-deeper);
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--white-10);
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--white-50);
+      margin-top: 12px;
+      max-width: 320px;
+      line-height: 1.6;
+    }
+    .footer-links {
+      display: flex;
+      gap: 48px;
+    }
+    .footer-links-col h5 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--white-50);
+      margin-bottom: 16px;
+    }
+    .footer-links-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--white-70);
+      text-decoration: none;
+      padding: 4px 0;
+      transition: color 0.2s;
+    }
+    .footer-links-col a:hover { color: var(--cyan); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      font-size: 12px;
+      color: var(--white-50);
+    }
+
+    @media (max-width: 768px) {
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-links { gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+<!-- Hexagonal mesh texture -->
+<div class="hex-bg"></div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <a href="#" class="nav-logo">
+    <svg width="32" height="32" viewBox="0 0 80 80">
+      <rect width="80" height="80" rx="12" fill="transparent"/>
+      <circle cx="14" cy="52" r="4" fill="#00B4D8"/>
+      <circle cx="28" cy="24" r="4" fill="#00E5A0"/>
+      <circle cx="44" cy="48" r="4" fill="#00B4D8"/>
+      <circle cx="58" cy="30" r="4" fill="#00B4D8"/>
+      <circle cx="66" cy="52" r="4" fill="#00E5A0"/>
+      <line x1="14" y1="52" x2="28" y2="24" stroke="url(#navGrad)" stroke-width="2"/>
+      <line x1="28" y1="24" x2="44" y2="48" stroke="url(#navGrad)" stroke-width="2"/>
+      <line x1="44" y1="48" x2="58" y2="30" stroke="url(#navGrad)" stroke-width="2"/>
+      <line x1="58" y1="30" x2="66" y2="52" stroke="url(#navGrad)" stroke-width="2"/>
+      <defs>
+        <linearGradient id="navGrad" x1="14" y1="40" x2="66" y2="40" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00B4D8"/>
+          <stop offset="100%" stop-color="#00E5A0"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="nav-logo-text">Instituto <span>i10</span></div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#desafio">O Desafio</a></li>
+    <li><a href="#curso">O Curso</a></li>
+    <li><a href="#metodologia">Metodologia</a></li>
+    <li><a href="#publico">Para Quem</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#inscricao" class="nav-cta">Inscreva-se</a></li>
+  </ul>
+  <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="video/teaser-bncc.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Programa de Capacitacao em Politica Educacional Digital
+    </div>
+    <h1>
+      <span class="accent glow">BNCC Computacao</span><br>
+      na Pratica
+    </h1>
+    <p class="hero-sub">
+      O treinamento que prepara sua rede municipal para a implementacao obrigatoria da BNCC Computacao em 2026. Regras, recursos e aplicacao &mdash; tudo o que o professor precisa saber.
+    </p>
+    <a href="#inscricao" class="hero-cta">
+      Quero capacitar minha rede
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ===== CHALLENGE ===== -->
+<section class="challenge" id="desafio">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">O Desafio</span>
+      <p class="challenge-intro">
+        Em <strong>2026</strong>, a implementacao da BNCC Computacao se torna obrigatoria para todas as redes de ensino do Brasil. A pergunta nao e <em>se</em> sua rede vai precisar se adaptar &mdash; mas se estara <strong>preparada a tempo</strong>.
+      </p>
+    </div>
+
+    <div class="challenge-grid">
+      <div class="challenge-card reveal reveal-delay-1">
+        <div class="challenge-number cyan">2026</div>
+        <div class="challenge-label">Prazo final para implementacao obrigatoria da BNCC Computacao</div>
+      </div>
+      <div class="challenge-card reveal reveal-delay-2">
+        <div class="challenge-number green">70%</div>
+        <div class="challenge-label">das redes municipais ainda NAO incorporaram a computacao ao curriculo</div>
+      </div>
+      <div class="challenge-card reveal reveal-delay-3">
+        <div class="challenge-number cyan">2,5%</div>
+        <div class="challenge-label">do FUNDEB/VAAR que sua rede pode perder por nao-conformidade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="gradient-divider-thin"></div></div>
+
+<!-- ===== PROFESSOR ===== -->
+<section class="professor" id="professor">
+  <div class="professor-bg">
+    <img src="images/img5_outdoor.jpg" alt="Professora conduzindo aula ao ar livre com alunos e tablets" loading="lazy">
+    <div class="professor-bg-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="professor-content reveal">
+      <span class="section-label">Filosofia</span>
+      <h2>O <strong>professor</strong> como protagonista.</h2>
+      <p>
+        Este nao e um curso sobre tecnologia. E um curso sobre <em>empoderar o professor</em> para que ele conduza a transformacao digital na sala de aula &mdash; com seguranca, autonomia e proposito.
+      </p>
+      <p>
+        A BNCC Computacao nao exige laboratorios de informatica ou professores de TI. Ela pede que o educador integre o pensamento computacional ao que ja faz de melhor: ensinar.
+      </p>
+      <div class="professor-quote">
+        <p>&ldquo;IA nao e magia &mdash; e ferramenta a servico do professor.&rdquo;</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COURSE ===== -->
+<section class="course" id="curso">
+  <div class="container">
+    <div class="course-header reveal">
+      <span class="section-label">O Curso</span>
+      <h2>Tres pilares. Um plano completo.</h2>
+      <p>Capacitacao estruturada para que sua rede saia com um plano de implementacao pronto.</p>
+    </div>
+
+    <div class="pillars">
+      <!-- Pilar 1 - Regras -->
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-num">Pilar 01</div>
+        <div class="pillar-icon rules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Regras</h3>
+        <p>O que diz a lei, o que muda, e o que e obrigatorio para o seu municipio.</p>
+        <ul class="pillar-topics">
+          <li><span class="dot cyan"></span>Resolucao CNE/CEB n. 1/2022</li>
+          <li><span class="dot cyan"></span>Os 3 eixos da BNCC Computacao</li>
+          <li><span class="dot cyan"></span>Prazos e consequencias legais</li>
+          <li><span class="dot cyan"></span>O que e (e o que NAO e) exigido</li>
+        </ul>
+        <div class="pillar-accent-line" style="background: var(--cyan);"></div>
+      </div>
+
+      <!-- Pilar 2 - Recursos -->
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-num">Pilar 02</div>
+        <div class="pillar-icon resources">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00E5A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Recursos</h3>
+        <p>De onde vem o dinheiro e como acessar cada fonte de financiamento.</p>
+        <ul class="pillar-topics">
+          <li><span class="dot green"></span>FUNDEB e VAAR</li>
+          <li><span class="dot green"></span>PDDE e programas federais</li>
+          <li><span class="dot green"></span>Emendas parlamentares</li>
+          <li><span class="dot green"></span>Parcerias publico-privadas</li>
+        </ul>
+        <div class="pillar-accent-line" style="background: var(--green);"></div>
+      </div>
+
+      <!-- Pilar 3 - Aplicacao -->
+      <div class="pillar reveal reveal-delay-3">
+        <div class="pillar-num">Pilar 03</div>
+        <div class="pillar-icon practice">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Aplicacao</h3>
+        <p>Como implementar na pratica, passo a passo, com workshop incluso.</p>
+        <ul class="pillar-topics">
+          <li><span class="dot cyan"></span>Plano municipal de implementacao</li>
+          <li><span class="dot cyan"></span>Integracao curricular sem disciplina extra</li>
+          <li><span class="dot cyan"></span>Formacao continuada de professores</li>
+          <li><span class="dot cyan"></span>Workshop pratico ao final</li>
+        </ul>
+        <div class="pillar-accent-line" style="background: var(--gradient-bar);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KIT ===== -->
+<section class="kit">
+  <div class="container">
+    <div class="kit-content">
+      <div class="kit-text">
+        <h2>Kit Pratico Incluso</h2>
+        <p>Cada participante recebe materiais prontos para aplicar imediatamente na sua rede.</p>
+      </div>
+      <div class="kit-items">
+        <div class="kit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          Checklist de Conformidade
+        </div>
+        <div class="kit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Modelo de Plano Municipal
+        </div>
+        <div class="kit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          Guia de Fontes de Recurso
+        </div>
+        <div class="kit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          Autodiagnostico de Prontidao
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METHODOLOGY ===== -->
+<section class="methodology" id="metodologia">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Metodologia</span>
+      <h2 style="font-size: clamp(28px,3.5vw,44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;">
+        Aprendizado que sai do slide<br>e entra na sala de aula.
+      </h2>
+      <p style="font-size: 18px; color: var(--white-70); max-width: 560px;">
+        Uma formacao desenhada para ser pratica, acessivel e imediatamente aplicavel.
+      </p>
+    </div>
+
+    <div class="method-grid">
+      <div class="method-image reveal">
+        <img src="images/img1_cover_classroom.jpg" alt="Sala de aula inclusiva com tecnologia" loading="lazy">
+        <div class="method-image-overlay"></div>
+      </div>
+      <div class="method-steps">
+        <div class="method-step reveal reveal-delay-1">
+          <div class="method-step-num">1</div>
+          <div class="method-step-content">
+            <h4>Fundamentacao Regulatoria</h4>
+            <p>Entenda exatamente o que a lei exige, sem jargao juridico. Saiba o que muda e o que nao muda para o seu municipio.</p>
+          </div>
+        </div>
+        <div class="method-step reveal reveal-delay-2">
+          <div class="method-step-num">2</div>
+          <div class="method-step-content">
+            <h4>Mapeamento de Recursos</h4>
+            <p>Descubra todas as fontes de financiamento disponiveis e como acessa-las antes que os prazos vencam.</p>
+          </div>
+        </div>
+        <div class="method-step reveal reveal-delay-3">
+          <div class="method-step-num">3</div>
+          <div class="method-step-content">
+            <h4>Workshop de Aplicacao</h4>
+            <p>Construa seu plano municipal de implementacao durante o curso, com orientacao especializada.</p>
+          </div>
+        </div>
+        <div class="method-step reveal">
+          <div class="method-step-num">4</div>
+          <div class="method-step-content">
+            <h4>Suporte Pos-Curso</h4>
+            <p>30 dias de canal de duvidas gratuito para sua equipe tirar duvidas durante a implementacao.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUDIENCE ===== -->
+<section class="audience" id="publico">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-label">Para Quem</span>
+      <h2 style="font-size: clamp(28px,3.5vw,44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 8px;">
+        Quem deve participar.
+      </h2>
+      <p style="font-size: 18px; color: var(--white-70); max-width: 560px;">
+        Profissionais que lideram ou influenciam a politica educacional do municipio.
+      </p>
+    </div>
+
+    <div class="audience-layout">
+      <div class="audience-image reveal">
+        <img src="images/img6_diversity_group.jpg" alt="Grupo diverso de educadores e gestores" loading="lazy">
+        <div class="audience-image-overlay"></div>
+      </div>
+      <div class="audience-list">
+        <div class="audience-item reveal reveal-delay-1">
+          <h4>
+            Secretarios de Educacao
+            <span class="tag">Decisor</span>
+          </h4>
+          <p>Responsaveis pela politica educacional municipal e pela conformidade com a BNCC.</p>
+        </div>
+        <div class="audience-item reveal reveal-delay-2">
+          <h4>
+            Coordenadores Pedagogicos
+            <span class="tag">Lideranca</span>
+          </h4>
+          <p>Profissionais que orientam a pratica docente e a integracao curricular nas escolas.</p>
+        </div>
+        <div class="audience-item reveal reveal-delay-3">
+          <h4>
+            Professores Multiplicadores
+            <span class="tag">Protagonista</span>
+          </h4>
+          <p>Educadores que serao os agentes de transformacao dentro de suas escolas e redes.</p>
+        </div>
+        <div class="audience-item reveal">
+          <h4>
+            Equipes Tecnicas
+            <span class="tag">Suporte</span>
+          </h4>
+          <p>Profissionais de TI e gestao que apoiam a infraestrutura e operacao educacional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT i10 ===== -->
+<section class="about" id="sobre">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-label">Quem Somos</span>
+        <h2>Nao somos apenas desenvolvedores. Somos <strong>orquestradores</strong> da transformacao educacional.</h2>
+        <p>
+          O Instituto i10 e uma Instituicao Cientifica, Tecnologica e de Inovacao (ICT) que atua como catalisador &mdash; articulando competencias do setor publico, academico e privado em projetos de inovacao educacional.
+        </p>
+        <p>
+          Nossa tecnologia nao substitui o humano. Ela o liberta das amarras burocraticas para que possa focar no que realmente importa: a aprendizagem.
+        </p>
+        <div class="about-values">
+          <div class="about-value">
+            <h5>Excelencia Cientifica</h5>
+            <p>Metodologias validadas e resultados documentados.</p>
+          </div>
+          <div class="about-value">
+            <h5>Impacto Mensuravel</h5>
+            <p>Transparencia e evidencias em cada intervencao.</p>
+          </div>
+          <div class="about-value">
+            <h5>Inovacao com Proposito</h5>
+            <p>Cada decisao tecnica serve a um objetivo pedagogico.</p>
+          </div>
+          <div class="about-value">
+            <h5>Colaboracao Institucional</h5>
+            <p>Parcerias publico-privadas para transformacao em escala.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image reveal reveal-delay-2">
+        <img src="images/img2_collaboration.jpg" alt="Colaboracao educacional com tecnologia" loading="lazy">
+        <div class="about-image-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final" id="inscricao">
+  <div class="cta-final-bg">
+    <img src="images/img3_achievement.jpg" alt="Conquista educacional" loading="lazy">
+    <div class="cta-final-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="cta-final-content reveal">
+      <span class="section-label">Inscricoes Abertas</span>
+      <h2>Sua rede esta<br><strong>preparada?</strong></h2>
+      <p>
+        O prazo de 2026 se aproxima. Nao deixe seu municipio entre os 70% que ainda nao se adaptaram. Capacite sua equipe agora.
+      </p>
+      <a href="mailto:contato@institutoi10.org.br?subject=Interesse%20no%20Curso%20BNCC%20Computacao" class="cta-final-btn">
+        Solicitar Inscricao
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <div class="cta-final-trust">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Material completo incluso
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          30 dias de suporte
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Versao assincrona disponivel
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="gradient-divider" style="margin-bottom: 48px;"></div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="28" height="28" viewBox="0 0 80 80">
+            <circle cx="14" cy="52" r="4" fill="#00B4D8"/>
+            <circle cx="28" cy="24" r="4" fill="#00E5A0"/>
+            <circle cx="44" cy="48" r="4" fill="#00B4D8"/>
+            <circle cx="58" cy="30" r="4" fill="#00B4D8"/>
+            <circle cx="66" cy="52" r="4" fill="#00E5A0"/>
+            <line x1="14" y1="52" x2="28" y2="24" stroke="url(#fGrad)" stroke-width="2"/>
+            <line x1="28" y1="24" x2="44" y2="48" stroke="url(#fGrad)" stroke-width="2"/>
+            <line x1="44" y1="48" x2="58" y2="30" stroke="url(#fGrad)" stroke-width="2"/>
+            <line x1="58" y1="30" x2="66" y2="52" stroke="url(#fGrad)" stroke-width="2"/>
+            <defs>
+              <linearGradient id="fGrad" x1="14" y1="40" x2="66" y2="40" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00B4D8"/>
+                <stop offset="100%" stop-color="#00E5A0"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span style="font-size:18px; font-weight:800;">Instituto <span style="color:var(--cyan)">i10</span></span>
+        </div>
+        <p>Orquestrando o Futuro da Educacao Publica. Pesquisa, inteligencia artificial e parcerias estrategicas com governos.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-links-col">
+          <h5>Curso</h5>
+          <a href="#desafio">O Desafio</a>
+          <a href="#curso">Pilares</a>
+          <a href="#metodologia">Metodologia</a>
+          <a href="#inscricao">Inscricao</a>
+        </div>
+        <div class="footer-links-col">
+          <h5>Instituto</h5>
+          <a href="#sobre">Quem Somos</a>
+          <a href="#professor">Filosofia</a>
+          <a href="#publico">Para Quem</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Sapiens Park, Florianopolis, SC &mdash; Brasil &nbsp;|&nbsp; CNPJ: 05.124.602/0001-74</span>
+      <span>&copy; 2026 Instituto i10. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCROLL REVEAL SCRIPT ===== -->
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

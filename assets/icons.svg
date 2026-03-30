@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <title>Instituto i10 — Icon Library v2.0</title>
+  <desc>Complete icon set for Instituto i10 brand. All icons use outline style, 28x28px viewBox, stroke #0A2463, stroke-width 1.8.</desc>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#F8FAFC"/>
+
+  <!-- Title -->
+  <text x="40" y="40" font-family="Inter, sans-serif" font-weight="800" font-size="18" fill="#0A2463">Instituto i10 — Biblioteca de Ícones v2.0</text>
+  <text x="40" y="60" font-family="Inter, sans-serif" font-weight="400" font-size="12" fill="#94A3B8">24 ícones · Estilo outline · 28×28px · Cor: #0A2463</text>
+  <line x1="40" y1="72" x2="760" y2="72" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <!-- 1. Education/Book -->
+  <g transform="translate(40, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M4 10l10-6 10 6-10 6-10-6z"/>
+      <path d="M4 10v8l10 6 10-6v-8"/>
+      <path d="M14 16v8"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Educação</text>
+  </g>
+
+  <!-- 2. Clock/Time -->
+  <g transform="translate(110, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <circle cx="14" cy="14" r="10"/>
+      <path d="M14 8v6l4 2"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Tempo</text>
+  </g>
+
+  <!-- 3. Document -->
+  <g transform="translate(180, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10l4 4v14a2 2 0 01-2 2H9a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+      <path d="M9 13h6m-6 4h4"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Documento</text>
+  </g>
+
+  <!-- 4. Search -->
+  <g transform="translate(250, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <circle cx="11" cy="11" r="7"/>
+      <path d="M20 20l-4-4"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Pesquisa</text>
+  </g>
+
+  <!-- 5. Innovation/Lightbulb -->
+  <g transform="translate(320, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M14 2a8 8 0 00-8 8c0 3 1.5 5.5 4 7v3h8v-3c2.5-1.5 4-4 4-7a8 8 0 00-8-8z"/>
+      <path d="M10 22h8"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Inovação</text>
+  </g>
+
+  <!-- 6. AI/Brain -->
+  <g transform="translate(390, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M14 4c-5.5 0-9 3.5-9 7 0 2 1 4 3 5.5L7 20h14l-1-3.5c2-1.5 3-3.5 3-5.5 0-3.5-3.5-7-9-7z"/>
+      <circle cx="10" cy="11" r="1.5" fill="#0A2463"/>
+      <circle cx="18" cy="11" r="1.5" fill="#0A2463"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">IA</text>
+  </g>
+
+  <!-- 7. Growth Chart -->
+  <g transform="translate(460, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <polyline points="4,20 10,14 14,18 20,10 24,14"/>
+      <polyline points="20,10 24,10 24,14"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Crescimento</text>
+  </g>
+
+  <!-- 8. Team/People -->
+  <g transform="translate(530, 90)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <circle cx="9" cy="7" r="4"/>
+      <circle cx="19" cy="7" r="4"/>
+      <path d="M1 21v-2a6 6 0 016-6h4"/>
+      <path d="M17 21v-2a6 6 0 016-6h0"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Equipe</text>
+  </g>
+
+  <!-- Row 2 -->
+  <!-- 9. Monitor/Digital -->
+  <g transform="translate(40, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <rect x="3" y="3" width="22" height="16" rx="2"/>
+      <path d="M8 24h12M14 19v5"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Digital</text>
+  </g>
+
+  <!-- 10. Layers -->
+  <g transform="translate(110, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+      <path d="M2 17l10 5 10-5"/>
+      <path d="M2 12l10 5 10-5"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Camadas</text>
+  </g>
+
+  <!-- 11. Location -->
+  <g transform="translate(180, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M21 10c0 7-7 13-7 13s-7-6-7-13a7 7 0 0114 0z"/>
+      <circle cx="14" cy="10" r="3"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Localização</text>
+  </g>
+
+  <!-- 12. Phone -->
+  <g transform="translate(250, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 01.1 2.18 2 2 0 012.08 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Contato</text>
+  </g>
+
+  <!-- 13. Checklist -->
+  <g transform="translate(320, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M9 11l3 3L22 4"/>
+      <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h11"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Tarefa</text>
+  </g>
+
+  <!-- 14. Globe -->
+  <g transform="translate(390, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <circle cx="14" cy="14" r="10"/>
+      <path d="M14 4a10 10 0 000 20"/>
+      <path d="M4 14h20"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Global</text>
+  </g>
+
+  <!-- 15. Lock/Security -->
+  <g transform="translate(460, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <rect x="3" y="11" width="18" height="11" rx="2"/>
+      <path d="M7 11V7a7 7 0 0114 0v4"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Segurança</text>
+  </g>
+
+  <!-- 16. Heart/Impact -->
+  <g transform="translate(530, 180)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Impacto</text>
+  </g>
+
+  <!-- Row 3 -->
+  <!-- 17. Edit/Pen -->
+  <g transform="translate(40, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Editar</text>
+  </g>
+
+  <!-- 18. Activity/Data -->
+  <g transform="translate(110, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Dados</text>
+  </g>
+
+  <!-- 19. Share/Network -->
+  <g transform="translate(180, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Rede</text>
+  </g>
+
+  <!-- 20. Message/Feedback -->
+  <g transform="translate(250, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Feedback</text>
+  </g>
+
+  <!-- 21. Email -->
+  <g transform="translate(320, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Email</text>
+  </g>
+
+  <!-- 22. Desktop/Screen -->
+  <g transform="translate(390, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <rect x="2" y="3" width="20" height="14" rx="2"/>
+      <path d="M8 21h8M12 17v4"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Tela</text>
+  </g>
+
+  <!-- 23. Star/Excellence -->
+  <g transform="translate(460, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Excelência</text>
+  </g>
+
+  <!-- 24. Tablet/Mobile -->
+  <g transform="translate(530, 270)">
+    <rect width="60" height="60" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(16, 16)" stroke="#0A2463" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <rect x="5" y="2" width="14" height="20" rx="2"/>
+      <line x1="12" y1="18" x2="12.01" y2="18"/>
+    </g>
+    <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#64748B" text-anchor="middle">Mobile</text>
+  </g>
+
+  <!-- Usage Notes -->
+  <line x1="40" y1="380" x2="760" y2="380" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="40" y="405" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#0A2463">Especificações de Uso</text>
+  <text x="40" y="425" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Tamanho padrão: 24×24px (UI) · 32×32px (destaque) · 48×48px (hero)</text>
+  <text x="40" y="445" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Cor padrão: #0A2463 (Navy) · Variação: #00B4D8 (Cyan) · Destaque: #00E5A0 (Green)</text>
+  <text x="40" y="465" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Stroke: 1.8px · Linecap: round · Linejoin: round · Fill: none (outline style)</text>
+  <text x="40" y="485" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Formato de exportação: SVG (web), PNG @2x (apps), PDF (impressão)</text>
+
+  <!-- Color Samples -->
+  <rect x="40" y="510" width="20" height="20" rx="4" fill="#0A2463"/>
+  <text x="68" y="524" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Navy #0A2463</text>
+  <rect x="180" y="510" width="20" height="20" rx="4" fill="#00B4D8"/>
+  <text x="208" y="524" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Cyan #00B4D8</text>
+  <rect x="320" y="510" width="20" height="20" rx="4" fill="#00E5A0"/>
+  <text x="348" y="524" font-family="Inter, sans-serif" font-size="11" fill="#64748B">Green #00E5A0</text>
+
+  <!-- Footer -->
+  <text x="40" y="570" font-family="Inter, sans-serif" font-size="10" fill="#CBD5E1">© 2026 Instituto i10 · Brandbook v2.0 · brand@institutoi10.org.br</text>
+</svg>
