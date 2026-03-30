@@ -39,9 +39,9 @@
     .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,23,64,.92);
       backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
       border-bottom:1px solid rgba(0,180,216,.12);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between}
-    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-    .nav-logo-text{font-size:20px;font-weight:800;color:var(--w);letter-spacing:-.5px}
-    .nav-logo-text span{color:var(--cyan)}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-text{font-size:20px;font-weight:900;color:var(--w);letter-spacing:-.5px}
+    .nav-logo-text span{background:linear-gradient(90deg,#00B4D8,#00E5A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
     .nav-links{display:flex;gap:6px;list-style:none}
     .nav-links a{color:var(--w70);text-decoration:none;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:.25s}
     .nav-links a:hover{color:var(--w);background:var(--w10)}
@@ -63,6 +63,9 @@
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,23,64,.82) 0%,rgba(10,36,99,.88) 40%,rgba(3,11,26,.96) 100%)}
     .hero-content{position:relative;z-index:2;text-align:center;max-width:880px;padding:120px 32px 80px}
     .hero-tag{display:inline-block;font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--w50);margin-bottom:32px}
+    .hero-logo{font-size:clamp(80px,12vw,140px);font-weight:900;letter-spacing:-4px;line-height:1;margin-bottom:16px}
+    .hero-logo .i{color:var(--cyan);text-shadow:0 0 30px rgba(0,180,216,.5),0 0 60px rgba(0,180,216,.2)}
+    .hero-logo .ten{background:linear-gradient(90deg,#00B4D8,#00E5A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 30px rgba(0,229,160,.3))}
     .hero h1{font-size:clamp(44px,6.5vw,84px);font-weight:900;line-height:1.02;margin-bottom:28px;letter-spacing:-3px}
     .hero h1 .accent{color:var(--cyan);text-shadow:var(--glow-c)}
     .hero-sub{font-family:var(--fh);font-size:clamp(18px,2.2vw,24px);font-weight:400;color:var(--w70);line-height:1.7;margin-bottom:44px;max-width:680px;margin-left:auto;margin-right:auto}
@@ -206,44 +209,13 @@
 <!-- ===== NAV ===== -->
 <nav class="nav">
   <a href="#" class="nav-logo">
-    <!-- i10 logo mark: neural constellation style -->
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="36" height="36" rx="8" fill="rgba(10,36,99,0.6)"/>
-      <!-- Book base -->
-      <path d="M6 26 C6 26 10 23 18 23 C26 23 30 26 30 26" stroke="rgba(0,180,216,0.5)" stroke-width="1.2" fill="none"/>
-      <path d="M6 24.5 C6 24.5 10 21.5 18 21.5 C26 21.5 30 24.5 30 24.5" stroke="rgba(0,180,216,0.3)" stroke-width="1" fill="none"/>
-      <!-- Neural constellation -->
-      <circle cx="11" cy="14" r="2" fill="#00B4D8"/>
-      <circle cx="18" cy="9" r="2" fill="#00E5A0"/>
-      <circle cx="25" cy="14" r="2" fill="#00B4D8"/>
-      <circle cx="14" cy="19" r="1.5" fill="#00B4D8" opacity=".7"/>
-      <circle cx="22" cy="19" r="1.5" fill="#00E5A0" opacity=".7"/>
-      <circle cx="18" cy="16" r="1.8" fill="#00E5A0"/>
-      <!-- Connections -->
-      <line x1="11" y1="14" x2="18" y2="9" stroke="url(#lgNav)" stroke-width="1"/>
-      <line x1="18" y1="9" x2="25" y2="14" stroke="url(#lgNav)" stroke-width="1"/>
-      <line x1="11" y1="14" x2="14" y2="19" stroke="url(#lgNav)" stroke-width=".8" opacity=".6"/>
-      <line x1="25" y1="14" x2="22" y2="19" stroke="url(#lgNav)" stroke-width=".8" opacity=".6"/>
-      <line x1="14" y1="19" x2="18" y2="16" stroke="url(#lgNav)" stroke-width=".8" opacity=".6"/>
-      <line x1="22" y1="19" x2="18" y2="16" stroke="url(#lgNav)" stroke-width=".8" opacity=".6"/>
-      <line x1="11" y1="14" x2="18" y2="16" stroke="url(#lgNav)" stroke-width=".8" opacity=".4"/>
-      <line x1="25" y1="14" x2="18" y2="16" stroke="url(#lgNav)" stroke-width=".8" opacity=".4"/>
-      <!-- Connection node (pingo do i) -->
-      <circle cx="18" cy="4" r="1.8" fill="#00E5A0" opacity=".9"/>
-      <line x1="18" y1="5.8" x2="18" y2="9" stroke="#00E5A0" stroke-width=".8" opacity=".5"/>
-      <defs>
-        <linearGradient id="lgNav" x1="11" y1="10" x2="25" y2="19" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00B4D8"/><stop offset="1" stop-color="#00E5A0"/>
-        </linearGradient>
-      </defs>
-    </svg>
     <div class="nav-logo-text">Instituto <span>i10</span></div>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#quem-somos">Quem Somos</a></li>
     <li><a href="#pilares">Pilares</a></li>
     <li><a href="#ecossistema">Ecossistema</a></li>
-    <li><a href="#governanca">Governanca</a></li>
+    <li><a href="#governanca">Governança</a></li>
     <li><a href="#contato" class="nav-cta">Contato</a></li>
   </ul>
   <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
@@ -258,54 +230,16 @@
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">Educacao &middot; Tecnologia &middot; Inovacao</div>
+    <div class="hero-tag">Educação &middot; Tecnologia &middot; Inovação</div>
 
-    <!-- Inline i10 logo with neural glow -->
-    <svg width="180" height="90" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:28px">
-      <!-- Glow filters -->
-      <defs>
-        <filter id="glowC" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="6" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="glowG" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="8" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <linearGradient id="lgHero" x1="0" y1="45" x2="180" y2="45" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#00B4D8"/><stop offset="1" stop-color="#00E5A0"/>
-        </linearGradient>
-      </defs>
-      <!-- "i" letter -->
-      <text x="18" y="68" font-family="Inter,sans-serif" font-weight="900" font-size="72" fill="#00B4D8" filter="url(#glowC)">i</text>
-      <!-- Connection node (pingo) -->
-      <circle cx="30" cy="14" r="5" fill="#00E5A0" filter="url(#glowG)"/>
-      <!-- Neural constellation over "10" -->
-      <circle cx="72" cy="38" r="3" fill="#00B4D8" filter="url(#glowC)" opacity=".8"/>
-      <circle cx="90" cy="22" r="3" fill="#00E5A0" filter="url(#glowG)" opacity=".8"/>
-      <circle cx="108" cy="44" r="3" fill="#00B4D8" filter="url(#glowC)" opacity=".8"/>
-      <circle cx="125" cy="28" r="2.5" fill="#00E5A0" filter="url(#glowG)" opacity=".7"/>
-      <circle cx="85" cy="52" r="2.5" fill="#00B4D8" opacity=".6"/>
-      <circle cx="115" cy="56" r="2.5" fill="#00E5A0" opacity=".6"/>
-      <line x1="72" y1="38" x2="90" y2="22" stroke="url(#lgHero)" stroke-width="1.2" opacity=".5"/>
-      <line x1="90" y1="22" x2="108" y2="44" stroke="url(#lgHero)" stroke-width="1.2" opacity=".5"/>
-      <line x1="108" y1="44" x2="125" y2="28" stroke="url(#lgHero)" stroke-width="1.2" opacity=".5"/>
-      <line x1="72" y1="38" x2="85" y2="52" stroke="url(#lgHero)" stroke-width=".8" opacity=".3"/>
-      <line x1="108" y1="44" x2="115" y2="56" stroke="url(#lgHero)" stroke-width=".8" opacity=".3"/>
-      <line x1="85" y1="52" x2="115" y2="56" stroke="url(#lgHero)" stroke-width=".8" opacity=".3"/>
-      <!-- "10" text -->
-      <text x="58" y="68" font-family="Inter,sans-serif" font-weight="900" font-size="72" fill="url(#lgHero)" filter="url(#glowC)">10</text>
-      <!-- Book base -->
-      <path d="M10 80 C10 80 50 74 90 74 C130 74 170 80 170 80" stroke="url(#lgHero)" stroke-width="1.5" fill="none" opacity=".35"/>
-      <path d="M10 83 C10 83 50 77 90 77 C130 77 170 83 170 83" stroke="url(#lgHero)" stroke-width="1" fill="none" opacity=".2"/>
-    </svg>
+    <div class="hero-logo"><span class="i">i</span><span class="ten">10</span></div>
 
     <h1>Instituto <span class="accent">i10</span></h1>
     <p class="hero-sub">
-      Orquestrando o futuro da educacao publica brasileira atraves de pesquisa, inteligencia artificial e parcerias estrategicas com governos.
+      Orquestrando o futuro da educação pública brasileira através de pesquisa, inteligência artificial e parcerias estratégicas com governos.
     </p>
     <a href="#contato" class="hero-cta">
-      Conheca nosso trabalho
+      Conheça nosso trabalho
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
@@ -323,9 +257,9 @@
   <div class="container">
     <div class="manifesto-inner reveal">
       <span class="section-label">Quem Somos</span>
-      <h2>Nao somos apenas desenvolvedores de software. Somos <strong>orquestradores da transformacao educacional.</strong></h2>
-      <p>O Instituto i10 e uma Instituicao Cientifica, Tecnologica e de Inovacao (ICT) que atua como catalisador &mdash; articulando competencias do setor publico, academico e privado em projetos de inovacao educacional de grande escala.</p>
-      <p>Nossa tecnologia nao substitui o humano. Ela o liberta das amarras burocraticas para que possa focar no que realmente importa: <strong style="color:var(--w)">a aprendizagem.</strong></p>
+      <h2>Não somos apenas desenvolvedores de software. Somos <strong>orquestradores da transformação educacional.</strong></h2>
+      <p>O Instituto i10 é uma Instituição Científica, Tecnológica e de Inovação (ICT) que atua como catalisador &mdash; articulando competências do setor público, acadêmico e privado em projetos de inovação educacional de grande escala.</p>
+      <p>Nossa tecnologia não substitui o humano. Ela o liberta das amarras burocráticas para que possa focar no que realmente importa: <strong style="color:var(--w)">a aprendizagem.</strong></p>
     </div>
   </div>
 </section>
@@ -333,9 +267,9 @@
 <!-- ===== MISSION ===== -->
 <section class="mission">
   <div class="container">
-    <div class="label">Nossa Missao</div>
+    <div class="label">Nossa Missão</div>
     <blockquote>
-      &ldquo;Transformar a educacao publica brasileira atraves de pesquisa, desenvolvimento e inovacao em Inteligencia Artificial, gerando impacto mensuravel na qualidade de ensino e na equidade de oportunidades.&rdquo;
+      &ldquo;Transformar a educação pública brasileira através de pesquisa, desenvolvimento e inovação em Inteligência Artificial, gerando impacto mensurável na qualidade de ensino e na equidade de oportunidades.&rdquo;
     </blockquote>
   </div>
 </section>
@@ -350,23 +284,23 @@
     <div class="values-grid">
       <div class="val-card reveal rd1">
         <div class="val-letter">E</div>
-        <h4>Excelencia Cientifica</h4>
-        <p>Cada projeto e solucao busca o padrao de excelencia que transcende o ordinario. Metodologias validadas e resultados documentados.</p>
+        <h4>Excelência Científica</h4>
+        <p>Cada projeto e solução busca o padrão de excelência que transcende o ordinário. Metodologias validadas e resultados documentados.</p>
       </div>
       <div class="val-card reveal rd2">
         <div class="val-letter">M</div>
-        <h4>Impacto Mensuravel</h4>
-        <p>Resultados documentados, metodologias validadas e transparencia algoritmica. Dados sao os nossos herois.</p>
+        <h4>Impacto Mensurável</h4>
+        <p>Resultados documentados, metodologias validadas e transparência algorítmica. Dados são os nossos heróis.</p>
       </div>
       <div class="val-card reveal rd1">
         <div class="val-letter">I</div>
-        <h4>Inovacao com Proposito</h4>
-        <p>Tecnologia a servico da educacao. Cada decisao tecnica serve a um objetivo pedagogico claro e mensuravel.</p>
+        <h4>Inovação com Propósito</h4>
+        <p>Tecnologia a serviço da educação. Cada decisão técnica serve a um objetivo pedagógico claro e mensurável.</p>
       </div>
       <div class="val-card reveal rd2">
         <div class="val-letter">C</div>
-        <h4>Colaboracao Institucional</h4>
-        <p>Articulacao entre setor publico, academico e privado para transformacao em escala territorial.</p>
+        <h4>Colaboração Institucional</h4>
+        <p>Articulação entre setor público, acadêmico e privado para transformação em escala territorial.</p>
       </div>
     </div>
   </div>
@@ -378,8 +312,8 @@
 <section class="pillars" id="pilares">
   <div class="container">
     <div class="pillars-header reveal">
-      <span class="section-label">Tres Pilares</span>
-      <h2>Ciencia. Tecnologia. Inovacao.</h2>
+      <span class="section-label">Três Pilares</span>
+      <h2>Ciência. Tecnologia. Inovação.</h2>
       <p>Os fundamentos que sustentam cada projeto do Instituto i10.</p>
     </div>
   </div>
@@ -394,8 +328,8 @@
       </div>
       <div class="pillar-text">
         <div class="plabel c">Pilar 01</div>
-        <h3>Ciencia</h3>
-        <p>Metodologia baseada em evidencias. Producao de conhecimento cientifico, documentacao de aprendizados e avaliacao de impacto de intervencoes em contextos educacionais reais.</p>
+        <h3>Ciência</h3>
+        <p>Metodologia baseada em evidências. Produção de conhecimento científico, documentação de aprendizados e avaliação de impacto de intervenções em contextos educacionais reais.</p>
       </div>
     </div>
 
@@ -409,7 +343,7 @@
       <div class="pillar-text">
         <div class="plabel g">Pilar 02</div>
         <h3>Tecnologia</h3>
-        <p>Alicerce escalavel. Infraestrutura de nuvem, IA preditiva e generativa, e engenharia de dados capaz de suportar redes educacionais estaduais de grande porte.</p>
+        <p>Alicerce escalável. Infraestrutura de nuvem, IA preditiva e generativa, e engenharia de dados capaz de suportar redes educacionais estaduais de grande porte.</p>
       </div>
     </div>
 
@@ -422,8 +356,8 @@
       </div>
       <div class="pillar-text">
         <div class="plabel c">Pilar 03</div>
-        <h3>Inovacao</h3>
-        <p>Orquestracao e ecossistema. Capacidade de articular parcerias intersetoriais, unindo o setor publico, o privado e o terceiro setor para solucionar desafios educacionais complexos.</p>
+        <h3>Inovação</h3>
+        <p>Orquestração e ecossistema. Capacidade de articular parcerias intersetoriais, unindo o setor público, o privado e o terceiro setor para solucionar desafios educacionais complexos.</p>
       </div>
     </div>
   </div>
@@ -435,7 +369,7 @@
     <div class="eco-header reveal">
       <span class="section-label">Ecossistema Integrado</span>
       <h2>Quem transformamos.</h2>
-      <p>Um ecossistema que coloca o professor no centro e o aluno como beneficiario final.</p>
+      <p>Um ecossistema que coloca o professor no centro e o aluno como beneficiário final.</p>
     </div>
 
     <div class="eco-grid">
@@ -447,7 +381,7 @@
         <div class="eco-card-body">
           <span class="section-label" style="margin-bottom:8px">Eixo Docente</span>
           <h3>O professor como protagonista</h3>
-          <p>Reducao do tempo burocratico. Trilhas formativas, planejamento alinhado a BNCC e um co-piloto de IA generativa que sugere intervencoes e roteiros adaptados a cada turma.</p>
+          <p>Redução do tempo burocrático. Trilhas formativas, planejamento alinhado à BNCC e um co-piloto de IA generativa que sugere intervenções e roteiros adaptados a cada turma.</p>
         </div>
       </div>
       <div class="eco-card reveal rd2">
@@ -458,7 +392,7 @@
         <div class="eco-card-body">
           <span class="section-label" style="margin-bottom:8px">Eixo Discente</span>
           <h3>Aprendizagem personalizada</h3>
-          <p>Diagnostico de competencias em tempo real, percursos adaptativos prescritos por IA e retorno formativo imediato &mdash; mantendo cada aluno no centro do seu proprio desenvolvimento.</p>
+          <p>Diagnóstico de competências em tempo real, percursos adaptativos prescritos por IA e retorno formativo imediato &mdash; mantendo cada aluno no centro do seu próprio desenvolvimento.</p>
         </div>
       </div>
     </div>
@@ -469,9 +403,9 @@
 <section class="showcase" id="bncc">
   <div class="container">
     <div class="showcase-header reveal">
-      <span class="section-label">Capacitacao</span>
-      <h2>BNCC Computacao na Pratica</h2>
-      <p>Um dos programas do Instituto i10: capacitacao de redes municipais para a implementacao obrigatoria da BNCC Computacao em 2026.</p>
+      <span class="section-label">Capacitação</span>
+      <h2>BNCC Computação na Prática</h2>
+      <p>Um dos programas do Instituto i10: capacitação de redes municipais para a implementação obrigatória da BNCC Computação em 2026.</p>
     </div>
     <div class="video-frame reveal">
       <video autoplay muted loop playsinline>
@@ -479,11 +413,11 @@
       </video>
     </div>
     <div class="showcase-sub reveal">
-      <p>Treinamento que cobre regras, recursos e aplicacao pratica para secretarias municipais de educacao.</p>
+      <p>Treinamento que cobre regras, recursos e aplicação prática para secretarias municipais de educação.</p>
       <div class="showcase-pills">
-        <span class="showcase-pill">Regras &amp; Legislacao</span>
+        <span class="showcase-pill">Regras &amp; Legislação</span>
         <span class="showcase-pill">Fontes de Recursos</span>
-        <span class="showcase-pill">Workshop Pratico</span>
+        <span class="showcase-pill">Workshop Prático</span>
         <span class="showcase-pill">Kit Completo</span>
         <span class="showcase-pill">Suporte 30 dias</span>
       </div>
@@ -500,25 +434,25 @@
   <div class="container">
     <div class="governance-inner">
       <div class="governance-header reveal">
-        <span class="section-label">Governanca e Transparencia</span>
-        <h2>A fundacao da confianca.</h2>
-        <p>Estruturas que garantem independencia, etica e alinhamento inabalavel aos interesses publicos.</p>
+        <span class="section-label">Governança e Transparência</span>
+        <h2>A fundação da confiança.</h2>
+        <p>Estruturas que garantem independência, ética e alinhamento inabalável aos interesses públicos.</p>
       </div>
       <div class="gov-grid">
         <div class="gov-card reveal rd1">
           <div class="gnum">01</div>
           <h4>Conselho Consultivo &amp; Diretoria</h4>
-          <p>Governanca estrategica pro bono, garantindo independencia, etica e alinhamento inabalavel aos interesses publicos.</p>
+          <p>Governança estratégica pro bono, garantindo independência, ética e alinhamento inabalável aos interesses públicos.</p>
         </div>
         <div class="gov-card reveal rd2">
           <div class="gnum">02</div>
-          <h4>Coordenacao Cientifica</h4>
-          <p>Supervisao rigorosa de metodologias, validando a eficacia pedagogica de todas as intervencoes tecnologicas implantadas.</p>
+          <h4>Coordenação Científica</h4>
+          <p>Supervisão rigorosa de metodologias, validando a eficácia pedagógica de todas as intervenções tecnológicas implantadas.</p>
         </div>
         <div class="gov-card reveal rd3">
           <div class="gnum">03</div>
-          <h4>Seguranca e LGPD</h4>
-          <p>Protecao absoluta de dados de menores de idade, com arquitetura criptografada, DPO proprio e Relatorios de Impacto continuos.</p>
+          <h4>Segurança e LGPD</h4>
+          <p>Proteção absoluta de dados de menores de idade, com arquitetura criptografada, DPO próprio e Relatórios de Impacto contínuos.</p>
         </div>
       </div>
     </div>
@@ -535,8 +469,8 @@
     <div class="legacy-inner reveal">
       <span class="section-label">Nosso Legado</span>
       <h2>O nosso verdadeiro legado</h2>
-      <p>O Instituto i10 nao entrega apenas um artefato tecnologico &mdash; nos transferimos capacidade institucional permanente. Ao final de nossos ciclos, as redes de ensino alcancam autonomia plena para operar, analisar e evoluir seus sistemas.</p>
-      <div class="legacy-tagline">A Inteligencia a Servico do Humano.</div>
+      <p>O Instituto i10 não entrega apenas um artefato tecnológico &mdash; nós transferimos capacidade institucional permanente. Ao final de nossos ciclos, as redes de ensino alcançam autonomia plena para operar, analisar e evoluir seus sistemas.</p>
+      <div class="legacy-tagline">A Inteligência a Serviço do Humano.</div>
     </div>
   </div>
 </section>
@@ -547,22 +481,8 @@
     <div class="grad-div" style="margin-bottom:48px"></div>
     <div class="footer-top">
       <div class="footer-brand">
-        <div style="display:flex;align-items:center;gap:10px">
-          <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-            <circle cx="11" cy="14" r="2" fill="#00B4D8"/>
-            <circle cx="18" cy="9" r="2" fill="#00E5A0"/>
-            <circle cx="25" cy="14" r="2" fill="#00B4D8"/>
-            <circle cx="18" cy="16" r="1.8" fill="#00E5A0"/>
-            <line x1="11" y1="14" x2="18" y2="9" stroke="url(#lgF)" stroke-width="1"/>
-            <line x1="18" y1="9" x2="25" y2="14" stroke="url(#lgF)" stroke-width="1"/>
-            <line x1="11" y1="14" x2="18" y2="16" stroke="url(#lgF)" stroke-width=".8" opacity=".5"/>
-            <line x1="25" y1="14" x2="18" y2="16" stroke="url(#lgF)" stroke-width=".8" opacity=".5"/>
-            <circle cx="18" cy="4" r="1.5" fill="#00E5A0" opacity=".8"/>
-            <defs><linearGradient id="lgF" x1="11" y1="10" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop stop-color="#00B4D8"/><stop offset="1" stop-color="#00E5A0"/></linearGradient></defs>
-          </svg>
-          <span style="font-size:18px;font-weight:800">Instituto <span style="color:var(--cyan)">i10</span></span>
-        </div>
-        <p>Orquestrando o Futuro da Educacao Publica. Pesquisa, inteligencia artificial e parcerias estrategicas com governos.</p>
+        <div style="font-size:20px;font-weight:900">Instituto <span style="background:linear-gradient(90deg,#00B4D8,#00E5A0);-webkit-background-clip:text;-webkit-text-fill-color:transparent">i10</span></div>
+        <p>Orquestrando o Futuro da Educação Pública. Pesquisa, inteligência artificial e parcerias estratégicas com governos.</p>
       </div>
       <div class="footer-links">
         <div class="footer-links-col">
@@ -570,17 +490,17 @@
           <a href="#quem-somos">Quem Somos</a>
           <a href="#pilares">Pilares</a>
           <a href="#ecossistema">Ecossistema</a>
-          <a href="#governanca">Governanca</a>
+          <a href="#governanca">Governança</a>
         </div>
         <div class="footer-links-col">
           <h5>Programas</h5>
-          <a href="#bncc">BNCC Computacao</a>
+          <a href="#bncc">BNCC Computação</a>
           <a href="#contato">Contato</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>Sapiens Park, Florianopolis, SC &mdash; Brasil &nbsp;|&nbsp; CNPJ: 05.124.602/0001-74</span>
+      <span>Sapiens Park, Florianópolis, SC &mdash; Brasil</span>
       <span>&copy; 2026 Instituto i10. Todos os direitos reservados.</span>
     </div>
   </div>
