@@ -7,6 +7,10 @@
     {
       "source": "/bncc/:path*",
       "destination": "https://bncc-computacao.vercel.app/:path*"
+    },
+    {
+      "source": "/api/subscribe",
+      "destination": "https://bncc-computacao.vercel.app/api/subscribe"
     }
   ]
 }
