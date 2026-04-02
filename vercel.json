@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/bncc",
+      "destination": "https://bncc-computacao.vercel.app/"
+    },
+    {
+      "source": "/bncc/:path*",
+      "destination": "https://bncc-computacao.vercel.app/:path*"
+    }
+  ]
+}
