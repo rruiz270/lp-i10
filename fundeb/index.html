@@ -438,7 +438,7 @@ function selectMun(id) {
   document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-fetch('data.json')
+fetch('/fundeb/data.json')
   .then(r => r.json())
   .then(raw => {
     DATA = raw.municipios;
