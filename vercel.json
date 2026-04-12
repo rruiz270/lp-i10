@@ -15,6 +15,35 @@
     {
       "source": "/api/admin/:path*",
       "destination": "https://bncc-computacao.vercel.app/api/admin/:path*"
-    }
+    },
+    { "source": "/fundeb-ac", "destination": "/fundeb-estado.html?uf=ac" },
+    { "source": "/fundeb-al", "destination": "/fundeb-estado.html?uf=al" },
+    { "source": "/fundeb-am", "destination": "/fundeb-estado.html?uf=am" },
+    { "source": "/fundeb-ap", "destination": "/fundeb-estado.html?uf=ap" },
+    { "source": "/fundeb-ba", "destination": "/fundeb-estado.html?uf=ba" },
+    { "source": "/fundeb-ce", "destination": "/fundeb-estado.html?uf=ce" },
+    { "source": "/fundeb-es", "destination": "/fundeb-estado.html?uf=es" },
+    { "source": "/fundeb-go", "destination": "/fundeb-estado.html?uf=go" },
+    { "source": "/fundeb-ma", "destination": "/fundeb-estado.html?uf=ma" },
+    { "source": "/fundeb-mg", "destination": "/fundeb-estado.html?uf=mg" },
+    { "source": "/fundeb-ms", "destination": "/fundeb-estado.html?uf=ms" },
+    { "source": "/fundeb-mt", "destination": "/fundeb-estado.html?uf=mt" },
+    { "source": "/fundeb-pa", "destination": "/fundeb-estado.html?uf=pa" },
+    { "source": "/fundeb-pb", "destination": "/fundeb-estado.html?uf=pb" },
+    { "source": "/fundeb-pe", "destination": "/fundeb-estado.html?uf=pe" },
+    { "source": "/fundeb-pi", "destination": "/fundeb-estado.html?uf=pi" },
+    { "source": "/fundeb-pr", "destination": "/fundeb-estado.html?uf=pr" },
+    { "source": "/fundeb-rj", "destination": "/fundeb-estado.html?uf=rj" },
+    { "source": "/fundeb-rn", "destination": "/fundeb-estado.html?uf=rn" },
+    { "source": "/fundeb-ro", "destination": "/fundeb-estado.html?uf=ro" },
+    { "source": "/fundeb-rr", "destination": "/fundeb-estado.html?uf=rr" },
+    { "source": "/fundeb-rs", "destination": "/fundeb-estado.html?uf=rs" },
+    { "source": "/fundeb-sc", "destination": "/fundeb-estado.html?uf=sc" },
+    { "source": "/fundeb-se", "destination": "/fundeb-estado.html?uf=se" },
+    { "source": "/fundeb-sp", "destination": "/fundeb-sp/index.html" },
+    { "source": "/fundeb-to", "destination": "/fundeb-estado.html?uf=to" }
+  ],
+  "redirects": [
+    { "source": "/fundeb", "destination": "/fundeb-hub.html", "permanent": false }
   ]
 }
