@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instituto i10 | Diagnostico FUNDEB 2026 — Brasil</title>
+<title>Instituto i10 | Diagn&oacute;stico FUNDEB 2026 &mdash; Brasil</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -132,8 +132,9 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
 
 <div class="hero">
   <div class="container">
+    <a href="/" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;position:relative">&larr; Instituto i10</a>
     <div class="brand-top">INSTITUTO i10</div>
-    <h1>Diagnostico FUNDEB 2026<br>Todos os Estados</h1>
+    <h1>Diagn&oacute;stico FUNDEB 2026<br>Todos os Estados</h1>
     <p class="subtitle" id="heroSub">Carregando...</p>
     <div class="hero-stats" id="heroStats"></div>
   </div>
@@ -146,7 +147,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
       <select class="filter-sort" id="sortSelect">
         <option value="pot">Maior potencial</option>
         <option value="pct">Maior % ganho</option>
-        <option value="mun">Mais municipios</option>
+        <option value="mun">Mais munic&iacute;pios</option>
         <option value="az">A-Z</option>
       </select>
     </div>
@@ -161,15 +162,15 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
 
 <div class="container">
   <div class="cta-section">
-    <h2 style="font-family:'Source Serif 4',serif" id="ctaTitle">Recursos FUNDEB estao na mesa em todo o Brasil</h2>
-    <p>O Instituto i10 tem a tecnologia e a equipe para transformar dados em recursos reais para seu municipio.</p>
+    <h2 style="font-family:'Source Serif 4',serif" id="ctaTitle">Recursos FUNDEB est&atilde;o na mesa em todo o Brasil</h2>
+    <p>O Instituto i10 tem a tecnologia e a equipe para transformar dados em recursos reais para seu munic&iacute;pio.</p>
     <a href="mailto:contato@institutoi10.org.br" class="cta-btn">Fale com um Especialista</a>
   </div>
 </div>
 
 <div class="footer-bar">
   <div class="container">
-    Instituto i10 — Orquestrando o Futuro da Educacao Publica | Dados: MEC/FNDE FUNDEB 2026
+    <a href="/" style="color:rgba(255,255,255,0.8);text-decoration:none">Instituto i10</a> &mdash; Orquestrando o Futuro da Educa&ccedil;&atilde;o P&uacute;blica | Dados: MEC/FNDE FUNDEB 2026
   </div>
 </div>
 
@@ -198,7 +199,7 @@ function renderStates(states) {
       </div>
       <div class="sc-name">${s.estado}</div>
       <div class="sc-stats">
-        <span class="sc-stat"><b>${fmtN(s.n_municipios)}</b> municipios</span>
+        <span class="sc-stat"><b>${fmtN(s.n_municipios)}</b> munic\u00edpios</span>
         <span class="sc-stat"><b>${s.stats.pct_sem_vaar}%</b> sem VAAR</span>
         <span class="sc-stat"><b>${s.stats.pct_aee_sub}%</b> AEE sub</span>
       </div>
@@ -237,14 +238,14 @@ fetch('/estados/summary.json')
   .then(data => {
     STATES = data.estados;
     document.getElementById('heroSub').textContent =
-      'Identificamos ' + fmtBRL(data.pot_total_brasil) + ' em recursos FUNDEB nao captados pelos ' +
-      fmtN(data.total_municipios) + ' municipios de ' + data.total_estados + ' estados brasileiros.';
+      'Identificamos ' + fmtBRL(data.pot_total_brasil) + ' em recursos FUNDEB n\u00e3o captados pelos ' +
+      fmtN(data.total_municipios) + ' munic\u00edpios de ' + data.total_estados + ' estados brasileiros.';
     document.getElementById('heroStats').innerHTML = `
       <div class="hero-stat"><div class="number">${fmtBRL(data.pot_total_brasil)}</div><div class="label">Potencial total Brasil</div></div>
-      <div class="hero-stat"><div class="number">${fmtN(data.total_municipios)}</div><div class="label">Municipios analisados</div></div>
+      <div class="hero-stat"><div class="number">${fmtN(data.total_municipios)}</div><div class="label">Munic\u00edpios analisados</div></div>
       <div class="hero-stat"><div class="number">${data.total_estados}</div><div class="label">Estados cobertos</div></div>
-      <div class="hero-stat"><div class="number">6</div><div class="label">Alavancas de captacao</div></div>`;
-    document.getElementById('ctaTitle').textContent = fmtBRL(data.pot_total_brasil) + ' estao na mesa em todo o Brasil';
+      <div class="hero-stat"><div class="number">6</div><div class="label">Alavancas de capta\u00e7\u00e3o</div></div>`;
+    document.getElementById('ctaTitle').textContent = fmtBRL(data.pot_total_brasil) + ' est\u00e3o na mesa em todo o Brasil';
     filterAndRender();
     document.getElementById('loadingOverlay').classList.add('hidden');
   })
