@@ -62,13 +62,8 @@
     .tile-aud::before{background:linear-gradient(90deg,#00B4D8,#48CAE4)}
     .tile-apm::before{background:linear-gradient(90deg,#0D7377,#00E5A0)}
 
-    .tile-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:28px}
-    .tile-crm .tile-icon{background:rgba(0,180,216,.15);color:var(--cyan)}
-    .tile-aud .tile-icon{background:rgba(72,202,228,.15);color:var(--cyan-light)}
-    .tile-apm .tile-icon{background:rgba(0,229,160,.15);color:var(--green)}
-
     .tile-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
-      padding:4px 10px;border-radius:4px;margin-bottom:14px}
+      padding:4px 10px;border-radius:4px;margin-bottom:14px;margin-top:4px}
     .tile-crm .tile-badge{background:rgba(0,180,216,.15);color:var(--cyan)}
     .tile-aud .tile-badge{background:rgba(72,202,228,.15);color:var(--cyan-light)}
     .tile-apm .tile-badge{background:rgba(0,229,160,.15);color:var(--green)}
@@ -110,32 +105,29 @@
 
         <!-- TILE 1 — CRM -->
         <a href="https://i10-audit-crm.vercel.app" class="tile tile-crm" target="_blank" rel="noopener">
-          <div class="tile-icon">📊</div>
           <div class="tile-badge">INTERNO · LOGIN</div>
           <h3>i10 CRM</h3>
           <p>Sistema de captação de parcerias com municípios — pipeline Kanban, oportunidades, tarefas, forecast ponderado e handoff para a consultoria FUNDEB.</p>
           <span class="tile-cta">Acessar CRM →</span>
-          <span class="tile-locked">🔒 Requer conta do time i10</span>
+          <span class="tile-locked">Requer conta do time i10</span>
         </a>
 
         <!-- TILE 2 — Auditoria -->
         <a href="https://bncc-captacao.vercel.app" class="tile tile-aud" target="_blank" rel="noopener">
-          <div class="tile-icon">📐</div>
           <div class="tile-badge">INTERNO · LOGIN</div>
           <h3>Auditoria FUNDEB</h3>
           <p>Plataforma de execução das consultorias — wizard de diagnóstico, simulador VAAT/VAAR, plano de ação, compliance e geração de relatórios.</p>
           <span class="tile-cta">Acessar Auditoria →</span>
-          <span class="tile-locked">🔒 Mesmo login do CRM (SSO)</span>
+          <span class="tile-locked">Mesmo login do CRM (SSO)</span>
         </a>
 
         <!-- TILE 3 — APM -->
         <a href="/sistemas/apm/" class="tile tile-apm">
-          <div class="tile-icon">📝</div>
           <div class="tile-badge">APM · SENHA</div>
           <h3>Cadastro APM</h3>
           <p>Formulário operacional da equipe APM para registrar prefeitos, secretários e contatos-chave dos municípios direto no CRM do Instituto i10.</p>
           <span class="tile-cta">Cadastrar lead →</span>
-          <span class="tile-locked">🔐 Senha institucional APM</span>
+          <span class="tile-locked">Senha institucional APM</span>
         </a>
 
       </div>
