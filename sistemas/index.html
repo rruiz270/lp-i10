@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistemas · Instituto i10</title>
+  <meta name="description" content="Portal de acesso aos sistemas do Instituto i10 — CRM de Captação, Auditoria FUNDEB e Cadastro APM.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    :root{
+      --navy:#0A2463;--navy-dark:#061740;--navy-deeper:#030B1A;
+      --cyan:#00B4D8;--cyan-light:#48CAE4;
+      --green:#00E5A0;--green-dark:#00C48A;
+      --teal:#0D7377;
+      --w:#FFF;--w90:rgba(255,255,255,.9);--w70:rgba(255,255,255,.7);
+      --w50:rgba(255,255,255,.5);--w20:rgba(255,255,255,.2);
+      --w10:rgba(255,255,255,.1);--w05:rgba(255,255,255,.05);
+      --grad:linear-gradient(90deg,#00B4D8,#00E5A0);
+      --ft:'Inter',system-ui,sans-serif;--fh:'Source Serif 4',Georgia,serif;
+    }
+    body{font-family:var(--ft);background:var(--navy-deeper);color:var(--w);line-height:1.6;min-height:100vh;overflow-x:hidden}
+    .hex-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon fill='none' stroke='%2300B4D8' stroke-width='.8' points='60,2 110,28 110,76 60,102 10,76 10,28'/%3E%3C/svg%3E");
+      background-size:120px 104px}
+    .container{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+
+    /* Nav */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,23,64,.92);
+      backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(0,180,216,.12);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-text{font-size:20px;font-weight:900;color:var(--w);letter-spacing:-.5px}
+    .nav-logo-text span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-back{color:var(--w70);text-decoration:none;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:.25s;display:inline-flex;align-items:center;gap:6px}
+    .nav-back:hover{color:var(--w);background:var(--w10)}
+
+    /* Hero */
+    .hero{padding:140px 0 60px;text-align:center;position:relative}
+    .hero-tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:var(--cyan);margin-bottom:20px}
+    .hero h1{font-family:var(--fh);font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;letter-spacing:-2px;margin-bottom:20px}
+    .hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero p{font-size:18px;color:var(--w70);max-width:640px;margin:0 auto;font-family:var(--fh)}
+    .hero-div{width:80px;height:3px;background:var(--grad);border-radius:2px;margin:24px auto}
+
+    /* Tiles */
+    .tiles-section{padding:40px 0 100px}
+    .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1080px;margin:0 auto}
+    @media(max-width:900px){.tiles{grid-template-columns:1fr}}
+
+    .tile{display:flex;flex-direction:column;background:rgba(255,255,255,.04);backdrop-filter:blur(12px);
+      border:1px solid var(--w10);border-radius:20px;padding:36px 32px;text-decoration:none;color:inherit;
+      transition:.4s;position:relative;overflow:hidden;min-height:340px}
+    .tile::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0;transition:.4s}
+    .tile:hover{transform:translateY(-4px);background:rgba(255,255,255,.08);border-color:var(--w20)}
+    .tile:hover::before{height:6px}
+
+    .tile-crm::before{background:linear-gradient(90deg,#0A2463,#00B4D8)}
+    .tile-aud::before{background:linear-gradient(90deg,#00B4D8,#48CAE4)}
+    .tile-apm::before{background:linear-gradient(90deg,#0D7377,#00E5A0)}
+
+    .tile-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:28px}
+    .tile-crm .tile-icon{background:rgba(0,180,216,.15);color:var(--cyan)}
+    .tile-aud .tile-icon{background:rgba(72,202,228,.15);color:var(--cyan-light)}
+    .tile-apm .tile-icon{background:rgba(0,229,160,.15);color:var(--green)}
+
+    .tile-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+      padding:4px 10px;border-radius:4px;margin-bottom:14px}
+    .tile-crm .tile-badge{background:rgba(0,180,216,.15);color:var(--cyan)}
+    .tile-aud .tile-badge{background:rgba(72,202,228,.15);color:var(--cyan-light)}
+    .tile-apm .tile-badge{background:rgba(0,229,160,.15);color:var(--green)}
+
+    .tile h3{font-family:var(--fh);font-size:24px;font-weight:700;line-height:1.2;margin-bottom:10px}
+    .tile p{font-size:14px;color:var(--w70);line-height:1.7;flex:1}
+    .tile-cta{display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:14px;font-weight:700;color:var(--cyan);transition:.3s}
+    .tile:hover .tile-cta{transform:translateX(4px)}
+    .tile-apm .tile-cta{color:var(--green)}
+    .tile-locked{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--w50);margin-top:8px;font-weight:500}
+
+    /* Footer */
+    .footer{padding:40px 32px;text-align:center;border-top:1px solid var(--w10);color:var(--w50);font-size:13px}
+    .footer strong{color:var(--w)}
+  </style>
+</head>
+<body>
+  <div class="hex-bg"></div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-text">Instituto <span>i10</span></div>
+    </a>
+    <a href="/" class="nav-back">← voltar ao site</a>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">Sistemas · Acesso</div>
+      <h1>Portal de <span>sistemas</span></h1>
+      <div class="hero-div"></div>
+      <p>Escolha o sistema que deseja acessar. CRM e Auditoria exigem login com conta do time; Cadastro APM tem acesso por senha institucional.</p>
+    </div>
+  </section>
+
+  <section class="tiles-section">
+    <div class="container">
+      <div class="tiles">
+
+        <!-- TILE 1 — CRM -->
+        <a href="https://i10-audit-crm.vercel.app" class="tile tile-crm" target="_blank" rel="noopener">
+          <div class="tile-icon">📊</div>
+          <div class="tile-badge">INTERNO · LOGIN</div>
+          <h3>i10 CRM</h3>
+          <p>Sistema de captação de parcerias com municípios — pipeline Kanban, oportunidades, tarefas, forecast ponderado e handoff para a consultoria FUNDEB.</p>
+          <span class="tile-cta">Acessar CRM →</span>
+          <span class="tile-locked">🔒 Requer conta do time i10</span>
+        </a>
+
+        <!-- TILE 2 — Auditoria -->
+        <a href="https://bncc-captacao.vercel.app" class="tile tile-aud" target="_blank" rel="noopener">
+          <div class="tile-icon">📐</div>
+          <div class="tile-badge">INTERNO · LOGIN</div>
+          <h3>Auditoria FUNDEB</h3>
+          <p>Plataforma de execução das consultorias — wizard de diagnóstico, simulador VAAT/VAAR, plano de ação, compliance e geração de relatórios.</p>
+          <span class="tile-cta">Acessar Auditoria →</span>
+          <span class="tile-locked">🔒 Mesmo login do CRM (SSO)</span>
+        </a>
+
+        <!-- TILE 3 — APM -->
+        <a href="/sistemas/apm/" class="tile tile-apm">
+          <div class="tile-icon">📝</div>
+          <div class="tile-badge">APM · SENHA</div>
+          <h3>Cadastro APM</h3>
+          <p>Formulário operacional da equipe APM para registrar prefeitos, secretários e contatos-chave dos municípios direto no CRM do Instituto i10.</p>
+          <span class="tile-cta">Cadastrar lead →</span>
+          <span class="tile-locked">🔐 Senha institucional APM</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p><strong>Instituto i10</strong> · Orquestrando o futuro da educação pública brasileira</p>
+  </footer>
+</body>
+</html>

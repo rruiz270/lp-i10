@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>i10 CRM · Captação de Parcerias | Instituto i10</title>
+  <meta name="description" content="CRM de captação de parcerias com municípios — pipeline Kanban, oportunidades, tarefas e handoff para a consultoria FUNDEB.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    :root{
+      --navy:#0A2463;--navy-dark:#061740;--navy-deeper:#030B1A;
+      --cyan:#00B4D8;--cyan-light:#48CAE4;
+      --green:#00E5A0;
+      --w:#FFF;--w90:rgba(255,255,255,.9);--w70:rgba(255,255,255,.7);
+      --w50:rgba(255,255,255,.5);--w20:rgba(255,255,255,.2);--w10:rgba(255,255,255,.1);--w05:rgba(255,255,255,.05);
+      --grad:linear-gradient(90deg,#00B4D8,#00E5A0);
+      --glow-c:0 0 40px rgba(0,180,216,.4),0 0 80px rgba(0,180,216,.15);
+      --ft:'Inter',system-ui,sans-serif;--fh:'Source Serif 4',Georgia,serif;
+    }
+    body{font-family:var(--ft);background:var(--navy-deeper);color:var(--w);line-height:1.6;min-height:100vh}
+    .hex-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon fill='none' stroke='%2300B4D8' stroke-width='.8' points='60,2 110,28 110,76 60,102 10,76 10,28'/%3E%3C/svg%3E");
+      background-size:120px 104px}
+    .container{max-width:960px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,23,64,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,180,216,.12);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-text{font-size:20px;font-weight:900;color:var(--w);letter-spacing:-.5px}
+    .nav-logo-text span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-back{color:var(--w70);text-decoration:none;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:.25s}
+    .nav-back:hover{color:var(--w);background:var(--w10)}
+
+    .hero{padding:140px 0 60px}
+    .hero-tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:var(--cyan);margin-bottom:20px}
+    .hero-brand{font-size:clamp(64px,10vw,120px);font-weight:900;letter-spacing:-4px;line-height:1;margin-bottom:16px}
+    .hero-brand .i{color:var(--cyan);text-shadow:0 0 30px rgba(0,180,216,.5)}
+    .hero-brand .ten{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-brand .suffix{font-size:.45em;font-weight:700;color:var(--w70);letter-spacing:0;margin-left:12px}
+    .hero h1{font-family:var(--fh);font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.1;margin-bottom:20px}
+    .hero-div{width:80px;height:3px;background:var(--grad);border-radius:2px;margin:20px 0}
+    .hero-sub{font-family:var(--fh);font-size:19px;color:var(--w70);line-height:1.7;max-width:640px;margin-bottom:40px}
+
+    .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:var(--navy-dark);font-size:16px;font-weight:700;padding:16px 32px;border-radius:10px;text-decoration:none;transition:.3s;box-shadow:var(--glow-c)}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,180,216,.5),0 0 100px rgba(0,180,216,.2)}
+    .cta-ghost{display:inline-flex;align-items:center;gap:10px;color:var(--w70);font-size:14px;font-weight:600;padding:14px 20px;border-radius:10px;text-decoration:none;border:1px solid var(--w20);transition:.3s}
+    .cta-ghost:hover{color:var(--w);border-color:var(--cyan);background:var(--w05)}
+
+    /* Features */
+    .features{padding:60px 0 80px}
+    .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    @media(max-width:768px){.feat-grid{grid-template-columns:1fr}}
+    .feat{background:rgba(255,255,255,.04);border:1px solid var(--w10);border-radius:16px;padding:28px 24px;backdrop-filter:blur(12px)}
+    .feat-n{font-family:var(--fh);font-size:42px;font-weight:700;color:var(--cyan);margin-bottom:8px;line-height:1}
+    .feat h4{font-size:15px;font-weight:700;color:var(--w);margin-bottom:8px}
+    .feat p{font-size:13px;color:var(--w70);line-height:1.6}
+
+    .footer{padding:40px 32px;text-align:center;border-top:1px solid var(--w10);color:var(--w50);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="hex-bg"></div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo"><div class="nav-logo-text">Instituto <span>i10</span></div></a>
+    <a href="/sistemas/" class="nav-back">← todos os sistemas</a>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">Sistema interno · Login por conta do time</div>
+      <div class="hero-brand">
+        <span class="i">i</span><span class="ten">10</span>
+        <span class="suffix">CRM</span>
+      </div>
+      <h1>Captação de parcerias <br>com municípios.</h1>
+      <div class="hero-div"></div>
+      <p class="hero-sub">Pipeline Kanban com 8 estágios, oportunidades, contatos, tarefas com data de vencimento, forecast ponderado, tags, alertas de deals parados e handoff transacional para a consultoria FUNDEB — tudo num sistema único.</p>
+
+      <div class="cta-row">
+        <a href="https://i10-audit-crm.vercel.app" class="cta" target="_blank" rel="noopener">
+          Entrar no CRM
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://i10-audit-crm.vercel.app/signup" class="cta-ghost" target="_blank" rel="noopener">Ainda não tenho conta — cadastrar-me</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="feat-n">8</div>
+          <h4>Estágios de pipeline</h4>
+          <p>Novo → Contato → Diagnóstico → Follow-up → Reunião → Negociação → Ganhou → Perdido. Cada um com regras de qualificação e probabilidade.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-n">PWA</div>
+          <h4>Instalável no celular</h4>
+          <p>Notificações locais, modo offline para assets estáticos, comandos de voz (pt-BR) para navegação e criação rápida de tarefas.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-n">3</div>
+          <h4>Perfis de acesso</h4>
+          <p>Admin, Gestor e Consultor. Self-signup com aprovação por admin. Permissões granulares em estágios, time, health e ops.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Instituto i10 · Orquestrando o futuro da educação pública brasileira</p>
+  </footer>
+</body>
+</html>

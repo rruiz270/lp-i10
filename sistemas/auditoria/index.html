@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditoria FUNDEB · BNCC-CAPTACAO | Instituto i10</title>
+  <meta name="description" content="Plataforma de consultoria FUNDEB — wizard de diagnóstico, simulador VAAT/VAAR, plano de ação, compliance e relatórios.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    :root{
+      --navy:#0A2463;--navy-dark:#061740;--navy-deeper:#030B1A;
+      --cyan:#00B4D8;--cyan-light:#48CAE4;--cyan-pale:#ADE8F4;
+      --green:#00E5A0;
+      --w:#FFF;--w70:rgba(255,255,255,.7);--w50:rgba(255,255,255,.5);
+      --w20:rgba(255,255,255,.2);--w10:rgba(255,255,255,.1);--w05:rgba(255,255,255,.05);
+      --grad:linear-gradient(90deg,#00B4D8,#00E5A0);
+      --glow-c:0 0 40px rgba(0,180,216,.4),0 0 80px rgba(0,180,216,.15);
+      --ft:'Inter',system-ui,sans-serif;--fh:'Source Serif 4',Georgia,serif;
+    }
+    body{font-family:var(--ft);background:var(--navy-deeper);color:var(--w);line-height:1.6;min-height:100vh}
+    .hex-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='104'%3E%3Cpolygon fill='none' stroke='%2300B4D8' stroke-width='.8' points='60,2 110,28 110,76 60,102 10,76 10,28'/%3E%3C/svg%3E");
+      background-size:120px 104px}
+    .container{max-width:960px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,23,64,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,180,216,.12);height:64px;display:flex;align-items:center;padding:0 40px;justify-content:space-between}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .nav-logo-text{font-size:20px;font-weight:900;color:var(--w);letter-spacing:-.5px}
+    .nav-logo-text span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .nav-back{color:var(--w70);text-decoration:none;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:.25s}
+    .nav-back:hover{color:var(--w);background:var(--w10)}
+
+    .hero{padding:140px 0 60px}
+    .hero-tag{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:4px;color:var(--cyan-light);margin-bottom:20px}
+    .hero-title{font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-3px;line-height:1;margin-bottom:16px;background:linear-gradient(135deg,#48CAE4,#00B4D8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 30px rgba(72,202,228,.3))}
+    .hero h1{font-family:var(--fh);font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.1;margin-bottom:20px}
+    .hero-div{width:80px;height:3px;background:var(--grad);border-radius:2px;margin:20px 0}
+    .hero-sub{font-family:var(--fh);font-size:19px;color:var(--w70);line-height:1.7;max-width:640px;margin-bottom:40px}
+
+    .cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:var(--grad);color:var(--navy-dark);font-size:16px;font-weight:700;padding:16px 32px;border-radius:10px;text-decoration:none;transition:.3s;box-shadow:var(--glow-c)}
+    .cta:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(0,180,216,.5)}
+
+    .pipeline{padding:60px 0 80px}
+    .pipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:32px}
+    @media(max-width:768px){.pipe-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.pipe-grid{grid-template-columns:1fr}}
+    .pipe{background:rgba(255,255,255,.04);border:1px solid var(--w10);border-radius:12px;padding:18px 20px;backdrop-filter:blur(12px);transition:.3s}
+    .pipe:hover{border-color:var(--cyan);background:rgba(0,180,216,.08)}
+    .pipe h5{font-size:13px;font-weight:700;color:var(--cyan-light);margin-bottom:4px}
+    .pipe p{font-size:12px;color:var(--w70)}
+
+    .footer{padding:40px 32px;text-align:center;border-top:1px solid var(--w10);color:var(--w50);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="hex-bg"></div>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo"><div class="nav-logo-text">Instituto <span>i10</span></div></a>
+    <a href="/sistemas/" class="nav-back">← todos os sistemas</a>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-tag">Consultoria FUNDEB · BNCC-CAPTACAO</div>
+      <div class="hero-title">Auditoria</div>
+      <h1>Diagnóstico, simulação e <br>plano de ação baseados em dados.</h1>
+      <div class="hero-div"></div>
+      <p class="hero-sub">Plataforma de execução das consultorias FUNDEB do Instituto i10 — 9 passos do wizard de diagnóstico, simulador VAAT/VAAR com dados oficiais INEP/SICONFI, compliance, gestão de documentos, relatórios gerados automaticamente e portfólio de consultorias ativas.</p>
+
+      <div class="cta-row">
+        <a href="https://bncc-captacao.vercel.app" class="cta" target="_blank" rel="noopener">
+          Entrar na Auditoria
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pipeline">
+    <div class="container">
+      <div class="pipe-grid">
+        <div class="pipe"><h5>1. Cidade</h5><p>Cadastro do município com dados IBGE</p></div>
+        <div class="pipe"><h5>2. Discovery</h5><p>Entrevista estruturada com secretaria</p></div>
+        <div class="pipe"><h5>3. Diagnóstico</h5><p>Análise FUNDEB, VAAT/VAAR, matrículas</p></div>
+        <div class="pipe"><h5>4. Simulação</h5><p>Cenários e potencial de ganho financeiro</p></div>
+        <div class="pipe"><h5>5. Compliance</h5><p>Checklist de conformidade EC 135</p></div>
+        <div class="pipe"><h5>6. Plano de Ação</h5><p>Semanas, responsáveis, deadlines</p></div>
+        <div class="pipe"><h5>7. Documentos</h5><p>Minutas, aprovações versionadas</p></div>
+        <div class="pipe"><h5>8. Execução</h5><p>Acompanhamento semanal + evidências</p></div>
+        <div class="pipe"><h5>9. Entrega</h5><p>Relatório final + snapshot assinado</p></div>
+      </div>
+      <p style="font-size:13px;color:var(--w50);text-align:center;margin-top:20px">
+        🔐 Mesmo login do CRM (SSO com <code style="background:var(--w05);padding:2px 6px;border-radius:4px">crm.users</code>)
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Instituto i10 · Orquestrando o futuro da educação pública brasileira</p>
+  </footer>
+</body>
+</html>
