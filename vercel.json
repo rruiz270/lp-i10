@@ -16,6 +16,14 @@
       "source": "/api/admin/:path*",
       "destination": "https://bncc-computacao.vercel.app/api/admin/:path*"
     },
+    {
+      "source": "/materiais-bncc",
+      "destination": "https://bncc-computacao.vercel.app/pos-webinar"
+    },
+    {
+      "source": "/api/pos-webinar",
+      "destination": "https://bncc-computacao.vercel.app/api/pos-webinar"
+    },
     { "source": "/fundeb-ac", "destination": "/fundeb-estado.html?uf=ac" },
     { "source": "/fundeb-al", "destination": "/fundeb-estado.html?uf=al" },
     { "source": "/fundeb-am", "destination": "/fundeb-estado.html?uf=am" },
