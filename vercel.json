@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/sistemas/apm/dashboard",
+      "destination": "https://apm-fundeb-sp.vercel.app/dashboard/index.html"
+    },
+    {
+      "source": "/sistemas/apm/api/:path*",
+      "destination": "https://apm-fundeb-sp.vercel.app/api/:path*"
+    },
+    {
       "source": "/bncc",
       "destination": "https://bncc-computacao.vercel.app/"
     },
