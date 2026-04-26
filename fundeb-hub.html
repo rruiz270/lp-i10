@@ -122,9 +122,57 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   .states-grid { grid-template-columns: 1fr; }
   .filter-box { flex-direction: column; }
 }
+
+/* Lock screen */
+#lockScreen {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #0A2463;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+#lockScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.lock-box {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px; padding: 48px 40px; text-align: center; max-width: 420px; width: 90%;
+  backdrop-filter: blur(20px);
+}
+.lock-box .brand { font-weight: 800; font-size: 1rem; color: #00B4D8; letter-spacing: 1px; margin-bottom: 8px; }
+.lock-box h1 { font-family: 'Source Serif 4', serif; color: #fff; font-size: 1.6rem; margin-bottom: 6px; }
+.lock-box p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 24px; }
+.lock-box input {
+  width: 100%; padding: 14px 18px; border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 12px; font-size: 1rem; outline: none; background: rgba(255,255,255,0.06);
+  color: #fff; text-align: center; letter-spacing: 2px; transition: border-color 0.2s;
+}
+.lock-box input::placeholder { color: rgba(255,255,255,0.3); letter-spacing: 0; }
+.lock-box input:focus { border-color: #00B4D8; }
+.lock-box .lock-btn {
+  display: inline-block; margin-top: 16px; background: #00E5A0; color: #0A2463;
+  padding: 12px 36px; border-radius: 10px; font-size: 1rem; font-weight: 700;
+  border: none; cursor: pointer; transition: background 0.2s;
+}
+.lock-box .lock-btn:hover { background: #00C88A; }
+.lock-error { color: #fc8181; font-size: 0.85rem; margin-top: 10px; display: none; }
+.lock-error.show { display: block; }
+#mainContent { display: none; }
+#mainContent.show { display: block; }
 </style>
 </head>
 <body>
+
+<!-- Password Lock Screen -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <div class="brand">INSTITUTO i10</div>
+    <h1>Diagn&oacute;stico FUNDEB 2026</h1>
+    <p>Acesso restrito. Digite a senha para continuar.</p>
+    <input type="password" id="lockPassword" placeholder="Senha de acesso" autofocus>
+    <div class="lock-error" id="lockError">Senha incorreta. Tente novamente.</div>
+    <button class="lock-btn" id="lockBtn">Entrar</button>
+  </div>
+</div>
+
+<div id="mainContent">
 
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
@@ -174,8 +222,41 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   </div>
 </div>
 
+</div><!-- /mainContent -->
+
 <script>
-let STATES = [];
+
+function checkAuth() { return sessionStorage.getItem('fundeb_auth') === 'ok'; }
+function unlock() {
+  var pwd = document.getElementById('lockPassword').value;
+  if (pwd === 'Fundeb2026') {
+    sessionStorage.setItem('fundeb_auth', 'ok');
+    document.getElementById('lockScreen').classList.add('hidden');
+    document.getElementById('mainContent').classList.add('show');
+    initPage();
+  } else {
+    document.getElementById('lockError').classList.add('show');
+    document.getElementById('lockPassword').value = '';
+    document.getElementById('lockPassword').focus();
+  }
+}
+document.getElementById('lockBtn').addEventListener('click', unlock);
+document.getElementById('lockPassword').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') unlock();
+  document.getElementById('lockError').classList.remove('show');
+});
+if (checkAuth()) {
+  document.getElementById('lockScreen').classList.add('hidden');
+  document.getElementById('mainContent').classList.add('show');
+  document.addEventListener('DOMContentLoaded', initPage);
+} else {
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('lockPassword').focus();
+  });
+}
+
+var STATES = [];
+function initPage() {
 
 function fmtBRL(v) {
   if (!v && v !== 0) return '-';
@@ -254,6 +335,7 @@ fetch('/estados/summary.json')
       '<div style="text-align:center;color:var(--red)">Erro ao carregar dados. Tente novamente.</div>';
     console.error(err);
   });
+}
 </script>
 
 </body>
