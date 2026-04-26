@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/admin",
+      "destination": "https://i10-insights.vercel.app/insights/admin-hub"
+    },
+    {
       "source": "/insights",
       "destination": "https://i10-insights.vercel.app/insights"
     },
