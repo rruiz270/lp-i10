@@ -5,6 +5,10 @@
       "destination": "https://i10-lp-test.vercel.app/"
     },
     {
+      "source": "/siteteste/",
+      "destination": "https://i10-lp-test.vercel.app/"
+    },
+    {
       "source": "/siteteste/:path*",
       "destination": "https://i10-lp-test.vercel.app/:path*"
     },
