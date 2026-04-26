@@ -100,28 +100,85 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   background: var(--card); border: 1px solid var(--border); border-radius: 12px;
   padding: 18px; cursor: pointer; transition: all 0.2s; position: relative; overflow: hidden;
 }
+.state-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #00B4D8, #00E5A0); opacity: 0; transition: opacity 0.2s;
+}
+.state-card:hover::before, .state-card.active::before { opacity: 1; }
 .state-card:hover { border-color: var(--primary2); box-shadow: 0 4px 20px rgba(0,180,216,0.12); transform: translateY(-2px); }
 .state-card.active { border-color: var(--primary2); background: var(--blue-bg); }
 .state-card .s-uf { font-size: 1.6rem; font-weight: 800; color: var(--primary); }
 .state-card .s-name { font-size: 0.8rem; color: var(--text2); margin-top: 2px; }
-.state-card .s-count { font-size: 0.75rem; color: var(--text3); margin-top: 6px; }
-.state-card .s-count strong { color: var(--green); font-size: 0.9rem; }
+.state-card .s-pot { font-size: 0.85rem; font-weight: 700; color: var(--green); margin-top: 6px; }
+.state-card .s-count { font-size: 0.75rem; color: var(--text3); margin-top: 2px; }
+.state-card .s-count strong { color: var(--primary2); font-size: 0.85rem; }
+
+/* State summary panel */
+.state-summary { display: none; padding: 0 0 30px; }
+.state-summary.show { display: block; animation: fadeSlide 0.3s ease; }
+@keyframes fadeSlide { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.ss-header {
+  background: linear-gradient(135deg, #0A2463 0%, #00B4D8 100%); color: #fff;
+  border-radius: 16px; padding: 30px; margin-bottom: 16px; position: relative; overflow: hidden;
+}
+.ss-header::after {
+  content: ''; position: absolute; top: -40%; right: -10%; width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0,229,160,0.15) 0%, transparent 70%); pointer-events: none;
+}
+.ss-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; position: relative; }
+.ss-top h2 { font-family: 'Source Serif 4', serif; font-size: 1.8rem; font-weight: 700; }
+.ss-top .ss-uf-badge {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+  padding: 4px 16px; border-radius: 20px; font-weight: 700; font-size: 1.1rem;
+}
+.ss-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 20px; position: relative; }
+.ss-kpi { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 14px; text-align: center; }
+.ss-kpi .kpi-val { font-size: 1.5rem; font-weight: 800; color: #00E5A0; }
+.ss-kpi .kpi-label { font-size: 0.75rem; opacity: 0.75; margin-top: 2px; }
+.ss-problems {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 24px; margin-bottom: 16px;
+}
+.ss-problems h3 { font-size: 1rem; color: var(--primary); margin-bottom: 14px; font-weight: 700; }
+.ss-prob-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.ss-prob {
+  background: var(--bg); border-radius: 10px; padding: 14px; text-align: center;
+}
+.ss-prob .prob-pct { font-size: 1.6rem; font-weight: 800; }
+.ss-prob .prob-pct.red { color: var(--red); }
+.ss-prob .prob-pct.orange { color: var(--orange); }
+.ss-prob .prob-label { font-size: 0.72rem; color: var(--text2); margin-top: 4px; line-height: 1.3; }
+.ss-prob .prob-n { font-size: 0.7rem; color: var(--text3); margin-top: 2px; }
+.ss-actions {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px;
+}
+.ss-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+  border-radius: 12px; font-size: 0.95rem; font-weight: 700; text-decoration: none;
+  transition: all 0.2s; border: none; cursor: pointer;
+}
+.ss-btn-primary { background: #00E5A0; color: #0A2463; }
+.ss-btn-primary:hover { background: #00C88A; transform: translateY(-1px); }
+.ss-btn-secondary { background: var(--card); color: var(--primary); border: 2px solid var(--border); }
+.ss-btn-secondary:hover { border-color: var(--primary2); background: var(--blue-bg); }
+.ss-btn-outline { background: transparent; color: var(--text2); border: 1px solid var(--border); font-weight: 500; font-size: 0.85rem; padding: 10px 20px; }
+.ss-btn-outline:hover { border-color: var(--primary2); color: var(--primary); }
 
 /* City list */
 .cities-section { padding: 0 0 60px; display: none; }
 .cities-section.show { display: block; }
 .cities-header {
-  background: linear-gradient(135deg, #0A2463, #00B4D8); color: #fff;
-  border-radius: 16px; padding: 24px 30px; margin-bottom: 16px;
+  background: var(--card); border: 1px solid var(--border); color: var(--text);
+  border-radius: 14px; padding: 20px 24px; margin-bottom: 12px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
 }
-.cities-header h2 { font-size: 1.5rem; font-weight: 800; }
-.cities-header .ch-info { font-size: 0.9rem; opacity: 0.85; }
+.cities-header h2 { font-size: 1.1rem; font-weight: 700; }
+.cities-header .ch-info { font-size: 0.85rem; color: var(--text2); }
 .cities-header .btn-back {
-  background: rgba(255,255,255,0.15); color: #fff; border: none; padding: 8px 18px;
-  border-radius: 8px; cursor: pointer; font-size: 0.85rem; transition: background 0.2s;
+  background: var(--bg); color: var(--text2); border: 1px solid var(--border); padding: 8px 18px;
+  border-radius: 8px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
 }
-.cities-header .btn-back:hover { background: rgba(255,255,255,0.25); }
+.cities-header .btn-back:hover { border-color: var(--primary2); color: var(--primary); }
 .city-filter {
   width: 100%; padding: 12px 16px; border: 2px solid var(--border); border-radius: 10px;
   font-size: 0.95rem; outline: none; margin-bottom: 12px; transition: border-color 0.2s;
@@ -166,6 +223,11 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   .city-list { grid-template-columns: 1fr; }
   .cities-header { flex-direction: column; text-align: center; }
   .lock-box { padding: 32px 24px; }
+  .ss-kpis { grid-template-columns: repeat(2, 1fr); }
+  .ss-prob-grid { grid-template-columns: repeat(2, 1fr); }
+  .ss-actions { flex-direction: column; }
+  .ss-btn { justify-content: center; }
+  .ss-top { flex-direction: column; }
 }
 </style>
 </head>
@@ -235,6 +297,30 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   </div>
 </div>
 
+<div class="state-summary" id="stateSummary">
+  <div class="container">
+    <div class="ss-header">
+      <div class="ss-top">
+        <div>
+          <h2 id="ssTitle"></h2>
+          <div style="font-size:0.9rem;opacity:0.8;margin-top:4px" id="ssSub"></div>
+        </div>
+        <div class="ss-uf-badge" id="ssUfBadge"></div>
+      </div>
+      <div class="ss-kpis" id="ssKpis"></div>
+    </div>
+    <div class="ss-problems" id="ssProblems">
+      <h3>Panorama de Oportunidades</h3>
+      <div class="ss-prob-grid" id="ssProbGrid"></div>
+    </div>
+    <div class="ss-actions" id="ssActions">
+      <a class="ss-btn ss-btn-primary" id="ssBtnDiag" href="#" target="_blank">Diagn&oacute;stico Interativo &rarr;</a>
+      <button class="ss-btn ss-btn-secondary" id="ssBtnPdfs">Relat&oacute;rios PDF dos Munic&iacute;pios &darr;</button>
+      <button class="ss-btn ss-btn-outline" id="ssBtnVoltar">&larr; Voltar aos estados</button>
+    </div>
+  </div>
+</div>
+
 <div class="cities-section" id="citiesSection">
   <div class="container">
     <div class="cities-header">
@@ -242,7 +328,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
         <h2 id="citiesTitle"></h2>
         <div class="ch-info" id="citiesInfo"></div>
       </div>
-      <button class="btn-back" id="btnBack">&larr; Voltar aos estados</button>
+      <button class="btn-back" id="btnBack">&larr; Voltar ao resumo</button>
     </div>
     <input type="text" class="city-filter" id="cityFilter" placeholder="Filtrar munic&iacute;pio neste estado...">
     <div class="city-list" id="cityList"></div>
@@ -258,44 +344,39 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
 </div>
 
 <script>
-/* ── State names ── */
 const STATE_NAMES = {
-  AC:'Acre', AL:'Alagoas', AM:'Amazonas', AP:'Amap\u00e1',
-  BA:'Bahia', CE:'Cear\u00e1', ES:'Esp\u00edrito Santo', GO:'Goi\u00e1s',
-  MA:'Maranh\u00e3o', MG:'Minas Gerais', MS:'Mato Grosso do Sul', MT:'Mato Grosso',
-  PA:'Par\u00e1', PB:'Para\u00edba', PE:'Pernambuco', PI:'Piau\u00ed',
-  PR:'Paran\u00e1', RJ:'Rio de Janeiro', RN:'Rio Grande do Norte', RO:'Rond\u00f4nia',
+  AC:'Acre', AL:'Alagoas', AM:'Amazonas', AP:'Amapá',
+  BA:'Bahia', CE:'Ceará', ES:'Espírito Santo', GO:'Goiás',
+  MA:'Maranhão', MG:'Minas Gerais', MS:'Mato Grosso do Sul', MT:'Mato Grosso',
+  PA:'Pará', PB:'Paraíba', PE:'Pernambuco', PI:'Piauí',
+  PR:'Paraná', RJ:'Rio de Janeiro', RN:'Rio Grande do Norte', RO:'Rondônia',
   RR:'Roraima', RS:'Rio Grande do Sul', SC:'Santa Catarina', SE:'Sergipe',
-  SP:'S\u00e3o Paulo', TO:'Tocantins'
+  SP:'São Paulo', TO:'Tocantins'
 };
 
-let MANIFEST = null;
-let currentState = null;
+var MANIFEST = null;
+var SUMMARY = null;
+var currentState = null;
 
-/* ── Auth ── */
-const PASS_HASH = '8b2c86ea9cf2ea4eb517fd1e06b74f399e7e8b642e0a1a169a';
-
-function simpleHash(str) {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < str.length; i++) {
-    h ^= str.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return (h >>> 0).toString(16);
+function fmtBRL(v) {
+  if (!v && v !== 0) return '-';
+  if (Math.abs(v) >= 1e9) return 'R$ ' + (v/1e9).toFixed(1).replace('.',',') + ' bi';
+  if (Math.abs(v) >= 1e6) return 'R$ ' + (v/1e6).toFixed(1).replace('.',',') + 'M';
+  return 'R$ ' + v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
+function fmtN(v) { return v ? v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') : '0'; }
+function fmtPct(v) { return v ? v.toFixed(1).replace('.',',') + '%' : '0%'; }
 
-function checkAuth() {
-  return sessionStorage.getItem('fundeb_auth') === 'ok';
-}
+function checkAuth() { return sessionStorage.getItem('fundeb_auth') === 'ok'; }
 
 function unlock() {
-  const pwd = document.getElementById('lockPassword').value;
+  var pwd = document.getElementById('lockPassword').value;
   if (pwd === 'Fundeb2026') {
     sessionStorage.setItem('fundeb_auth', 'ok');
     document.getElementById('lockScreen').classList.add('hidden');
     document.getElementById('mainContent').classList.add('show');
     document.getElementById('footerBar').style.display = '';
-    loadManifest();
+    loadData();
   } else {
     document.getElementById('lockError').classList.add('show');
     document.getElementById('lockPassword').value = '';
@@ -313,90 +394,136 @@ if (checkAuth()) {
   document.getElementById('lockScreen').classList.add('hidden');
   document.getElementById('mainContent').classList.add('show');
   document.getElementById('footerBar').style.display = '';
-  document.addEventListener('DOMContentLoaded', loadManifest);
+  document.addEventListener('DOMContentLoaded', loadData);
 } else {
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('lockPassword').focus();
   });
 }
 
-/* ── Load manifest ── */
-function loadManifest() {
-  if (MANIFEST) { renderStates(); return; }
-  fetch('/fundeb-reports/manifest.json')
-    .then(r => r.json())
-    .then(data => {
-      MANIFEST = data;
-      let total = 0;
-      for (const uf in MANIFEST) total += MANIFEST[uf].total;
-      document.getElementById('statTotal').textContent = total.toLocaleString('pt-BR');
-      renderStates();
-    })
-    .catch(err => console.error('Erro ao carregar manifest:', err));
+function loadData() {
+  if (MANIFEST && SUMMARY) { renderStates(); return; }
+  Promise.all([
+    fetch('/fundeb-reports/manifest.json').then(function(r){ return r.json(); }),
+    fetch('/estados/summary.json').then(function(r){ return r.json(); })
+  ]).then(function(results) {
+    MANIFEST = results[0];
+    SUMMARY = {};
+    results[1].estados.forEach(function(s) { SUMMARY[s.uf] = s; });
+    var total = 0;
+    for (var uf in MANIFEST) total += MANIFEST[uf].total;
+    document.getElementById('statTotal').textContent = total.toLocaleString('pt-BR');
+    renderStates();
+  }).catch(function(err) { console.error('Erro ao carregar dados:', err); });
 }
 
-/* ── Render state grid ── */
 function renderStates() {
-  const grid = document.getElementById('stateGrid');
-  const ufs = Object.keys(MANIFEST).sort();
-  grid.innerHTML = ufs.map(uf => `
-    <div class="state-card" data-uf="${uf}" onclick="selectState('${uf}')">
-      <div class="s-uf">${uf}</div>
-      <div class="s-name">${STATE_NAMES[uf] || uf}</div>
-      <div class="s-count"><strong>${MANIFEST[uf].total}</strong> munic\u00edpios</div>
-    </div>`).join('');
-}
-
-/* ── Select state ── */
-function selectState(uf) {
-  currentState = uf;
-  document.querySelectorAll('.state-card').forEach(c => c.classList.remove('active'));
-  document.querySelector(`.state-card[data-uf="${uf}"]`)?.classList.add('active');
-
-  const data = MANIFEST[uf];
-  document.getElementById('citiesTitle').textContent = STATE_NAMES[uf] + ' (' + uf + ')';
-  document.getElementById('citiesInfo').textContent = data.total + ' relat\u00f3rios dispon\u00edveis';
-  document.getElementById('cityFilter').value = '';
-
-  renderCities(data.cidades);
-  document.getElementById('citiesSection').classList.add('show');
-  document.getElementById('citiesSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function renderCities(cities) {
-  const list = document.getElementById('cityList');
-  list.innerHTML = cities.map(c => {
-    const url = '/fundeb-reports/relatorios/' + currentState + '/' + encodeURIComponent(c.arquivo);
-    return `<a class="city-item" href="${url}" target="_blank" rel="noopener">
-      <span class="ci-name">${c.nome}</span>
-      <span class="ci-icon">PDF &rarr;</span>
-    </a>`;
+  var grid = document.getElementById('stateGrid');
+  var ufs = Object.keys(MANIFEST).sort();
+  grid.innerHTML = ufs.map(function(uf) {
+    var s = SUMMARY[uf];
+    var pot = s ? fmtBRL(s.pot_total) : '';
+    var pct = s ? '+' + fmtPct(s.pct_ganho_mediano) + ' mediano' : '';
+    return '<div class="state-card" data-uf="' + uf + '" onclick="selectState(\'' + uf + '\')">' +
+      '<div class="s-uf">' + uf + '</div>' +
+      '<div class="s-name">' + (STATE_NAMES[uf] || uf) + '</div>' +
+      (pot ? '<div class="s-pot">' + pot + '</div>' : '') +
+      '<div class="s-count"><strong>' + MANIFEST[uf].total + '</strong> municípios' + (pct ? ' &middot; ' + pct : '') + '</div>' +
+      '</div>';
   }).join('');
 }
 
-/* ── Filter cities ── */
+function selectState(uf) {
+  currentState = uf;
+  document.querySelectorAll('.state-card').forEach(function(c) { c.classList.remove('active'); });
+  var card = document.querySelector('.state-card[data-uf="' + uf + '"]');
+  if (card) card.classList.add('active');
+
+  document.getElementById('citiesSection').classList.remove('show');
+  renderStateSummary(uf);
+  document.getElementById('stateSummary').classList.add('show');
+  document.getElementById('stateSummary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderStateSummary(uf) {
+  var s = SUMMARY[uf];
+  var m = MANIFEST[uf];
+  var nome = STATE_NAMES[uf] || uf;
+
+  document.getElementById('ssTitle').textContent = nome;
+  document.getElementById('ssSub').textContent = 'Resumo estadual FUNDEB 2026';
+  document.getElementById('ssUfBadge').textContent = uf;
+
+  if (s) {
+    document.getElementById('ssKpis').innerHTML =
+      '<div class="ss-kpi"><div class="kpi-val">' + fmtBRL(s.pot_total) + '</div><div class="kpi-label">Potencial não captado</div></div>' +
+      '<div class="ss-kpi"><div class="kpi-val">' + fmtBRL(s.rec_total) + '</div><div class="kpi-label">Receita FUNDEB atual</div></div>' +
+      '<div class="ss-kpi"><div class="kpi-val">' + fmtN(s.n_municipios) + '</div><div class="kpi-label">Municípios</div></div>' +
+      '<div class="ss-kpi"><div class="kpi-val" style="color:#fff">+' + fmtPct(s.pct_ganho_mediano) + '</div><div class="kpi-label">Ganho mediano</div></div>';
+
+    var st = s.stats;
+    document.getElementById('ssProbGrid').innerHTML =
+      '<div class="ss-prob"><div class="prob-pct red">' + st.pct_sem_vaar + '%</div><div class="prob-label">Não recebem VAAR</div><div class="prob-n">' + fmtN(st.n_sem_vaar) + ' de ' + fmtN(s.n_municipios) + '</div></div>' +
+      '<div class="ss-prob"><div class="prob-pct red">' + st.pct_aee_sub + '%</div><div class="prob-label">AEE não maximizado</div><div class="prob-n">' + fmtN(st.n_aee_sub) + ' municípios</div></div>' +
+      '<div class="ss-prob"><div class="prob-pct orange">' + st.pct_conv_falt + '%</div><div class="prob-label">Sem creche conveniada</div><div class="prob-n">' + fmtN(st.n_conv_falt) + ' municípios</div></div>' +
+      '<div class="ss-prob"><div class="prob-pct orange">' + st.pct_conv_integral + '%</div><div class="prob-label">Conversão integral parada</div><div class="prob-n">' + fmtN(st.n_conv_integral) + ' municípios</div></div>' +
+      '<div class="ss-prob"><div class="prob-pct orange">' + st.pct_sem_eja + '%</div><div class="prob-label">Não captam EJA</div><div class="prob-n">' + fmtN(st.n_sem_eja) + ' municípios</div></div>' +
+      '<div class="ss-prob"><div class="prob-pct orange">' + st.pct_integral_baixo + '%</div><div class="prob-label">Integral abaixo de 30%</div><div class="prob-n">' + fmtN(st.n_integral_baixo) + ' municípios</div></div>';
+    document.getElementById('ssProblems').style.display = '';
+  } else {
+    document.getElementById('ssKpis').innerHTML = '';
+    document.getElementById('ssProblems').style.display = 'none';
+  }
+
+  document.getElementById('ssBtnDiag').href = '/fundeb-' + uf.toLowerCase();
+  document.getElementById('citiesTitle').textContent = nome + ' (' + uf + ')';
+  document.getElementById('citiesInfo').textContent = m.total + ' relatórios PDF disponíveis';
+  document.getElementById('cityFilter').value = '';
+  renderCities(m.cidades);
+}
+
+function renderCities(cities) {
+  document.getElementById('cityList').innerHTML = cities.map(function(c) {
+    var url = '/fundeb-reports/relatorios/' + currentState + '/' + encodeURIComponent(c.arquivo);
+    return '<a class="city-item" href="' + url + '" target="_blank" rel="noopener">' +
+      '<span class="ci-name">' + c.nome + '</span>' +
+      '<span class="ci-icon">PDF &rarr;</span></a>';
+  }).join('');
+}
+
+document.getElementById('ssBtnPdfs').addEventListener('click', function() {
+  document.getElementById('citiesSection').classList.add('show');
+  document.getElementById('citiesSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+document.getElementById('ssBtnVoltar').addEventListener('click', goBackToStates);
+
+document.getElementById('btnBack').addEventListener('click', function() {
+  document.getElementById('citiesSection').classList.remove('show');
+  document.getElementById('stateSummary').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+function goBackToStates() {
+  document.getElementById('stateSummary').classList.remove('show');
+  document.getElementById('citiesSection').classList.remove('show');
+  currentState = null;
+  document.querySelectorAll('.state-card').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('statesSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 document.getElementById('cityFilter').addEventListener('input', function() {
   if (!currentState || !MANIFEST[currentState]) return;
-  const q = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const filtered = MANIFEST[currentState].cidades.filter(c =>
-    c.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(q)
-  );
+  var q = this.value.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  var filtered = MANIFEST[currentState].cidades.filter(function(c) {
+    return c.nome.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').includes(q);
+  });
   renderCities(filtered);
 });
 
-/* ── Back button ── */
-document.getElementById('btnBack').addEventListener('click', function() {
-  document.getElementById('citiesSection').classList.remove('show');
-  currentState = null;
-  document.querySelectorAll('.state-card').forEach(c => c.classList.remove('active'));
-  document.getElementById('statesSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-/* ── Global search ── */
 document.getElementById('globalSearch').addEventListener('input', function() {
-  const q = this.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const resultsDiv = document.getElementById('globalResults');
-  const statesDiv = document.getElementById('statesSection');
+  var q = this.value.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  var resultsDiv = document.getElementById('globalResults');
+  var statesDiv = document.getElementById('statesSection');
 
   if (q.length < 2 || !MANIFEST) {
     resultsDiv.classList.remove('show');
@@ -404,12 +531,13 @@ document.getElementById('globalSearch').addEventListener('input', function() {
     return;
   }
 
-  const matches = [];
-  for (const uf in MANIFEST) {
-    for (const c of MANIFEST[uf].cidades) {
-      const norm = c.nome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  var matches = [];
+  for (var uf in MANIFEST) {
+    for (var i = 0; i < MANIFEST[uf].cidades.length; i++) {
+      var c = MANIFEST[uf].cidades[i];
+      var norm = c.nome.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
       if (norm.includes(q)) {
-        matches.push({ ...c, uf });
+        matches.push({ nome: c.nome, arquivo: c.arquivo, uf: uf });
       }
       if (matches.length >= 50) break;
     }
@@ -423,14 +551,14 @@ document.getElementById('globalSearch').addEventListener('input', function() {
   }
 
   statesDiv.style.display = 'none';
+  document.getElementById('stateSummary').classList.remove('show');
   document.getElementById('citiesSection').classList.remove('show');
   document.getElementById('grTitle').textContent = matches.length + (matches.length >= 50 ? '+' : '') + ' resultado' + (matches.length !== 1 ? 's' : '');
-  document.getElementById('grList').innerHTML = matches.map(m => {
-    const url = '/fundeb-reports/relatorios/' + m.uf + '/' + encodeURIComponent(m.arquivo);
-    return `<a class="gr-item" href="${url}" target="_blank" rel="noopener">
-      <span><span class="gi-name">${m.nome}</span><span class="gi-state">${STATE_NAMES[m.uf]} (${m.uf})</span></span>
-      <span class="gi-icon">PDF &rarr;</span>
-    </a>`;
+  document.getElementById('grList').innerHTML = matches.map(function(m) {
+    var url = '/fundeb-reports/relatorios/' + m.uf + '/' + encodeURIComponent(m.arquivo);
+    return '<a class="gr-item" href="' + url + '" target="_blank" rel="noopener">' +
+      '<span><span class="gi-name">' + m.nome + '</span><span class="gi-state">' + (STATE_NAMES[m.uf] || m.uf) + ' (' + m.uf + ')</span></span>' +
+      '<span class="gi-icon">PDF &rarr;</span></a>';
   }).join('');
   resultsDiv.classList.add('show');
 });
