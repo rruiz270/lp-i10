@@ -1,10 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/siteteste",
-      "destination": "https://i10-lp-test.vercel.app/"
-    },
-    {
       "source": "/siteteste/",
       "destination": "https://i10-lp-test.vercel.app/"
     },
@@ -84,6 +80,7 @@
     { "source": "/fundeb-to", "destination": "/fundeb-estado.html?uf=to" }
   ],
   "redirects": [
+    { "source": "/siteteste", "destination": "/siteteste/", "permanent": false },
     { "source": "/fundeb", "destination": "/fundeb-hub.html", "permanent": false }
   ]
 }
