@@ -314,7 +314,8 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
       <div class="ss-prob-grid" id="ssProbGrid"></div>
     </div>
     <div class="ss-actions" id="ssActions">
-      <a class="ss-btn ss-btn-primary" id="ssBtnDiag" href="#" target="_blank">Diagn&oacute;stico Interativo &rarr;</a>
+      <a class="ss-btn ss-btn-primary" id="ssBtnReport" href="#" target="_blank">Relat&oacute;rio Estadual PDF &darr;</a>
+      <a class="ss-btn ss-btn-secondary" id="ssBtnDiag" href="#" target="_blank">Diagn&oacute;stico Interativo &rarr;</a>
       <button class="ss-btn ss-btn-secondary" id="ssBtnPdfs">Relat&oacute;rios PDF dos Munic&iacute;pios &darr;</button>
       <button class="ss-btn ss-btn-outline" id="ssBtnVoltar">&larr; Voltar aos estados</button>
     </div>
@@ -475,6 +476,7 @@ function renderStateSummary(uf) {
     document.getElementById('ssProblems').style.display = 'none';
   }
 
+  document.getElementById('ssBtnReport').href = '/fundeb-reports/relatorios/' + uf + '/ESTADO_' + uf + '_consolidado.pdf';
   document.getElementById('ssBtnDiag').href = '/fundeb-' + uf.toLowerCase();
   document.getElementById('citiesTitle').textContent = nome + ' (' + uf + ')';
   document.getElementById('citiesInfo').textContent = m.total + ' relatórios PDF disponíveis';
