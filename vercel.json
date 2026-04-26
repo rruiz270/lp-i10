@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/insights",
+      "destination": "https://i10-insights.vercel.app/insights"
+    },
+    {
+      "source": "/insights/:path*",
+      "destination": "https://i10-insights.vercel.app/insights/:path*"
+    },
+    {
       "source": "/sistemas/apm/dashboard",
       "destination": "https://apm-fundeb-sp.vercel.app/dashboard/index.html"
     },
