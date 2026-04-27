@@ -30,11 +30,11 @@
     },
     {
       "source": "/sistemas/apm/dashboard",
-      "destination": "https://apm-fundeb-sp.vercel.app/dashboard/index.html"
+      "destination": "https://apm-seven.vercel.app/dashboard/index.html"
     },
     {
       "source": "/sistemas/apm/api/:path*",
-      "destination": "https://apm-fundeb-sp.vercel.app/api/:path*"
+      "destination": "https://apm-seven.vercel.app/api/:path*"
     },
     {
       "source": "/bncc",
