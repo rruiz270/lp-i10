@@ -13,6 +13,14 @@
       "destination": "https://i10-insights.vercel.app/insights/admin-hub"
     },
     {
+      "source": "/marketing",
+      "destination": "https://i10-marketing.vercel.app/marketing/admin"
+    },
+    {
+      "source": "/marketing/:path*",
+      "destination": "https://i10-marketing.vercel.app/marketing/:path*"
+    },
+    {
       "source": "/insights",
       "destination": "https://i10-insights.vercel.app/insights"
     },
