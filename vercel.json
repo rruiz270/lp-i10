@@ -30,7 +30,7 @@
     },
     {
       "source": "/sistemas/apm/dashboard",
-      "destination": "https://apm-seven.vercel.app/dashboard/index.html"
+      "destination": "https://bncc-captacao.vercel.app/apm/email-mkt"
     },
     {
       "source": "/sistemas/apm/api/:path*",
