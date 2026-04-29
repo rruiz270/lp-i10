@@ -402,7 +402,7 @@ function selectCity(k) {
 
   var strats = d.strats || [];
   if (strats.length) {
-    document.getElementById('stratsSection').style.display = '';
+    document.getElementById('stratsSection').style.display = 'block';
     document.getElementById('stratsContent').innerHTML = strats.map(function(e) {
       return '<div class="strat-item">' +
         '<span class="strat-badge strat-badge-' + e.i + '">' + e.i.toUpperCase() + '</span>' +
@@ -418,8 +418,8 @@ function selectCity(k) {
   document.getElementById('downloadBtn').href =
     'https://apm-fundeb-sp.vercel.app/api/download?source=whatsapp&pdf=' + encodeURIComponent(pdfFile);
 
-  document.getElementById('cityCard').style.display = '';
-  document.getElementById('ctaBlock').style.display = '';
+  document.getElementById('cityCard').style.display = 'block';
+  document.getElementById('ctaBlock').style.display = 'block';
   document.getElementById('cityCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
