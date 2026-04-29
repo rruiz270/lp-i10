@@ -38,11 +38,7 @@
     },
     {
       "source": "/apm-lp",
-      "destination": "https://apm-seven.vercel.app/whatsapp/"
-    },
-    {
-      "source": "/apm-lp/:path*",
-      "destination": "https://apm-seven.vercel.app/whatsapp/:path*"
+      "destination": "/apm-lp/index.html"
     },
     {
       "source": "/bncc",
