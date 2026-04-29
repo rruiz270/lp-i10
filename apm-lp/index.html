@@ -306,23 +306,23 @@ function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u03
 
 var lastMatches = [];
 
+function $(id) { return document.getElementById(id); }
+
 function doSearch() {
-  var input = document.getElementById('searchInput');
-  var sugBox = document.getElementById('suggestions');
-  var q = norm(input.value);
-  if (q.length < 2 || !DATA) { sugBox.classList.remove('show'); lastMatches = []; return; }
+  var q = norm($('searchInput').value);
+  if (q.length < 2 || !DATA) { $('suggestions').classList.remove('show'); lastMatches = []; return; }
   lastMatches = ALL_KEYS.filter(function(k) {
     return norm(DATA[k].n).indexOf(q) >= 0;
   }).slice(0, 10);
-  if (!lastMatches.length) { sugBox.classList.remove('show'); return; }
-  sugBox.innerHTML = lastMatches.map(function(k) {
+  if (!lastMatches.length) { $('suggestions').classList.remove('show'); return; }
+  $('suggestions').innerHTML = lastMatches.map(function(k) {
     var d = DATA[k];
     return '<div class="sug-item" onclick="selectCity(\'' + k + '\')">' +
       '<span>' + d.n + '</span>' +
       '<span class="sug-pot">+' + fmtPct(d.pct) + ' | ' + fmtBRL(d.pot) + '</span>' +
       '</div>';
   }).join('');
-  sugBox.classList.add('show');
+  $('suggestions').classList.add('show');
 }
 
 function onSugClick(e) {
@@ -331,8 +331,7 @@ function onSugClick(e) {
 }
 
 function doBuscar() {
-  var input = document.getElementById('searchInput');
-  var q = norm(input.value);
+  var q = norm($('searchInput').value);
   if (!DATA || q.length < 2) { alert('Digite pelo menos 2 letras do município.'); return; }
   var exact = ALL_KEYS.find(function(k) { return norm(DATA[k].n) === q; });
   if (exact) {
@@ -355,8 +354,8 @@ function selectCity(k) {
   var d = DATA[k];
   if (!d) return;
   var ordem = parseInt(k, 10);
-  sugBox.classList.remove('show');
-  input.value = d.n;
+  document.getElementById('suggestions').classList.remove('show');
+  document.getElementById('searchInput').value = d.n;
 
   document.title = 'APM | Diagnóstico FUNDEB — ' + d.n;
   document.getElementById('cityName').textContent = d.n;
