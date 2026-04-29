@@ -37,6 +37,14 @@
       "destination": "https://apm-seven.vercel.app/api/:path*"
     },
     {
+      "source": "/apm-lp",
+      "destination": "https://apm-fundeb-sp.vercel.app/whatsapp/"
+    },
+    {
+      "source": "/apm-lp/:path*",
+      "destination": "https://apm-fundeb-sp.vercel.app/whatsapp/:path*"
+    },
+    {
       "source": "/bncc",
       "destination": "https://bncc-computacao.vercel.app/"
     },
