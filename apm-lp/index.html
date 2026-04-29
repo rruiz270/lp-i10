@@ -209,9 +209,9 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); c
   <div class="search-card" id="searchCard">
     <h2>Encontre o seu munic&iacute;pio</h2>
     <div class="search-wrap">
-      <input type="text" class="search-input" id="searchInput" placeholder="Digite o nome do munic&iacute;pio..." autocomplete="off">
-      <button type="button" class="search-btn" id="searchBtn">Buscar</button>
-      <div class="suggestions" id="suggestions"></div>
+      <input type="text" class="search-input" id="searchInput" placeholder="Digite o nome do munic&iacute;pio..." autocomplete="off" oninput="doSearch()" onkeydown="if(event.key==='Enter'){event.preventDefault();doBuscar();}">
+      <button type="button" class="search-btn" onclick="doBuscar()">Buscar</button>
+      <div class="suggestions" id="suggestions" onclick="onSugClick(event)"></div>
     </div>
   </div>
 
@@ -304,12 +304,11 @@ function fmtN(v) { return v ? v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 function fmtPct(v) { return v ? v.toFixed(1).replace('.',',') + '%' : '0%'; }
 function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
 
-var input = document.getElementById('searchInput');
-var sugBox = document.getElementById('suggestions');
-var searchBtn = document.getElementById('searchBtn');
 var lastMatches = [];
 
 function doSearch() {
+  var input = document.getElementById('searchInput');
+  var sugBox = document.getElementById('suggestions');
   var q = norm(input.value);
   if (q.length < 2 || !DATA) { sugBox.classList.remove('show'); lastMatches = []; return; }
   lastMatches = ALL_KEYS.filter(function(k) {
@@ -318,7 +317,7 @@ function doSearch() {
   if (!lastMatches.length) { sugBox.classList.remove('show'); return; }
   sugBox.innerHTML = lastMatches.map(function(k) {
     var d = DATA[k];
-    return '<div class="sug-item" data-k="' + k + '">' +
+    return '<div class="sug-item" onclick="selectCity(\'' + k + '\')">' +
       '<span>' + d.n + '</span>' +
       '<span class="sug-pot">+' + fmtPct(d.pct) + ' | ' + fmtBRL(d.pot) + '</span>' +
       '</div>';
@@ -326,54 +325,31 @@ function doSearch() {
   sugBox.classList.add('show');
 }
 
-input.addEventListener('input', doSearch);
-
-// Event delegation for suggestion clicks
-sugBox.addEventListener('click', function(e) {
+function onSugClick(e) {
   var item = e.target.closest('.sug-item');
-  if (item && item.dataset.k) {
-    e.preventDefault();
-    e.stopPropagation();
-    selectCity(item.dataset.k);
-  }
-});
+  if (item) item.click();
+}
 
-// Touch support for mobile
-sugBox.addEventListener('touchend', function(e) {
-  var item = e.target.closest('.sug-item');
-  if (item && item.dataset.k) {
-    e.preventDefault();
-    selectCity(item.dataset.k);
-  }
-});
-
-// Buscar button - select first match or exact match
-searchBtn.addEventListener('click', function() {
+function doBuscar() {
+  var input = document.getElementById('searchInput');
   var q = norm(input.value);
-  if (!DATA || q.length < 2) return;
+  if (!DATA || q.length < 2) { alert('Digite pelo menos 2 letras do município.'); return; }
   var exact = ALL_KEYS.find(function(k) { return norm(DATA[k].n) === q; });
   if (exact) {
     selectCity(exact);
   } else if (lastMatches.length === 1) {
     selectCity(lastMatches[0]);
-  } else if (lastMatches.length > 1) {
-    sugBox.classList.add('show');
+  } else if (lastMatches.length > 0) {
+    selectCity(lastMatches[0]);
   } else {
     doSearch();
+    if (lastMatches.length > 0) {
+      selectCity(lastMatches[0]);
+    } else {
+      alert('Município não encontrado. Verifique o nome.');
+    }
   }
-});
-
-// Enter key triggers search
-input.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    searchBtn.click();
-  }
-});
-
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.search-wrap')) sugBox.classList.remove('show');
-});
+}
 
 function selectCity(k) {
   var d = DATA[k];
