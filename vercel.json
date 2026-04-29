@@ -98,5 +98,13 @@
   "redirects": [
     { "source": "/siteteste", "destination": "/siteteste/", "permanent": false },
     { "source": "/fundeb", "destination": "/fundeb-hub.html", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/apm-lp(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
+    }
   ]
 }
