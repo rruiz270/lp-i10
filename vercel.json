@@ -41,6 +41,22 @@
       "destination": "/apm-lp/index.html"
     },
     {
+      "source": "/apm-fundeb",
+      "destination": "https://webinar-fundeb-apm.vercel.app/"
+    },
+    {
+      "source": "/apm-fundeb/:path*",
+      "destination": "https://webinar-fundeb-apm.vercel.app/:path*"
+    },
+    {
+      "source": "/apm-fundeb-admin",
+      "destination": "https://webinar-fundeb-apm.vercel.app/admin"
+    },
+    {
+      "source": "/api/apm-fundeb/:path*",
+      "destination": "https://webinar-fundeb-apm.vercel.app/api/:path*"
+    },
+    {
       "source": "/bncc",
       "destination": "https://bncc-computacao.vercel.app/"
     },
