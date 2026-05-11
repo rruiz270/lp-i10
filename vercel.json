@@ -109,6 +109,7 @@
   ],
   "redirects": [
     { "source": "/siteteste", "destination": "/siteteste/", "permanent": false },
+    { "source": "/better-financeiro", "destination": "/better-financeiro/", "permanent": false },
     { "source": "/fundeb", "destination": "/fundeb-hub.html", "permanent": false }
   ],
   "headers": [
