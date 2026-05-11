@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Better Education — Central Financeira</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.gate{text-align:center;padding:40px}
+.gate h1{font-size:24px;color:#f8fafc;margin-bottom:8px}
+.gate p{font-size:13px;color:#64748b;margin-bottom:24px}
+.gate input{padding:12px 20px;border:2px solid #334155;border-radius:10px;background:#1e293b;color:#f8fafc;font-size:16px;width:280px;text-align:center;outline:none}
+.gate input:focus{border-color:#3b82f6}
+.gate input.error{border-color:#f87171;animation:shake 0.3s}
+.gate button{padding:12px 32px;border:none;border-radius:10px;background:#3b82f6;color:white;font-size:14px;font-weight:600;cursor:pointer;margin-top:12px;display:block;width:280px;margin-left:auto;margin-right:auto}
+.gate button:hover{background:#2563eb}
+.gate .err{color:#f87171;font-size:12px;margin-top:8px;display:none}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+</style>
+</head>
+<body>
+<div class="gate" id="gate">
+<h1>Better Education</h1>
+<p>Central Financeira — Acesso Restrito</p>
+<input type="password" id="pwd" placeholder="Senha de acesso" onkeypress="if(event.key==='Enter')go()">
+<button onclick="go()">Entrar</button>
+<div class="err" id="err">Senha incorreta</div>
+</div>
+<iframe id="fr" style="display:none;border:none;width:100%;height:100vh;position:fixed;top:0;left:0"></iframe>
+<script>
+function go(){
+    if(document.getElementById("pwd").value==="Better@2702026"){
+        sessionStorage.setItem("bf","1");
+        document.getElementById("gate").style.display="none";
+        var f=document.getElementById("fr");f.style.display="block";f.src="_main_content.html";
+    }else{
+        document.getElementById("pwd").classList.add("error");
+        document.getElementById("err").style.display="block";
+        setTimeout(function(){document.getElementById("pwd").classList.remove("error")},300);
+    }
+}
+if(sessionStorage.getItem("bf")==="1"){document.getElementById("gate").style.display="none";var f=document.getElementById("fr");f.style.display="block";f.src="_main_content.html";}
+</script>
+</body>
+</html>
