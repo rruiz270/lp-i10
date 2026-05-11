@@ -33,14 +33,14 @@ function go(){
     if(document.getElementById("pwd").value==="Better@2702026"){
         sessionStorage.setItem("bf","1");
         document.getElementById("gate").style.display="none";
-        var f=document.getElementById("fr");f.style.display="block";f.src="_main_content.html";
+        var f=document.getElementById("fr");f.style.display="block";f.src="landing.html";
     }else{
         document.getElementById("pwd").classList.add("error");
         document.getElementById("err").style.display="block";
         setTimeout(function(){document.getElementById("pwd").classList.remove("error")},300);
     }
 }
-if(sessionStorage.getItem("bf")==="1"){document.getElementById("gate").style.display="none";var f=document.getElementById("fr");f.style.display="block";f.src="_main_content.html";}
+if(sessionStorage.getItem("bf")==="1"){document.getElementById("gate").style.display="none";var f=document.getElementById("fr");f.style.display="block";f.src="landing.html";}
 </script>
 </body>
 </html>
