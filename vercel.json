@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/better-financeiro/",
+      "destination": "https://financeiro-better.vercel.app/"
+    },
+    {
       "source": "/better-financeiro/:path*",
       "destination": "https://financeiro-better.vercel.app/:path*"
     },
