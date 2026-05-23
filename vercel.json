@@ -9,6 +9,14 @@
       "destination": "https://financeiro-better.vercel.app/:path*"
     },
     {
+      "source": "/ops-diagnostico/",
+      "destination": "https://ops-diagnostico.vercel.app/"
+    },
+    {
+      "source": "/ops-diagnostico/:path*",
+      "destination": "https://ops-diagnostico.vercel.app/:path*"
+    },
+    {
       "source": "/siteteste/",
       "destination": "https://i10-lp-test.vercel.app/"
     },
@@ -118,6 +126,7 @@
   "redirects": [
     { "source": "/siteteste", "destination": "/siteteste/", "permanent": false },
     { "source": "/better-financeiro", "destination": "/better-financeiro/", "permanent": false },
+    { "source": "/ops-diagnostico", "destination": "/ops-diagnostico/", "permanent": false },
     { "source": "/fundeb", "destination": "/fundeb-hub.html", "permanent": false }
   ],
   "headers": [
