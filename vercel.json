@@ -37,6 +37,14 @@
       "destination": "https://i10-marketing.vercel.app/marketing/:path*"
     },
     {
+      "source": "/ldo-dados",
+      "destination": "https://ldo-dados-sp.vercel.app/ldo-dados"
+    },
+    {
+      "source": "/ldo-dados/:path*",
+      "destination": "https://ldo-dados-sp.vercel.app/ldo-dados/:path*"
+    },
+    {
       "source": "/insights",
       "destination": "https://i10-insights.vercel.app/insights"
     },
