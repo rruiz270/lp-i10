@@ -41,6 +41,10 @@
       "destination": "https://ldo-dados-sp.vercel.app/ldo-dados"
     },
     {
+      "source": "/ldo-dados/",
+      "destination": "https://ldo-dados-sp.vercel.app/ldo-dados"
+    },
+    {
       "source": "/ldo-dados/:path*",
       "destination": "https://ldo-dados-sp.vercel.app/ldo-dados/:path*"
     },
