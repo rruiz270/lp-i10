@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/internal", "destination": "https://reserva-tecnica-i10.vercel.app/internal" },
+    { "source": "/internal/:path*", "destination": "https://reserva-tecnica-i10.vercel.app/internal/:path*" },
     { "source": "/proposals", "destination": "https://i10-proposals.vercel.app/" },
     { "source": "/api/proposals", "destination": "https://i10-proposals.vercel.app/api/proposals" },
     { "source": "/api/proposals/:path*", "destination": "https://i10-proposals.vercel.app/api/proposals/:path*" },
