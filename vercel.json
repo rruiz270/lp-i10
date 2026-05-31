@@ -1,5 +1,9 @@
 {
   "rewrites": [
+    { "source": "/proposals", "destination": "https://i10-proposals.vercel.app/" },
+    { "source": "/api/proposals", "destination": "https://i10-proposals.vercel.app/api/proposals" },
+    { "source": "/api/proposals/:path*", "destination": "https://i10-proposals.vercel.app/api/proposals/:path*" },
+    { "source": "/proposals/:path*", "destination": "https://i10-proposals.vercel.app/:path*" },
     {
       "source": "/better-financeiro/",
       "destination": "https://financeiro-better.vercel.app/"
