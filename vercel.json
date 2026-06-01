@@ -7,6 +7,18 @@
     { "source": "/api/proposals/:path*", "destination": "https://i10-proposals.vercel.app/api/proposals/:path*" },
     { "source": "/proposals/:path*", "destination": "https://i10-proposals.vercel.app/:path*" },
     {
+      "source": "/better-control",
+      "destination": "https://better-control.vercel.app/better-control"
+    },
+    {
+      "source": "/better-control/",
+      "destination": "https://better-control.vercel.app/better-control"
+    },
+    {
+      "source": "/better-control/:path*",
+      "destination": "https://better-control.vercel.app/better-control/:path*"
+    },
+    {
       "source": "/better-financeiro/",
       "destination": "https://financeiro-better.vercel.app/"
     },
