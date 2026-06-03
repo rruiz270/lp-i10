@@ -188,7 +188,7 @@
   <!-- FORM -->
   <section class="formwrap" id="agendar"><div class="container">
     <h2>🎪 Bora marcar seu horário no stand</h2>
-    <p class="fsub">Escolha o dia e a hora — ao confirmar, você já libera o <b>relatório preliminar da sua cidade</b>.</p>
+    <p class="fsub">Escolha o dia e a hora — ao confirmar, você <b>garante seu horário</b> para receber o diagnóstico completo, pessoalmente, no nosso stand.</p>
     <form id="form">
       <div class="frow">
         <div class="field"><label>Nome</label><input name="name" required placeholder="Seu nome"></div>
@@ -218,10 +218,8 @@
   <section id="unlock"><div class="container">
     <div class="party">🎉</div>
     <h2>Agendamento confirmado!</h2>
-    <p id="unlock-text">Te esperamos no nosso stand no Smart Cities Park. Enquanto isso, o relatório preliminar da sua cidade já está liberado abaixo.</p>
-    <img id="capa-prev" class="capa-prev" alt="Capa do relatório FUNDEB">
-    <a id="openpdf" class="openbtn" href="#" target="_blank" rel="noopener" style="display:none">📄 Abrir relatório preliminar (PDF)</a>
-    <div class="stand-note">★ Diagnóstico completo e plano de ação: pessoalmente, no nosso stand · 10–12 Jun.</div>
+    <p id="unlock-text">Seu horário está garantido. Te esperamos no nosso stand no Smart Cities Park — lá apresentamos o diagnóstico completo e o plano de ação da sua cidade, pessoalmente.</p>
+    <div class="stand-note">★ Diagnóstico completo e plano de ação: exclusivo, no nosso stand · 10–12 Jun · Campina Grande.</div>
   </div></section>
 
   <!-- FOOTER -->
@@ -296,10 +294,7 @@
     u.style.display = 'block';
     if (CITY) {
       document.getElementById('unlock-text').innerHTML =
-        'Te esperamos no stand do Instituto i10. O <b>relatório preliminar de ' + CITY.nome + '</b> já está liberado abaixo — o diagnóstico completo e o plano de ação a gente apresenta pessoalmente.';
-      var capa = document.getElementById('capa-prev');
-      capa.src = CITY.capa; capa.style.display = 'block';
-      if (CITY.pdf) { var op = document.getElementById('openpdf'); op.href = CITY.pdf; op.style.display = 'inline-flex'; }
+        'Seu horário está garantido, ' + CITY.nome + '! Te esperamos no stand do Instituto i10 — lá apresentamos o diagnóstico completo e o plano de ação pessoalmente, no Smart Cities Park.';
     }
     u.scrollIntoView({ behavior: 'smooth' });
   }
