@@ -87,6 +87,10 @@
       "destination": "/apm-lp/index.html"
     },
     {
+      "source": "/pa-smart",
+      "destination": "/pa-smart/index.html"
+    },
+    {
       "source": "/apm-fundeb",
       "destination": "https://webinar-fundeb-apm.vercel.app/"
     },

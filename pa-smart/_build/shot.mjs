@@ -1,0 +1,12 @@
+import puppeteer from 'puppeteer-core';
+const url = process.argv[2] || 'http://localhost:8799/pa-smart/?m=2500106';
+const out = process.argv[3] || '/tmp/lp-full.png';
+const b = await puppeteer.launch({ executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless:'new', args:['--no-sandbox'] });
+const p = await b.newPage();
+await p.setViewport({ width: 900, height: 1200, deviceScaleFactor: 1.5 });
+await p.goto(url, { waitUntil:'networkidle0' });
+await p.evaluateHandle('document.fonts.ready');
+await new Promise(r=>setTimeout(r,400));
+await p.screenshot({ path: out, fullPage:true });
+await b.close();
+console.log('ok ->', out);
