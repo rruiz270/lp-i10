@@ -25,6 +25,7 @@ function titleCase(s) {
 }
 const nf = new Intl.NumberFormat('pt-BR');
 
+const NOMES = JSON.parse(fs.readFileSync(path.join(__dirname, 'nomes-acentos.json'), 'utf8'));
 const data = JSON.parse(fs.readFileSync(DATA, 'utf8'));
 const munis = data.municipios.filter((m) => m.potencial);
 const ranked = [...munis].sort((a, b) => b.potencial.pot_total_novo - a.potencial.pot_total_novo);
@@ -40,7 +41,7 @@ for (const m of munis) {
   if (!hasPdf) semPdf.push(m.nome);
   out[m.codigo_ibge] = {
     ibge: m.codigo_ibge,
-    nome: titleCase(m.nome),
+    nome: NOMES[m.codigo_ibge] || titleCase(m.nome),
     uf: 'PB',
     mat: nf.format(m.tot_mat || 0),
     rank: rankOf.get(m.codigo_ibge),

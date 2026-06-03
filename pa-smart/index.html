@@ -15,8 +15,15 @@
     --navy:#0A2463;--ink:#1a0524;--ink-soft:#5b4668;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',sans-serif;background:#faf7fc;color:#2a1733;line-height:1.6;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:880px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 60px rgba(107,26,140,.12)}
+  body{font-family:'Inter',sans-serif;color:#2a1733;line-height:1.6;-webkit-font-smoothing:antialiased;
+    background:#1a0524;
+    background-image:radial-gradient(circle at 18% -5%,rgba(107,26,140,.65),transparent 45%),
+                     radial-gradient(circle at 92% 8%,rgba(255,210,63,.14),transparent 38%),
+                     radial-gradient(circle at 80% 100%,rgba(0,229,160,.10),transparent 42%);
+    background-attachment:fixed}
+  .wrap{max-width:920px;margin:28px auto;background:#fff;border-radius:20px;overflow:hidden;
+    box-shadow:0 30px 90px rgba(0,0,0,.45)}
+  @media(max-width:640px){.wrap{margin:0;border-radius:0}}
   a{color:inherit}
 
   /* faixas festa junina */

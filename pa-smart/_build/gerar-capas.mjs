@@ -38,6 +38,7 @@ function titleCase(s) {
 const nf = new Intl.NumberFormat('pt-BR');
 
 // ── carrega dados + ranking por potencial ───────────────────────────────
+const NOMES = JSON.parse(fs.readFileSync(path.join(__dirname, 'nomes-acentos.json'), 'utf8'));
 const data = JSON.parse(fs.readFileSync(DATA, 'utf8'));
 const munis = data.municipios.filter((m) => m.potencial);
 const ranked = [...munis].sort(
@@ -67,7 +68,7 @@ function buildHtml(m) {
   );
   const max = Math.max(...pots, 1);
   const w = pots.map((x) => Math.max(2, Math.round((x / max) * 100)));
-  const city = titleCase(m.nome);
+  const city = NOMES[m.codigo_ibge] || titleCase(m.nome);
   const vaarOk = Number(m.vaar) > 0;
   const pct = '+' + Number(p.pct_pot_total || 0).toFixed(1).replace('.', ',') + '%';
 
