@@ -15,157 +15,167 @@
     --navy:#0A2463;--ink:#1a0524;--ink-soft:#5b4668;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',sans-serif;color:#2a1733;line-height:1.6;-webkit-font-smoothing:antialiased;
-    background:#1a0524;
-    background-image:radial-gradient(circle at 18% -5%,rgba(107,26,140,.65),transparent 45%),
-                     radial-gradient(circle at 92% 8%,rgba(255,210,63,.14),transparent 38%),
-                     radial-gradient(circle at 80% 100%,rgba(0,229,160,.10),transparent 42%);
-    background-attachment:fixed}
-  .wrap{max-width:920px;margin:28px auto;background:#fff;border-radius:20px;overflow:hidden;
-    box-shadow:0 30px 90px rgba(0,0,0,.45)}
-  @media(max-width:640px){.wrap{margin:0;border-radius:0}}
+  html,body{width:100%;overflow-x:hidden}
+  body{font-family:'Inter',sans-serif;background:#fff;color:#2a1733;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:inherit}
+  .container{max-width:1140px;margin:0 auto;padding:0 32px}
+  @media(max-width:720px){.container{padding:0 20px}}
 
-  /* faixas festa junina */
+  /* faixas */
   .flag-strip{height:7px;background:linear-gradient(90deg,#009c3b 0 33%,#ffdf00 33% 66%,#002776 66% 100%)}
-  .bandeirinhas{height:22px;background:repeating-linear-gradient(90deg,transparent 0 16px,#ef4444 16px 32px,transparent 32px 48px,#22c55e 48px 64px,transparent 64px 80px,#3b82f6 80px 96px,transparent 96px 112px,#FFD23F 112px 128px);opacity:.85;clip-path:polygon(0 0,3% 100%,6% 0,9% 100%,12% 0,15% 100%,18% 0,21% 100%,24% 0,27% 100%,30% 0,33% 100%,36% 0,39% 100%,42% 0,45% 100%,48% 0,51% 100%,54% 0,57% 100%,60% 0,63% 100%,66% 0,69% 100%,72% 0,75% 100%,78% 0,81% 100%,84% 0,87% 100%,90% 0,93% 100%,96% 0,100% 100%)}
+  .bandeirinhas{height:22px;background:repeating-linear-gradient(90deg,transparent 0 16px,#ef4444 16px 32px,transparent 32px 48px,#22c55e 48px 64px,transparent 64px 80px,#3b82f6 80px 96px,transparent 96px 112px,#FFD23F 112px 128px);opacity:.9;clip-path:polygon(0 0,2% 100%,4% 0,6% 100%,8% 0,10% 100%,12% 0,14% 100%,16% 0,18% 100%,20% 0,22% 100%,24% 0,26% 100%,28% 0,30% 100%,32% 0,34% 100%,36% 0,38% 100%,40% 0,42% 100%,44% 0,46% 100%,48% 0,50% 100%,52% 0,54% 100%,56% 0,58% 100%,60% 0,62% 100%,64% 0,66% 100%,68% 0,70% 100%,72% 0,74% 100%,76% 0,78% 100%,80% 0,82% 100%,84% 0,86% 100%,88% 0,90% 100%,92% 0,94% 100%,96% 0,98% 100%,100% 0)}
 
-  /* HERO */
-  .hero{background:linear-gradient(165deg,var(--purple-d) 0%,var(--purple) 45%,var(--purple-l) 75%,#a23bc9 100%);color:#fff;padding:28px 32px 40px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 85% 10%,rgba(255,210,63,.18),transparent 55%),radial-gradient(ellipse at 10% 90%,rgba(0,229,160,.12),transparent 50%)}
-  .hero>*{position:relative;z-index:1}
-  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+  /* HERO full-bleed */
+  .hero{background:linear-gradient(160deg,var(--purple-d) 0%,var(--purple) 45%,var(--purple-l) 78%,#a23bc9 105%);color:#fff;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 88% 6%,rgba(255,210,63,.20),transparent 50%),radial-gradient(ellipse at 4% 95%,rgba(0,229,160,.14),transparent 50%)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 0 0;position:relative;z-index:1}
   .logo-i10{font-weight:900;font-size:30px;letter-spacing:-1.5px;color:#fff}
   .logo-i10 .i{color:var(--yellow)}.logo-i10 .t{color:var(--green)}
-  .scp-badge{display:inline-flex;align-items:center;gap:7px;background:var(--yellow);color:var(--purple);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:7px 13px;border-radius:8px;border:2px solid #fff}
-  .eyebrow{display:inline-block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:14px;background:rgba(0,0,0,.18);padding:6px 12px;border-radius:99px}
-  .stars{position:absolute;color:rgba(255,210,63,.5);font-size:20px}
-  h1{font-family:'Source Serif 4',serif;font-size:clamp(28px,5vw,44px);font-weight:900;line-height:1.08;letter-spacing:-1px;margin-bottom:14px;max-width:18ch}
+  .scp-badge{display:inline-flex;align-items:center;gap:7px;background:var(--yellow);color:var(--purple);font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:8px 14px;border-radius:8px;border:2px solid #fff}
+
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:44px 0 56px;position:relative;z-index:1}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:28px;padding:32px 0 40px}}
+  .eyebrow{display:inline-block;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;background:rgba(0,0,0,.2);padding:7px 13px;border-radius:99px}
+  h1{font-family:'Source Serif 4',serif;font-size:clamp(30px,3.6vw,48px);font-weight:900;line-height:1.06;letter-spacing:-1px;margin-bottom:16px}
   h1 .y{color:var(--yellow)}
-  .sub{font-size:16px;color:rgba(255,255,255,.92);max-width:52ch;margin-bottom:24px}
-  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--purple);font-weight:900;padding:15px 30px;border-radius:99px;font-size:15px;text-decoration:none;border:2px solid #fff;text-transform:uppercase;letter-spacing:.3px;box-shadow:0 10px 28px rgba(0,0,0,.28);transition:transform .15s}
+  .sub{font-size:16px;color:rgba(255,255,255,.92);max-width:54ch;margin-bottom:26px}
+  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--purple);font-weight:900;padding:16px 32px;border-radius:99px;font-size:15px;text-decoration:none;border:2px solid #fff;text-transform:uppercase;letter-spacing:.3px;box-shadow:0 12px 30px rgba(0,0,0,.3);transition:transform .15s}
   .cta:hover{transform:translateY(-2px)}
-  .event-chip{margin-top:22px;display:inline-flex;align-items:center;gap:10px;background:rgba(0,0,0,.22);border-left:3px solid var(--yellow);padding:11px 16px;border-radius:8px;font-size:13px}
-  .event-chip b{color:var(--yellow);text-transform:uppercase;letter-spacing:1px;font-size:11px}
+  .event-chip{margin-top:24px;display:flex;align-items:center;gap:12px;background:rgba(0,0,0,.22);border-left:3px solid var(--yellow);padding:12px 16px;border-radius:8px;font-size:13px;max-width:520px}
+  .event-chip b{color:var(--yellow);text-transform:uppercase;letter-spacing:1px;font-size:11px;white-space:nowrap}
 
-  /* MEGA da cidade */
-  .megacity{margin-top:26px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:20px 24px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
-  .megacity .mc-l .tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);font-weight:800}
-  .megacity .mc-l .city{font-family:'Source Serif 4',serif;font-size:26px;font-weight:700;line-height:1.1;margin-top:2px}
-  .megacity .mc-l .meta{font-size:12px;color:rgba(255,255,255,.7);margin-top:4px}
-  .megacity .mc-n{text-align:right}
-  .megacity .mc-n .n{font-family:'Source Serif 4',serif;font-size:40px;font-weight:900;color:var(--green);letter-spacing:-1.5px;line-height:1}
-  .megacity .mc-n .s{font-size:11px;color:rgba(255,255,255,.78);margin-top:2px}
+  /* card lateral (cidade OU genérico) */
+  .ticket{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);border-radius:18px;padding:26px 26px;backdrop-filter:blur(2px)}
+  .ticket .tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);font-weight:800}
+  .ticket .city{font-family:'Source Serif 4',serif;font-size:28px;font-weight:700;line-height:1.1;margin:4px 0 4px}
+  .ticket .meta{font-size:12.5px;color:rgba(255,255,255,.72)}
+  .ticket .mega{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.18)}
+  .ticket .mega .n{font-family:'Source Serif 4',serif;font-size:46px;font-weight:900;color:var(--green);letter-spacing:-2px;line-height:1}
+  .ticket .mega .s{font-size:12px;color:rgba(255,255,255,.78);margin-top:4px}
+  .ticket .glist{list-style:none;margin:16px 0 0;padding:0}
+  .ticket .glist li{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,.9);padding:6px 0}
+  .ticket .glist li::before{content:'★';color:var(--yellow);font-size:12px}
 
-  /* STATS */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--yellow)}
-  .stat{padding:18px 12px;text-align:center;border-right:2px solid rgba(107,26,140,.15)}
+  /* STATS full-bleed */
+  .stats{background:var(--yellow)}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+  .stat{padding:22px 12px;text-align:center;border-right:2px solid rgba(107,26,140,.16)}
   .stat:last-child{border-right:none}
-  .stat .n{font-family:'Source Serif 4',serif;font-size:26px;font-weight:900;color:var(--purple);letter-spacing:-.5px}
-  .stat .l{font-size:10px;font-weight:700;color:#78350f;text-transform:uppercase;letter-spacing:.6px;margin-top:3px}
+  .stat .n{font-family:'Source Serif 4',serif;font-size:30px;font-weight:900;color:var(--purple);letter-spacing:-.5px}
+  .stat .l{font-size:11px;font-weight:700;color:#78350f;text-transform:uppercase;letter-spacing:.7px;margin-top:3px}
 
-  /* SECTIONS */
-  .sec{padding:36px 32px}
-  .sec h2{font-family:'Source Serif 4',serif;font-size:24px;font-weight:800;color:var(--purple);text-align:center;margin-bottom:6px}
-  .sec .sec-sub{text-align:center;color:var(--ink-soft);font-size:14px;margin-bottom:24px}
+  /* SECTIONS full-bleed */
+  .sec{padding:56px 0}
+  .sec.light{background:#faf5fe}
+  .sec h2{font-family:'Source Serif 4',serif;font-size:26px;font-weight:800;color:var(--purple);text-align:center;margin-bottom:6px}
+  .sec .sec-sub{text-align:center;color:var(--ink-soft);font-size:14px;margin-bottom:30px}
 
-  .pillars{display:grid;gap:12px}
-  .pillar{background:#fff7ed;border-left:4px solid var(--yellow);padding:16px 18px;border-radius:10px}
-  .pillar b{display:block;color:var(--purple);font-size:12px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:760px){.pillars{grid-template-columns:1fr}}
+  .pillar{background:#fff;border:1px solid #eee;border-top:4px solid var(--yellow);padding:22px 20px;border-radius:12px;box-shadow:0 6px 20px rgba(107,26,140,.05)}
+  .pillar b{display:block;color:var(--purple);font-size:12px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
   .pillar span{font-size:14px;color:#4b3a55}
 
-  /* ALAVANCAS (cidade) */
-  .alav{background:#faf5fe;border:1px solid #eaddf3;border-radius:14px;padding:18px 20px}
-  .alav h3{font-size:13px;font-weight:800;color:var(--purple);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;text-align:center}
-  .alav-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed #e3d3ef;font-size:14px}
+  .alav{max-width:760px;margin:0 auto;background:#fff;border:1px solid #eaddf3;border-radius:14px;padding:10px 24px}
+  .alav-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px dashed #e3d3ef;font-size:15px}
   .alav-row:last-child{border:none}
-  .alav-row .l{color:#4b3a55}
-  .alav-row .v{font-weight:800;color:var(--green-d)}
+  .alav-row .l{color:#4b3a55}.alav-row .v{font-weight:800;color:var(--green-d);font-size:16px}
 
-  /* FORM */
-  .formwrap{background:linear-gradient(165deg,var(--purple) 0%,var(--purple-d) 100%);color:#fff;padding:34px 32px 40px}
-  .formwrap h2{font-family:'Source Serif 4',serif;font-size:24px;color:var(--yellow);text-align:center;margin-bottom:4px}
-  .formwrap .fsub{text-align:center;font-size:13px;color:rgba(255,255,255,.82);margin-bottom:22px}
-  form{max-width:560px;margin:0 auto}
-  .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  /* FORM full-bleed */
+  .formwrap{background:linear-gradient(160deg,var(--purple) 0%,var(--purple-d) 100%);color:#fff;padding:56px 0}
+  .formwrap h2{font-family:'Source Serif 4',serif;font-size:27px;color:var(--yellow);text-align:center;margin-bottom:6px}
+  .formwrap .fsub{text-align:center;font-size:14px;color:rgba(255,255,255,.85);margin-bottom:26px}
+  form{max-width:620px;margin:0 auto}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
   @media(max-width:560px){.frow{grid-template-columns:1fr}}
   .field{display:flex;flex-direction:column}
-  .field label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:5px}
-  .field input,.field select{width:100%;background:rgba(255,255,255,.96);border:none;padding:12px 13px;border-radius:9px;font-size:14px;color:var(--navy);font-family:inherit}
+  .field label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);font-weight:700;margin-bottom:6px}
+  .field input,.field select{width:100%;background:rgba(255,255,255,.97);border:none;padding:13px 14px;border-radius:9px;font-size:14px;color:var(--navy);font-family:inherit}
   .field input:focus,.field select:focus{outline:2px solid var(--yellow)}
-  .fbtn{display:block;width:100%;background:var(--yellow);color:var(--purple);font-weight:900;border:none;padding:16px;border-radius:11px;font-size:15px;text-transform:uppercase;letter-spacing:.6px;margin-top:14px;cursor:pointer;transition:transform .15s}
-  .fbtn:hover{transform:translateY(-2px)}
-  .fbtn:disabled{opacity:.6;cursor:wait;transform:none}
-  .lgpd{font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-top:12px}
+  .fbtn{display:block;width:100%;background:var(--yellow);color:var(--purple);font-weight:900;border:none;padding:17px;border-radius:11px;font-size:15px;text-transform:uppercase;letter-spacing:.6px;margin-top:16px;cursor:pointer;transition:transform .15s}
+  .fbtn:hover{transform:translateY(-2px)}.fbtn:disabled{opacity:.6;cursor:wait;transform:none}
+  .lgpd{font-size:11px;color:rgba(255,255,255,.6);text-align:center;margin-top:14px}
 
   /* UNLOCK */
-  #unlock{display:none;padding:40px 32px;text-align:center;background:linear-gradient(165deg,#062e23,#0a4a39);color:#fff}
-  #unlock .party{font-size:40px;margin-bottom:8px}
-  #unlock h2{font-family:'Source Serif 4',serif;font-size:26px;color:var(--green);margin-bottom:8px}
-  #unlock p{color:rgba(255,255,255,.85);font-size:14px;max-width:48ch;margin:0 auto 22px}
-  #unlock .capa-prev{max-width:100%;width:520px;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.4);margin:0 auto 22px;display:block;border:1px solid rgba(255,255,255,.1)}
-  #unlock .openbtn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#062e23;font-weight:900;padding:15px 28px;border-radius:99px;text-decoration:none;font-size:15px;text-transform:uppercase;letter-spacing:.4px;box-shadow:0 10px 28px rgba(0,229,160,.3)}
-  #unlock .stand-note{margin-top:20px;font-size:13px;color:var(--yellow)}
+  #unlock{display:none;padding:56px 0;text-align:center;background:linear-gradient(160deg,#062e23,#0a4a39);color:#fff}
+  #unlock .party{font-size:42px;margin-bottom:8px}
+  #unlock h2{font-family:'Source Serif 4',serif;font-size:28px;color:var(--green);margin-bottom:8px}
+  #unlock p{color:rgba(255,255,255,.85);font-size:14px;max-width:52ch;margin:0 auto 24px}
+  #unlock .capa-prev{max-width:640px;width:100%;border-radius:12px;box-shadow:0 18px 44px rgba(0,0,0,.4);margin:0 auto 24px;display:none;border:1px solid rgba(255,255,255,.1)}
+  #unlock .openbtn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#062e23;font-weight:900;padding:16px 30px;border-radius:99px;text-decoration:none;font-size:15px;text-transform:uppercase}
+  #unlock .stand-note{margin-top:22px;font-size:13px;color:var(--yellow)}
 
   /* FOOTER */
-  footer{background:var(--ink);color:rgba(255,255,255,.65);padding:24px 32px;text-align:center;font-size:12px}
+  footer{background:var(--ink);color:rgba(255,255,255,.65);padding:30px 0;text-align:center;font-size:12px}
   footer .fl{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px}
-  footer .logo-i10{font-size:20px}
 </style>
 </head>
 <body>
-<div class="wrap">
   <div class="flag-strip"></div>
   <div class="bandeirinhas"></div>
 
   <!-- HERO -->
   <header class="hero">
-    <span class="stars" style="top:70px;right:30px">✦</span>
-    <span class="stars" style="top:180px;left:20px;font-size:14px">★</span>
-    <span class="stars" style="bottom:40px;right:80px">✦</span>
-    <div class="topbar">
-      <div class="logo-i10"><span class="i">i</span><span class="t">10</span></div>
-      <span class="scp-badge">★ Smart Cities Park</span>
-    </div>
-    <span class="eyebrow">★ 10–12 de Junho · Campina Grande/PB</span>
-    <h1 id="headline">No maior <span class="y">São João</span> do mundo, o FUNDEB da sua cidade também merece festa.</h1>
-    <p class="sub" id="subline">Diagnóstico FUNDEB 2026 personalizado, direto no stand do Instituto i10. Descubra quanto a sua cidade está deixando de captar — e como destravar.</p>
-    <a href="#agendar" class="cta">🎪 Reservar meu horário</a>
-
-    <div class="megacity" id="megacity" style="display:none">
-      <div class="mc-l">
-        <div class="tag">Diagnóstico FUNDEB 2026</div>
-        <div class="city" id="mc-city">—</div>
-        <div class="meta" id="mc-meta">—</div>
+    <div class="container">
+      <div class="topbar">
+        <div class="logo-i10"><span class="i">i</span><span class="t">10</span></div>
+        <span class="scp-badge">★ Smart Cities Park</span>
       </div>
-      <div class="mc-n">
-        <div class="n" id="mc-n">—</div>
-        <div class="s">em recursos não captados</div>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <span class="eyebrow">★ 10–12 de Junho · Campina Grande/PB</span>
+          <h1 id="headline">No maior <span class="y">São João</span> do mundo, o FUNDEB da sua cidade também merece festa.</h1>
+          <p class="sub" id="subline">Diagnóstico FUNDEB 2026 personalizado, direto no stand do Instituto i10. Descubra quanto a sua cidade está deixando de captar — e como destravar.</p>
+          <a href="#agendar" class="cta">🎪 Reservar meu horário</a>
+          <div class="event-chip">
+            <b>Onde · Quando</b>
+            <span>Centro de Convenções de Campina Grande · 10 a 12 Jun · 9h às 18h</span>
+          </div>
+        </div>
+        <div class="hero-right">
+          <!-- CIDADE (com ?m) -->
+          <div class="ticket" id="ticket-city" style="display:none">
+            <div class="tag">Diagnóstico FUNDEB 2026</div>
+            <div class="city" id="mc-city">—</div>
+            <div class="meta" id="mc-meta">—</div>
+            <div class="mega">
+              <div class="n" id="mc-n">—</div>
+              <div class="s">em recursos não captados na sua cidade</div>
+            </div>
+          </div>
+          <!-- GENÉRICO (sem ?m) -->
+          <div class="ticket" id="ticket-generic">
+            <div class="tag">Diagnóstico FUNDEB 2026</div>
+            <div class="city">O que sua cidade leva</div>
+            <ul class="glist">
+              <li>Potencial de captação não acessado</li>
+              <li>As 6 alavancas FUNDEB, com números</li>
+              <li>Plano de ação 0–24 meses</li>
+              <li>Compliance VAAR + EC 135/BNCC</li>
+            </ul>
+            <div class="mega"><div class="n" style="font-size:34px">R$ 7,5bi</div><div class="s">em VAAR disponível para os 223 municípios da PB</div></div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="event-chip">
-      <b>Onde · Quando</b>
-      <span>Centro de Convenções de Campina Grande · 10 a 12 Jun · 9h às 18h</span>
     </div>
   </header>
 
   <!-- STATS -->
-  <div class="stats">
+  <section class="stats"><div class="container"><div class="stats-grid">
     <div class="stat"><div class="n">223</div><div class="l">Municípios PB</div></div>
     <div class="stat"><div class="n">R$ 7,5bi</div><div class="l">VAAR disponível</div></div>
     <div class="stat"><div class="n">6</div><div class="l">Alavancas FUNDEB</div></div>
-  </div>
+  </div></div></section>
 
-  <!-- ALAVANCAS DA CIDADE -->
-  <section class="sec" id="alav-sec" style="display:none">
+  <!-- ALAVANCAS (só com cidade) -->
+  <section class="sec light" id="alav-sec" style="display:none"><div class="container">
     <h2>As 6 alavancas da <span id="alav-city">sua cidade</span></h2>
     <p class="sec-sub">Quanto cada frente pode destravar — número fechado no nosso diagnóstico.</p>
     <div class="alav" id="alav-box"></div>
-  </section>
+  </div></section>
 
   <!-- PILARES -->
-  <section class="sec">
+  <section class="sec"><div class="container">
     <h2>O que rola no nosso stand 🌽</h2>
     <p class="sec-sub">15 minutos que podem mudar o orçamento da educação do seu mandato.</p>
     <div class="pillars">
@@ -173,10 +183,10 @@
       <div class="pillar"><b>Plano de ação 0–24 meses</b><span>O caminho de captação que cabe no calendário do mandato, priorizado por impacto.</span></div>
       <div class="pillar"><b>Compliance VAAR + EC 135/BNCC</b><span>Como destravar a complementação federal de mérito exigida pelo MEC.</span></div>
     </div>
-  </section>
+  </div></section>
 
   <!-- FORM -->
-  <section class="formwrap" id="agendar">
+  <section class="formwrap" id="agendar"><div class="container">
     <h2>🎪 Bora marcar seu horário no stand</h2>
     <p class="fsub">Escolha o dia e a hora — ao confirmar, você já libera o <b>relatório preliminar da sua cidade</b>.</p>
     <form id="form">
@@ -190,7 +200,7 @@
         <div class="field"><label>E-mail</label><input name="email" type="email" required placeholder="seu@email.gov.br"></div>
         <div class="field"><label>WhatsApp</label><input name="phone" placeholder="(83) 9...."></div>
       </div>
-      <div class="field" style="margin-bottom:12px"><label>Município</label><input name="municipio" id="f-municipio" required placeholder="Sua cidade/PB"></div>
+      <div class="field" style="margin-bottom:14px"><label>Município</label><input name="municipio" id="f-municipio" required placeholder="Sua cidade/PB"></div>
       <div class="frow">
         <div class="field"><label>Dia</label>
           <select name="dia"><option>Qua 10/Jun</option><option>Qui 11/Jun</option><option>Sex 12/Jun</option></select>
@@ -202,105 +212,82 @@
       <button class="fbtn" type="submit" id="submitbtn">Confirmar agendamento 🎪</button>
       <p class="lgpd">Ao enviar, você concorda em receber comunicações do Instituto i10 sobre o diagnóstico. Seus dados são tratados conforme a LGPD.</p>
     </form>
-  </section>
+  </div></section>
 
   <!-- UNLOCK -->
-  <section id="unlock">
+  <section id="unlock"><div class="container">
     <div class="party">🎉</div>
     <h2>Agendamento confirmado!</h2>
     <p id="unlock-text">Te esperamos no nosso stand no Smart Cities Park. Enquanto isso, o relatório preliminar da sua cidade já está liberado abaixo.</p>
-    <img id="capa-prev" class="capa-prev" alt="Capa do relatório FUNDEB" style="display:none">
+    <img id="capa-prev" class="capa-prev" alt="Capa do relatório FUNDEB">
     <a id="openpdf" class="openbtn" href="#" target="_blank" rel="noopener" style="display:none">📄 Abrir relatório preliminar (PDF)</a>
     <div class="stand-note">★ Diagnóstico completo e plano de ação: pessoalmente, no nosso stand · 10–12 Jun.</div>
-  </section>
+  </div></section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer><div class="container">
     <div class="fl">
-      <span class="logo-i10"><span class="i" style="color:var(--yellow)">i</span><span class="t" style="color:var(--green)">10</span></span>
+      <span class="logo-i10" style="font-size:20px"><span class="i">i</span><span class="t">10</span></span>
       <span style="opacity:.4">·</span>
       <span class="scp-badge" style="font-size:9px;padding:3px 8px">★ Smart Cities Park</span>
     </div>
     Instituto i10 — Orquestrando o Futuro da Educação Pública · i10@i10.org.br · Conforme a LGPD
-  </footer>
-</div>
+  </div></footer>
 
 <script>
-  // ── config ──────────────────────────────────────────────────────────
   var CRM_WEBHOOK = 'https://i10-audit-crm.vercel.app/api/marketing/webhooks/form';
   var PROJECT_SLUG = 'pb-smart-cities-2026';
-
   var params = new URLSearchParams(location.search);
   var ibge = params.get('m') || params.get('ibge');
   var CITY = null;
 
-  // ── personalização por cidade ───────────────────────────────────────
   if (ibge) {
     fetch('/pa-smart/dados.json').then(function(r){return r.json();}).then(function(db){
       var c = db[ibge];
       if (!c) return;
       CITY = c;
-      // headline + subline
       document.getElementById('headline').innerHTML =
         'No maior <span class="y">São João</span> do mundo, <span class="y">' + c.mega + '</span> esperam por ' + c.nome + '.';
       document.getElementById('subline').textContent =
         'Mapeamos as 6 alavancas de captação FUNDEB de ' + c.nome + '. Apresentamos o seu relatório pessoalmente, no stand do Instituto i10.';
-      // megacity card
-      document.getElementById('megacity').style.display = 'grid';
+      // troca ticket genérico -> cidade
+      document.getElementById('ticket-generic').style.display = 'none';
+      document.getElementById('ticket-city').style.display = 'block';
       document.getElementById('mc-city').textContent = c.nome + '/' + c.uf;
       document.getElementById('mc-meta').textContent = c.mat + ' matrículas · Ranking potencial ' + c.rank + 'º/' + c.ntot + ' PB';
       document.getElementById('mc-n').textContent = c.mega;
       // alavancas
       document.getElementById('alav-sec').style.display = 'block';
       document.getElementById('alav-city').textContent = c.nome;
-      var box = document.getElementById('alav-box');
-      box.innerHTML = c.alavancas.map(function(a){
+      document.getElementById('alav-box').innerHTML = c.alavancas.map(function(a){
         return '<div class="alav-row"><span class="l">' + a.l + '</span><span class="v">' + a.v + '</span></div>';
       }).join('');
-      // prefill cidade
       var fm = document.getElementById('f-municipio');
-      fm.value = c.nome + '/PB';
-      fm.setAttribute('readonly', 'readonly');
-      // título
+      fm.value = c.nome + '/PB'; fm.setAttribute('readonly', 'readonly');
       document.title = c.nome + '/PB · Diagnóstico FUNDEB 2026 — Smart Cities Park';
     }).catch(function(){});
   }
 
-  // ── submit ──────────────────────────────────────────────────────────
   document.getElementById('form').addEventListener('submit', function(ev){
     ev.preventDefault();
-    var f = ev.target;
-    var btn = document.getElementById('submitbtn');
+    var f = ev.target, btn = document.getElementById('submitbtn');
     btn.disabled = true; btn.textContent = 'Confirmando...';
-
     var fd = new FormData(f);
     var payload = {
       projectSlug: PROJECT_SLUG,
       email: (fd.get('email') || '').toString().trim(),
-      name: fd.get('name'),
-      phone: fd.get('phone'),
+      name: fd.get('name'), phone: fd.get('phone'),
       ibge: ibge || undefined,
       municipio: CITY ? CITY.nome : fd.get('municipio'),
-      uf: 'PB',
-      source: 'lp_pa_smart',
+      uf: 'PB', source: 'lp_pa_smart',
       attributes: {
-        cargo: fd.get('cargo'),
-        dia: fd.get('dia'),
-        horario: fd.get('horario'),
-        campanha: 'pb-smart-cities-2026',
-        flag: 'paraiba',
-        potencial: CITY ? CITY.mega : null,
-        ranking: CITY ? CITY.rank : null
+        cargo: fd.get('cargo'), dia: fd.get('dia'), horario: fd.get('horario'),
+        campanha: 'pb-smart-cities-2026', flag: 'paraiba',
+        potencial: CITY ? CITY.mega : null, ranking: CITY ? CITY.rank : null
       }
     };
-
-    // POST pro CRM (fire-and-forget robusto — o relatório é a recompensa)
-    fetch(CRM_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function(){ /* mostra unlock mesmo se o backend ainda não estiver pronto */ })
-      .finally(showUnlock);
+    fetch(CRM_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) })
+      .catch(function(){}).finally(showUnlock);
   });
 
   function showUnlock(){
@@ -312,10 +299,7 @@
         'Te esperamos no stand do Instituto i10. O <b>relatório preliminar de ' + CITY.nome + '</b> já está liberado abaixo — o diagnóstico completo e o plano de ação a gente apresenta pessoalmente.';
       var capa = document.getElementById('capa-prev');
       capa.src = CITY.capa; capa.style.display = 'block';
-      if (CITY.pdf) {
-        var op = document.getElementById('openpdf');
-        op.href = CITY.pdf; op.style.display = 'inline-flex';
-      }
+      if (CITY.pdf) { var op = document.getElementById('openpdf'); op.href = CITY.pdf; op.style.display = 'inline-flex'; }
     }
     u.scrollIntoView({ behavior: 'smooth' });
   }
