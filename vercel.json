@@ -91,6 +91,10 @@
       "destination": "/pa-smart/index.html"
     },
     {
+      "source": "/marilia",
+      "destination": "/marilia/index.html"
+    },
+    {
       "source": "/apm-fundeb",
       "destination": "https://webinar-fundeb-apm.vercel.app/"
     },
