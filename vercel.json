@@ -43,6 +43,14 @@
       "destination": "https://i10-lp-test.vercel.app/:path*"
     },
     {
+      "source": "/site-test/",
+      "destination": "https://i10-lp-test.vercel.app/site-test/"
+    },
+    {
+      "source": "/site-test/:path*",
+      "destination": "https://i10-lp-test.vercel.app/site-test/:path*"
+    },
+    {
       "source": "/admin",
       "destination": "https://i10-insights.vercel.app/insights/admin-hub"
     },
@@ -163,6 +171,7 @@
   ],
   "redirects": [
     { "source": "/siteteste", "destination": "/siteteste/", "permanent": false },
+    { "source": "/site-test", "destination": "/site-test/", "permanent": false },
     { "source": "/better-financeiro", "destination": "/better-financeiro/", "permanent": false },
     { "source": "/ops-diagnostico", "destination": "/ops-diagnostico/", "permanent": false },
     { "source": "/fundeb", "destination": "/fundeb-hub.html", "permanent": false }
