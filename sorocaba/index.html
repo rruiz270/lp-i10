@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instituto i10 · Diagnóstico FUNDEB 2027 — Região de Sorocaba</title>
+<meta name="description" content="Mapeamos as 6 alavancas de captação FUNDEB dos 47 municípios da Região de Sorocaba. Retire seu relatório completo no stand i10.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#030B1A;--navy-mid:#0A2463;
+  --cyan:#00B4D8;--green:#00E5A0;
+  --teal:#0D7377;--teal-end:#1B8A5C;
+  --white:#FFFFFF;--white-80:rgba(255,255,255,.8);--white-50:rgba(255,255,255,.5);--white-20:rgba(255,255,255,.2);--white-10:rgba(255,255,255,.1);--white-05:rgba(255,255,255,.05);
+  --font-sans:'Inter',system-ui,sans-serif;
+  --font-serif:'Source Serif 4',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);color:var(--white);
+  background:var(--navy);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ─── ROOF PATTERN ─── */
+.roof{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Cpath d='M0,60 L60,25 L120,60' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size:120px 60px;
+}
+
+/* ─── TOP BAR ─── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(20px,5vw,64px);
+  background:rgba(3,11,26,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--white-10);
+  position:sticky;top:0;z-index:100;
+}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-left .i10-text{display:flex;flex-direction:column;line-height:1.1}
+.topbar-left .i10-text strong{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.topbar-left .i10-text span{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--white-50)}
+.topbar-right{display:flex;flex-direction:column;align-items:center;gap:2px}
+.topbar-right span{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--white-50)}
+
+/* ─── HERO ─── */
+.hero{
+  position:relative;
+  padding:clamp(60px,10vw,120px) clamp(20px,5vw,64px) clamp(40px,6vw,80px);
+  text-align:center;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);
+  width:900px;height:900px;
+  background:radial-gradient(circle,rgba(0,180,216,.12) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-20%;right:-10%;
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(0,229,160,.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 20px;border-radius:100px;
+  background:rgba(0,180,216,.1);border:1px solid rgba(0,180,216,.25);
+  font-size:clamp(11px,1.3vw,13px);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--cyan);margin-bottom:28px;
+}
+.hero h1{
+  font-family:var(--font-serif);
+  font-size:clamp(28px,4.5vw,56px);font-weight:700;line-height:1.15;
+  max-width:900px;margin:0 auto 24px;
+  color:var(--white);
+}
+.hero h1 .gradient{
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero .subtitle{
+  font-size:clamp(15px,1.8vw,20px);line-height:1.6;
+  color:var(--white-80);max-width:720px;margin:0 auto;
+}
+
+/* ─── BNCC BOX ─── */
+.bncc-box{
+  max-width:780px;margin:48px auto 0;
+  border:1.5px solid var(--green);border-radius:16px;
+  background:rgba(0,229,160,.04);
+  padding:clamp(24px,3vw,40px);text-align:center;
+  position:relative;z-index:1;
+}
+.bncc-box .label{
+  font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px;
+  color:var(--green);margin-bottom:12px;
+}
+.bncc-box .countdown{
+  font-family:var(--font-serif);
+  font-size:clamp(42px,6vw,72px);font-weight:700;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  line-height:1;margin-bottom:8px;
+}
+.bncc-box .countdown-label{
+  font-size:13px;color:var(--white-50);margin-bottom:20px;text-transform:uppercase;letter-spacing:1px;
+}
+.bncc-box p{
+  font-size:clamp(14px,1.5vw,17px);line-height:1.7;color:var(--white-80);
+}
+
+/* ─── CTA ─── */
+.cta-wrap{text-align:center;padding:clamp(40px,6vw,72px) 20px 0;position:relative;z-index:2}
+.cta-btn{
+  display:inline-block;
+  padding:22px 56px;border-radius:16px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  font-family:var(--font-sans);font-size:clamp(17px,2vw,22px);font-weight:800;
+  color:var(--navy);text-transform:uppercase;letter-spacing:1px;
+  box-shadow:0 0 48px rgba(0,180,216,.35),0 0 96px rgba(0,229,160,.2);
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 64px rgba(0,180,216,.5),0 0 120px rgba(0,229,160,.3)}
+.cta-btn:active{transform:translateY(0)}
+.cta-sub{
+  margin-top:12px;font-size:13px;color:var(--white-50);
+  letter-spacing:1px;text-transform:uppercase;
+}
+
+/* ─── STATS BAR ─── */
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  max-width:900px;margin:clamp(40px,6vw,72px) auto 0;
+  background:var(--white-10);border-radius:16px;overflow:hidden;
+}
+.stat{
+  background:rgba(10,36,99,.6);
+  padding:clamp(20px,3vw,36px) 16px;text-align:center;
+}
+.stat .num{
+  font-family:var(--font-serif);font-size:clamp(24px,3.5vw,40px);font-weight:700;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.stat .lbl{font-size:clamp(11px,1.2vw,14px);color:var(--white-50);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+
+/* ─── LEVERS ─── */
+.levers{
+  max-width:800px;margin:0 auto;
+  padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px) 0;
+}
+.levers h2{
+  font-family:var(--font-serif);font-size:clamp(22px,3vw,36px);font-weight:700;
+  text-align:center;margin-bottom:36px;
+}
+.lever-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 24px;border-radius:12px;
+  border:1px solid var(--white-10);
+  margin-bottom:8px;
+  transition:background .2s;
+}
+.lever-row:hover{background:var(--white-05)}
+.lever-row.highlight{
+  background:linear-gradient(90deg,rgba(0,180,216,.12),rgba(0,229,160,.12));
+  border-color:rgba(0,229,160,.3);
+}
+.lever-row .lever-name{
+  font-size:clamp(14px,1.5vw,17px);font-weight:500;
+  display:flex;align-items:center;gap:8px;
+}
+.lever-row.highlight .lever-name{color:var(--green);font-weight:700}
+.lever-row .lever-val{
+  font-family:var(--font-serif);font-size:clamp(16px,1.8vw,22px);font-weight:700;
+  color:var(--white);
+}
+
+/* ─── PILLARS ─── */
+.pillars{
+  padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px);
+  text-align:center;
+}
+.pillars h2{
+  font-family:var(--font-serif);font-size:clamp(22px,3vw,36px);font-weight:700;
+  margin-bottom:40px;
+}
+.pillar-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;
+  max-width:960px;margin:0 auto;
+}
+.pillar-card{
+  background:rgba(10,36,99,.5);border-radius:16px;
+  padding:32px 28px;text-align:left;
+  border:1px solid var(--white-10);
+  position:relative;overflow:hidden;
+}
+.pillar-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.pillar-card:nth-child(1)::before{background:var(--cyan)}
+.pillar-card:nth-child(2)::before{background:linear-gradient(90deg,var(--cyan),var(--green))}
+.pillar-card:nth-child(3)::before{background:var(--green)}
+.pillar-card .pillar-icon{font-size:32px;margin-bottom:16px}
+.pillar-card h3{font-size:18px;font-weight:700;margin-bottom:10px;line-height:1.3}
+.pillar-card p{font-size:14px;line-height:1.7;color:var(--white-80)}
+
+/* ─── MODAL FORM ─── */
+.modal-overlay{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(3,11,26,.85);backdrop-filter:blur(8px);
+  z-index:200;align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal-overlay.active{display:flex}
+.modal{
+  background:linear-gradient(160deg,#0d1b3e,var(--navy));
+  border:1px solid var(--white-20);border-radius:20px;
+  padding:clamp(28px,4vw,48px);max-width:480px;width:100%;
+  position:relative;
+}
+.modal h3{
+  font-family:var(--font-serif);font-size:24px;font-weight:700;
+  margin-bottom:6px;
+}
+.modal .modal-sub{
+  font-size:14px;color:var(--white-50);margin-bottom:28px;
+}
+.modal label{
+  display:block;font-size:12px;font-weight:600;text-transform:uppercase;
+  letter-spacing:1px;color:var(--white-50);margin-bottom:6px;margin-top:16px;
+}
+.modal label:first-of-type{margin-top:0}
+.modal input,.modal select{
+  width:100%;padding:14px 16px;border-radius:10px;
+  border:1px solid var(--white-20);background:rgba(255,255,255,.06);
+  color:var(--white);font-family:var(--font-sans);font-size:15px;
+  outline:none;transition:border-color .2s;
+}
+.modal input:focus,.modal select:focus{border-color:var(--cyan)}
+.modal input[readonly]{color:var(--white-50);cursor:default}
+.modal select option{background:var(--navy);color:var(--white)}
+.modal-submit{
+  width:100%;margin-top:28px;padding:16px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--cyan),var(--green));
+  font-family:var(--font-sans);font-size:16px;font-weight:700;
+  color:var(--navy);cursor:pointer;text-transform:uppercase;letter-spacing:1px;
+  transition:opacity .2s;
+}
+.modal-submit:hover{opacity:.9}
+.modal-submit:disabled{opacity:.5;cursor:not-allowed}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:36px;height:36px;border-radius:50%;border:none;
+  background:var(--white-10);color:var(--white);font-size:20px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.modal-close:hover{background:var(--white-20)}
+.modal-error{
+  margin-top:12px;font-size:13px;color:#ff6b6b;display:none;
+}
+
+/* ─── UNLOCK ─── */
+.unlock{
+  display:none;
+  padding:clamp(48px,8vw,96px) clamp(20px,5vw,64px);
+  text-align:center;
+  background:linear-gradient(135deg,var(--teal),var(--teal-end));
+  position:relative;
+}
+.unlock.active{display:block}
+.unlock h2{
+  font-family:var(--font-serif);font-size:clamp(26px,3.5vw,42px);font-weight:700;
+  margin-bottom:20px;
+}
+.unlock p{
+  font-size:clamp(15px,1.6vw,19px);line-height:1.7;
+  max-width:680px;margin:0 auto 16px;color:rgba(255,255,255,.9);
+}
+.unlock .event-note{
+  margin-top:28px;padding:16px 24px;border-radius:12px;
+  background:rgba(255,255,255,.1);display:inline-block;
+  font-size:14px;color:rgba(255,255,255,.8);
+}
+
+/* ─── FOOTER ─── */
+.footer{
+  padding:40px clamp(20px,5vw,64px);text-align:center;
+  border-top:1px solid var(--white-10);
+}
+.footer .footer-logos{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:16px}
+.footer p{font-size:12px;color:var(--white-50);line-height:1.6;max-width:600px;margin:0 auto}
+
+/* ─── UTILS ─── */
+.hidden{display:none!important}
+@media(max-width:640px){
+  .stats{grid-template-columns:1fr}
+  .topbar{padding:12px 16px}
+  .lever-row{padding:14px 16px}
+  .modal{padding:24px 20px}
+}
+</style>
+</head>
+<body class="roof">
+
+<!-- ═══ TOP BAR ═══ -->
+<header class="topbar">
+  <div class="topbar-left">
+    <svg viewBox="0 0 170 90" width="80" height="42" aria-hidden="true">
+      <circle cx="20" cy="50" r="6" fill="#00B4D8"/><circle cx="55" cy="22" r="6" fill="#00E5A0"/>
+      <circle cx="90" cy="58" r="6" fill="#00B4D8"/><circle cx="125" cy="34" r="6" fill="#00B4D8"/>
+      <circle cx="160" cy="68" r="6" fill="#00E5A0"/>
+      <line x1="20" y1="50" x2="55" y2="22" stroke="url(#g1)" stroke-width="2.5"/>
+      <line x1="55" y1="22" x2="90" y2="58" stroke="url(#g1)" stroke-width="2.5"/>
+      <line x1="90" y1="58" x2="125" y2="34" stroke="url(#g1)" stroke-width="2.5"/>
+      <line x1="125" y1="34" x2="160" y2="68" stroke="url(#g1)" stroke-width="2.5"/>
+      <defs><linearGradient id="g1" x1="20" y1="50" x2="160" y2="50" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#00E5A0"/>
+      </linearGradient></defs>
+    </svg>
+    <div class="i10-text">
+      <strong>i10</strong>
+      <span>Instituto</span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <img src="/sorocaba-smart/assets/apm-logo-pill.png" height="36" alt="APM">
+    <span>parceria</span>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="eyebrow" id="eyebrow">Conex&atilde;o APM Sorocaba &middot; 26 de junho &middot; Golden Park Sorocaba</div>
+  <h1 id="hero-h1">
+    Regi&atilde;o de Sorocaba: <span class="gradient">R$ 930,6M</span> de FUNDEB esperando os 47 munic&iacute;pios.
+  </h1>
+  <p class="subtitle" id="hero-sub">
+    Mapeamos as 6 alavancas de capta&ccedil;&atilde;o FUNDEB de cada munic&iacute;pio. O relat&oacute;rio completo, impresso, &eacute; seu &mdash; entregue pessoalmente no nosso stand.
+  </p>
+
+  <!-- BNCC BOX -->
+  <div class="bncc-box">
+    <div class="label">Prazo BNCC Computa&ccedil;&atilde;o</div>
+    <div class="countdown" id="countdown-num"></div>
+    <div class="countdown-label">dias restantes</div>
+    <p id="bncc-text">
+      Munic&iacute;pios em conformidade com a BNCC Computa&ccedil;&atilde;o em 2026 habilitam a capta&ccedil;&atilde;o adicional do FUNDEB j&aacute; em 2027.
+      Para a regi&atilde;o de Sorocaba, essa alavanca vale <strong>R$ 94,6M/ano</strong>.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<div class="cta-wrap" id="cta-section">
+  <button class="cta-btn" id="cta-btn">Quero meu relat&oacute;rio completo</button>
+  <div class="cta-sub">impresso &middot; entregue no stand i10</div>
+</div>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats" id="stats">
+  <div class="stat">
+    <div class="num" id="stat1-num">51</div>
+    <div class="lbl" id="stat1-lbl">Munic&iacute;pios</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="stat2-num">R$ 930,6M</div>
+    <div class="lbl" id="stat2-lbl">Potencial Total</div>
+  </div>
+  <div class="stat">
+    <div class="num" id="stat3-num">R$ 94,6M</div>
+    <div class="lbl" id="stat3-lbl">BNCC Computa&ccedil;&atilde;o</div>
+  </div>
+</div>
+
+<!-- ═══ LEVERS (hidden until municipality detected) ═══ -->
+<section class="levers hidden" id="levers">
+  <h2 id="levers-title">As 6 alavancas</h2>
+  <div id="levers-list"></div>
+</section>
+
+<!-- ═══ PILLARS ═══ -->
+<section class="pillars">
+  <h2>O que rola no nosso stand</h2>
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <div class="pillar-icon" style="font-size:32px;font-weight:900;color:var(--cyan);">01</div>
+      <h3>Diagn&oacute;stico individualizado</h3>
+      <p>Relat&oacute;rio com as 6 alavancas FUNDEB do seu munic&iacute;pio, comparativo regional e potencial exato em reais &mdash; impresso e entregue em m&atilde;os.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon" style="font-size:32px;font-weight:900;color:var(--cyan);">02</div>
+      <h3>Plano de a&ccedil;&atilde;o 0&ndash;24 meses</h3>
+      <p>Roteiro pr&aacute;tico com marcos, custos e retorno projetado. Da ades&atilde;o ao VAAR at&eacute; a conformidade BNCC Computa&ccedil;&atilde;o &mdash; tudo mapeado.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon" style="font-size:32px;font-weight:900;color:var(--green);">03</div>
+      <h3>Compliance BNCC Computa&ccedil;&atilde;o</h3>
+      <p>O prazo &eacute; agosto de 2026. Mostramos o caminho para colocar seu munic&iacute;pio em conformidade e habilitar a capta&ccedil;&atilde;o adicional FUNDEB 2027.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modal-close" aria-label="Fechar">&times;</button>
+    <h3>Solicitar relat&oacute;rio</h3>
+    <p class="modal-sub">Preencha seus dados e retire o relat&oacute;rio impresso no stand i10.</p>
+    <form id="lead-form" autocomplete="on">
+      <label for="f-municipio">Munic&iacute;pio</label>
+      <input type="text" id="f-municipio" name="municipio" placeholder="Selecione pelo link do e-mail" required>
+
+      <label for="f-nome">Nome completo</label>
+      <input type="text" id="f-nome" name="nome" placeholder="Seu nome" required>
+
+      <label for="f-cargo">Cargo</label>
+      <select id="f-cargo" name="cargo" required>
+        <option value="" disabled selected>Selecione...</option>
+        <option value="Prefeito(a)">Prefeito(a)</option>
+        <option value="Secretário(a) de Educação">Secret&aacute;rio(a) de Educa&ccedil;&atilde;o</option>
+        <option value="Equipe técnica">Equipe t&eacute;cnica</option>
+        <option value="Outro">Outro</option>
+      </select>
+
+      <label for="f-email">E-mail institucional</label>
+      <input type="email" id="f-email" name="email" placeholder="nome@prefeitura.sp.gov.br" required>
+
+      <label for="f-whatsapp">WhatsApp</label>
+      <input type="tel" id="f-whatsapp" name="whatsapp" placeholder="(00) 00000-0000" required>
+
+      <div class="modal-error" id="form-error"></div>
+      <button type="submit" class="modal-submit" id="form-submit">Enviar e garantir meu relat&oacute;rio</button>
+    </form>
+  </div>
+</div>
+
+<!-- ═══ UNLOCK ═══ -->
+<section class="unlock roof" id="unlock">
+  <h2>Interesse registrado!</h2>
+  <p id="unlock-text">
+    Estamos te esperando no nosso stand com o relat&oacute;rio completo impresso, para entregar em m&atilde;os &mdash; com o plano de a&ccedil;&atilde;o e o caminho da conformidade BNCC Computa&ccedil;&atilde;o.
+  </p>
+  <div class="event-note">
+    Conex&atilde;o APM Sorocaba &middot; 26 de junho, 8h &middot; Golden Park Sorocaba, Rod. Sen. Jos&eacute; Erm&iacute;rio de Moraes &middot; Iporanga
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-logos">
+    <svg viewBox="0 0 170 90" width="56" height="30" aria-hidden="true">
+      <circle cx="20" cy="50" r="6" fill="#00B4D8"/><circle cx="55" cy="22" r="6" fill="#00E5A0"/>
+      <circle cx="90" cy="58" r="6" fill="#00B4D8"/><circle cx="125" cy="34" r="6" fill="#00B4D8"/>
+      <circle cx="160" cy="68" r="6" fill="#00E5A0"/>
+      <line x1="20" y1="50" x2="55" y2="22" stroke="url(#g2)" stroke-width="2"/>
+      <line x1="55" y1="22" x2="90" y2="58" stroke="url(#g2)" stroke-width="2"/>
+      <line x1="90" y1="58" x2="125" y2="34" stroke="url(#g2)" stroke-width="2"/>
+      <line x1="125" y1="34" x2="160" y2="68" stroke="url(#g2)" stroke-width="2"/>
+      <defs><linearGradient id="g2" x1="20" y1="50" x2="160" y2="50" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#00E5A0"/>
+      </linearGradient></defs>
+    </svg>
+    <span style="font-size:13px;color:rgba(255,255,255,.4)">+</span>
+    <img src="/sorocaba-smart/assets/apm-logo-pill.png" height="24" alt="APM">
+  </div>
+  <p>
+    Ao enviar seus dados, voc&ecirc; concorda com o tratamento para fins de contato comercial conforme a LGPD (Lei 13.709/2018).
+    Seus dados n&atilde;o ser&atilde;o compartilhados com terceiros.
+    &copy; 2026 Instituto i10 &middot; Todos os direitos reservados.
+  </p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ─── CONFIG ─── */
+  var CRM_WEBHOOK = 'https://i10-audit-crm.vercel.app/api/marketing/webhooks/form';
+  var PROJECT_SLUG = 'sorocaba-2026';
+  var DATA_URL = '/sorocaba/dados.json';
+
+  /* ─── COUNTDOWN ─── */
+  var deadline = new Date('2026-08-31T23:59:59');
+  var now = new Date();
+  var diff = Math.max(0, Math.ceil((deadline - now) / (1000 * 60 * 60 * 24)));
+  document.getElementById('countdown-num').textContent = diff;
+
+  /* ─── LOAD DATA ─── */
+  var IBGE = null;
+  var CITY = null;
+  var DATA = {};
+
+  var params = new URLSearchParams(window.location.search);
+  var mParam = params.get('m');
+
+  fetch(DATA_URL)
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      DATA = d;
+      if (mParam && DATA[mParam]) {
+        IBGE = mParam;
+        CITY = DATA[mParam];
+        personalize();
+      }
+    })
+    .catch(function(e){ console.error('Erro ao carregar dados:', e); });
+
+  /* ─── PERSONALIZE ─── */
+  function personalize() {
+    if (!CITY) return;
+
+    // Hero
+    document.getElementById('hero-h1').innerHTML =
+      '<span class="gradient">' + CITY.mega + '</span> esperam por ' + CITY.nome + '. E o relógio da BNCC Computação está correndo.';
+
+    document.getElementById('hero-sub').innerHTML =
+      'Mapeamos as 6 alavancas de captação FUNDEB de <strong>' + CITY.nome + '</strong>. O relatório completo, impresso, é seu — entregue pessoalmente no nosso stand.';
+
+    // BNCC text
+    document.getElementById('bncc-text').innerHTML =
+      'Municípios em conformidade com a BNCC Computação em 2026 habilitam a captação adicional do FUNDEB já em 2027. Para <strong>' + CITY.nome + '</strong>, essa alavanca vale <strong>' + CITY.bncc + '/ano</strong>.';
+
+    // Stats
+    document.getElementById('stat1-num').textContent = CITY.mat;
+    document.getElementById('stat1-lbl').textContent = 'Matrículas';
+    document.getElementById('stat2-num').textContent = CITY.mega;
+    document.getElementById('stat2-lbl').textContent = 'Potencial';
+    document.getElementById('stat3-num').textContent = CITY.rank + 'º / ' + CITY.ntot;
+    document.getElementById('stat3-lbl').textContent = 'Ranking regional';
+
+    // Levers
+    var leversSection = document.getElementById('levers');
+    leversSection.classList.remove('hidden');
+    document.getElementById('levers-title').textContent =
+      'As 6 alavancas de ' + CITY.nome + ' · ' + CITY.mega + '/ano';
+
+    var listEl = document.getElementById('levers-list');
+    listEl.innerHTML = '';
+    CITY.alavancas.forEach(function(a){
+      var isBncc = a.l.indexOf('BNCC') > -1 || a.l.indexOf('EC 135') > -1;
+      var row = document.createElement('div');
+      row.className = 'lever-row' + (isBncc ? ' highlight' : '');
+      row.innerHTML =
+        '<span class="lever-name">' +
+          (isBncc ? '⏰ ' : '') + a.l +
+        '</span>' +
+        '<span class="lever-val">' + a.v + '</span>';
+      listEl.appendChild(row);
+    });
+
+    // Unlock text
+    document.getElementById('unlock-text').innerHTML =
+      'Estamos te esperando no nosso stand com o relatório completo de <strong>' + CITY.nome + '</strong> impresso, para entregar em mãos — com o plano de ação e o caminho da conformidade BNCC Computação.';
+
+    // Form municipality field
+    var fMun = document.getElementById('f-municipio');
+    fMun.value = CITY.nome;
+    fMun.readOnly = true;
+  }
+
+  /* ─── MODAL ─── */
+  var modal = document.getElementById('modal');
+  var ctaBtn = document.getElementById('cta-btn');
+  var closeBtn = document.getElementById('modal-close');
+
+  ctaBtn.addEventListener('click', function(){
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    var first = CITY ? document.getElementById('f-nome') : document.getElementById('f-municipio');
+    setTimeout(function(){ first.focus(); }, 100);
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+  });
+
+  function closeModal(){
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  /* ─── WHATSAPP MASK ─── */
+  var wField = document.getElementById('f-whatsapp');
+  wField.addEventListener('input', function(){
+    var v = this.value.replace(/\D/g,'');
+    if (v.length > 11) v = v.slice(0,11);
+    if (v.length > 6) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+    else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+    this.value = v;
+  });
+
+  /* ─── FORM SUBMIT ─── */
+  var form = document.getElementById('lead-form');
+  var errEl = document.getElementById('form-error');
+  var submitBtn = document.getElementById('form-submit');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errEl.style.display = 'none';
+
+    var nome = document.getElementById('f-nome').value.trim();
+    var cargo = document.getElementById('f-cargo').value;
+    var email = document.getElementById('f-email').value.trim();
+    var whatsapp = document.getElementById('f-whatsapp').value.trim();
+    var municipio = document.getElementById('f-municipio').value.trim();
+
+    if (!nome || !cargo || !email || !whatsapp || !municipio) {
+      errEl.textContent = 'Preencha todos os campos.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    var payload = {
+      projectSlug: PROJECT_SLUG,
+      email: email,
+      name: nome,
+      phone: whatsapp,
+      ibge: IBGE ? Number(IBGE) : null,
+      municipio: municipio,
+      uf: 'SP',
+      source: 'lp_sorocaba',
+      attributes: {
+        cargo: cargo,
+        campanha: 'sorocaba-2026',
+        potencial: CITY ? CITY.mega : null,
+        bncc_valor: CITY ? CITY.bncc : null,
+        ranking: CITY ? CITY.rank : null
+      }
+    };
+
+    fetch(CRM_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json().catch(function(){ return {}; });
+    })
+    .then(function(){
+      closeModal();
+      showUnlock();
+    })
+    .catch(function(err){
+      console.error('Webhook error:', err);
+      // Still show success — don't block user on CRM error
+      closeModal();
+      showUnlock();
+    });
+  });
+
+  function showUnlock(){
+    var ctaSection = document.getElementById('cta-section');
+    ctaSection.style.display = 'none';
+
+    var unlock = document.getElementById('unlock');
+    unlock.classList.add('active');
+
+    setTimeout(function(){
+      unlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
+})();
+</script>
+</body>
+</html>

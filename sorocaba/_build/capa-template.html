@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A2463;--navy-dark:#030B1A;--navy-light:#1a3a7a;
+    --cyan:#00B4D8;--cyan-light:#48CAE4;
+    --green:#00E5A0;--green-dark:#00C48A;
+    --teal:#0D7377;--teal-end:#1B8A5C;
+    --ink:#0F172A;--ink-soft:#475569;--line:#E2E8F0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:#f1f5f9;padding:40px}
+  .cover-mock{width:1080px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.08);font-family:'Inter',sans-serif}
+  .cv-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%);color:#fff;padding:32px 36px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;position:relative;overflow:hidden}
+  .cv-hero::after{content:'';position:absolute;right:-40px;bottom:-40px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,160,.18),transparent 70%)}
+  .cv-logos{display:flex;align-items:center;gap:14px;margin-bottom:14px;position:relative;z-index:1}
+  .cv-logo-i10{font-weight:900;font-size:30px;letter-spacing:-1px;color:#fff}
+  .cv-logo-i10 .i{color:#fff}
+  .cv-logo-i10 .t{color:var(--green)}
+  .cv-pipe{width:1px;height:28px;background:rgba(255,255,255,.25)}
+  .apm-pill{height:28px;border-radius:4px}
+  .cv-meta{position:relative;z-index:1}
+  .cv-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:700;margin-bottom:6px}
+  .cv-city{font-family:'Source Serif 4',serif;font-size:38px;font-weight:700;color:#fff;letter-spacing:-1px;line-height:1}
+  .cv-subline{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+  .cv-mega{text-align:right;position:relative;z-index:1}
+  .cv-mega-n{font-size:54px;font-weight:900;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-2px;line-height:1}
+  .cv-mega-sub{font-size:12px;color:rgba(255,255,255,.75);margin-top:4px}
+  .cv-mega-pct{display:inline-block;background:rgba(0,229,160,.18);color:var(--green);font-size:12px;font-weight:700;padding:4px 10px;border-radius:99px;margin-top:8px}
+  .cv-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:20px 36px;background:#f8fafc}
+  .kpi{padding:12px 10px;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .kpi-l{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft)}
+  .kpi-v{font-size:18px;font-weight:800;color:var(--navy);margin-top:4px;letter-spacing:-.5px}
+  .kpi-v.red{color:#dc2626}.kpi-v.gr{color:var(--green-dark)}
+  .cv-body{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:24px 36px}
+  .cv-block h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;font-family:'Source Serif 4',serif}
+  .bar-row{display:flex;align-items:center;gap:12px;margin-bottom:8px;font-size:12px}
+  .bar-row .lab{width:120px;color:var(--ink-soft);font-size:11px}
+  .bar-row .bar{flex:1;height:18px;border-radius:4px;background:#eef2f7;position:relative;overflow:hidden}
+  .bar-row .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:linear-gradient(90deg,var(--cyan),var(--green))}
+  .bar-row .bar-bncc i{background:linear-gradient(90deg,#E53E3E,#F59E0B)}
+  .bar-row .val{font-weight:700;color:var(--navy);font-size:11px;width:64px;text-align:right}
+  .cv-data{font-size:12px}
+  .cv-data .r{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
+  .cv-data .r:last-child{border:none}
+  .cv-data .l{color:var(--ink-soft)}.cv-data .v{font-weight:700;color:var(--navy)}
+  .cv-bncc{margin:0 36px 20px;background:#FFF5F5;border-left:3px solid #E53E3E;padding:12px 16px;font-size:12px;color:#7f1d1d;border-radius:4px}
+  .cv-bncc b{color:#E53E3E}
+  .cv-cta{margin:0 36px 24px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);color:#fff;padding:20px 24px;border-radius:10px;text-align:center}
+  .cv-cta h4{font-size:16px;font-weight:700;color:var(--green);margin-bottom:4px;font-family:'Source Serif 4',serif}
+  .cv-cta-sub{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:14px}
+  .cv-cta-pills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+  .pill{background:rgba(0,180,216,.15);border:1px solid rgba(0,180,216,.4);color:var(--cyan-light);font-size:10px;font-weight:600;padding:5px 11px;border-radius:99px}
+  .cv-footer{padding:14px 36px;background:#f8fafc;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--ink-soft)}
+  .ev-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,var(--cyan),var(--green));color:var(--navy-dark);padding:6px 12px;border-radius:8px;font-weight:800;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
+</style>
+</head>
+<body>
+  <div class="cover-mock">
+    <div class="cv-hero">
+      <div>
+        <div class="cv-logos">
+          <div class="cv-logo-i10"><span class="i">i</span><span class="t">10</span></div>
+          <span class="cv-pipe"></span>
+          <img src="https://www.institutoi10.com.br/sorocaba-smart/assets/apm-logo-pill.png" class="apm-pill" alt="APM">
+        </div>
+        <div class="cv-meta">
+          <div class="cv-tag">Diagnostico FUNDEB 2027 · Potencial de Captacao</div>
+          <div class="cv-city">{{CITY}}</div>
+          <div class="cv-subline">Sao Paulo · {{MAT}} matriculas · Ranking potencial: {{RANK}}/{{NTOT}} Regiao de Sorocaba</div>
+        </div>
+      </div>
+      <div class="cv-mega">
+        <div class="cv-mega-n">{{MEGA}}</div>
+        <div class="cv-mega-sub">em recursos nao captados</div>
+        <span class="cv-mega-pct">{{PCT}} sobre a receita atual</span>
+      </div>
+    </div>
+    <div class="cv-kpis">
+      <div class="kpi"><div class="kpi-l">Receita Atual</div><div class="kpi-v">{{REC}}</div></div>
+      <div class="kpi"><div class="kpi-l">Potencial Total</div><div class="kpi-v gr">{{MEGA}}</div></div>
+      <div class="kpi"><div class="kpi-l">Ganho %</div><div class="kpi-v gr">{{PCT}}</div></div>
+      <div class="kpi"><div class="kpi-l">BNCC Comp.</div><div class="kpi-v red">{{BNCC}}</div></div>
+      <div class="kpi"><div class="kpi-l">VAAR</div><div class="kpi-v {{VAAR_CLASS}}">{{VAAR}}</div></div>
+    </div>
+    <div class="cv-body">
+      <div class="cv-block">
+        <h3>Decomposicao por Alavanca</h3>
+        <div class="bar-row"><span class="lab">Tempo Integral</span><span class="bar"><i style="width:{{W_T1}}%"></i></span><span class="val">{{V_T1}}</span></div>
+        <div class="bar-row"><span class="lab">Compl. VAAR</span><span class="bar"><i style="width:{{W_T2}}%"></i></span><span class="val">{{V_T2}}</span></div>
+        <div class="bar-row"><span class="lab">EC 135 / BNCC</span><span class="bar bar-bncc"><i style="width:{{W_T3}}%"></i></span><span class="val">{{V_T3}}</span></div>
+        <div class="bar-row"><span class="lab">Reclass. Local.</span><span class="bar"><i style="width:{{W_T4}}%"></i></span><span class="val">{{V_T4}}</span></div>
+        <div class="bar-row"><span class="lab">AEE Dupla Mat.</span><span class="bar"><i style="width:{{W_T5}}%"></i></span><span class="val">{{V_T5}}</span></div>
+        <div class="bar-row"><span class="lab">VAAF Expansao</span><span class="bar"><i style="width:{{W_T6}}%"></i></span><span class="val">{{V_T6}}</span></div>
+      </div>
+      <div class="cv-block">
+        <h3>Dados do Municipio</h3>
+        <div class="cv-data">
+          <div class="r"><span class="l">Matriculas totais</span><span class="v">{{MAT}}</span></div>
+          <div class="r"><span class="l">EC 135 / BNCC Comp.</span><span class="v" style="color:#E53E3E">{{BNCC}}</span></div>
+          <div class="r"><span class="l">Prazo BNCC SIMEC</span><span class="v" style="color:#E53E3E">ago/2026</span></div>
+          <div class="r"><span class="l">VAAR ativo</span><span class="v {{VAAR_CLASS}}">{{VAAR}}</span></div>
+          <div class="r"><span class="l">Receita atual FUNDEB</span><span class="v">{{REC}}</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cv-bncc"><b>PRAZO BNCC COMPUTACAO:</b> {{CITY}} precisa comprovar conformidade curricular no SIMEC ate <b>agosto de 2026</b> para acessar os recursos VAAR condicionados. Potencial em jogo: <b>{{BNCC}}/ano</b> a partir de 2027.</div>
+    <div class="cv-cta">
+      <h4>O Instituto i10 pode implementar este plano em {{CITY}}</h4>
+      <div class="cv-cta-sub">Diagnostico completo no stand i10 + APM · Conexao APM Sorocaba · 26 de junho · Golden Park</div>
+      <div class="cv-cta-pills">
+        <span class="pill">BNCC Computacao</span>
+        <span class="pill">Compliance VAAR</span>
+        <span class="pill">Tempo Integral</span>
+        <span class="pill">Busca Ativa AEE</span>
+        <span class="pill">Suporte Juridico</span>
+      </div>
+    </div>
+    <div class="cv-footer">
+      <span>Instituto i10 + APM  --  Orquestrando o Futuro da Educacao Publica</span>
+      <span class="ev-badge">Conexao APM Sorocaba · 26/jun, 8h · Golden Park</span>
+    </div>
+  </div>
+</body>
+</html>
