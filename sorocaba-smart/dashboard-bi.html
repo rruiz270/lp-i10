@@ -202,10 +202,21 @@ tr:hover td{background:rgba(0,180,216,.04)}
         <div class="funnel-head"><span>Clicaram</span><em id="fnClickN">0</em></div>
         <div class="funnel-bar" style="width:65%"><div class="funnel-fill" id="fnClickFill" style="width:0%"></div><span class="funnel-pct" id="fnClickPct">0%</span></div>
       </div>
-      <div class="funnel-stage">
-        <div class="funnel-head"><span>Inscritos</span><em id="fnInscN">0</em></div>
+      <div class="funnel-stage" id="inscStage" style="cursor:pointer" title="Ver municípios que querem o relatório">
+        <div class="funnel-head"><span>Inscritos &middot; querem o relat&oacute;rio <span style="font-size:11px;color:var(--cyan)">&#9656; ver lista</span></span><em id="fnInscN">0</em></div>
         <div class="funnel-bar" style="width:45%"><div class="funnel-fill" id="fnInscFill" style="width:0%"></div><span class="funnel-pct" id="fnInscPct">0%</span></div>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal: municípios que querem o relatório -->
+  <div id="inscModal" style="display:none;position:fixed;inset:0;background:rgba(3,11,26,.82);z-index:200;align-items:center;justify-content:center;padding:20px;">
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;max-width:680px;width:100%;max-height:82vh;overflow:auto;box-shadow:0 0 60px rgba(0,180,216,.25)">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card)">
+        <div><div style="font-size:18px;font-weight:800;color:var(--text)">Municípios que querem o relatório</div><div style="font-size:12px;color:var(--text2)" id="inscModalSub">clicaram na LP &middot; entregar no stand</div></div>
+        <button id="inscClose" style="background:var(--border);border:none;color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px">&times;</button>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px"><tbody id="inscList"></tbody></table>
     </div>
   </div>
 
@@ -326,6 +337,7 @@ tr:hover td{background:rgba(0,180,216,.04)}
   function setBar(fillId,pctId,p){ var f=document.getElementById(fillId),x=document.getElementById(pctId); if(f)f.style.width=p+'%'; if(x)x.textContent=p+'%'; }
   function applyStats(s){
     var c = s.contacts||{}, mu = s.munis||{}, by = s.byIbge||{};
+    CLICKERS = s.clickers||[];
     var aud = c.audience||0;
     // KPIs
     document.getElementById('kpiSent').textContent = c.sent||0;
@@ -340,6 +352,7 @@ tr:hover td{background:rgba(0,180,216,.04)}
     setBar('fnOpenFill','fnOpenPct', pct(c.opened||0, c.sent||0));
     document.getElementById('fnClickN').textContent = c.clicked||0;
     setBar('fnClickFill','fnClickPct', pct(c.clicked||0, c.sent||0));
+    // Inscritos = quem clicou na LP (querem o relatório)
     document.getElementById('fnInscN').textContent = c.inscritos||0;
     setBar('fnInscFill','fnInscPct', pct(c.inscritos||0, c.sent||0));
     // Cards
@@ -360,6 +373,30 @@ tr:hover td{background:rgba(0,180,216,.04)}
   }
   // auto-refresh a cada 60s
   setInterval(fetchStats, 60000);
+
+  /* ─── MODAL: quem clicou na LP (quer o relatório) ─── */
+  var CLICKERS = [];
+  function openInscModal(){
+    var list = CLICKERS.slice().sort(function(a,b){ return (a.municipio||'').localeCompare(b.municipio||''); });
+    var munis = {}; list.forEach(function(r){ munis[r.ibge]=1; });
+    document.getElementById('inscModalSub').textContent =
+      list.length + ' contato(s) em ' + Object.keys(munis).length + ' município(s) · entregar relatório no stand';
+    var head = '<tr style="border-bottom:2px solid var(--border);position:sticky;top:64px;background:var(--card)">' +
+      '<th style="padding:10px 24px;text-align:left;font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px">Município</th>' +
+      '<th style="padding:10px 16px;text-align:left;font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px">Departamento</th>' +
+      '<th style="padding:10px 24px;text-align:left;font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px">E-mail</th></tr>';
+    document.getElementById('inscList').innerHTML = head + (list.map(function(r){
+      return '<tr style="border-bottom:1px solid var(--border)">' +
+        '<td style="padding:11px 24px;font-weight:600;color:var(--text)">' + (r.municipio||'—') + '</td>' +
+        '<td style="padding:11px 16px;color:var(--text2)">' + (r.departamento||'—') + '</td>' +
+        '<td style="padding:11px 24px;color:var(--cyan)">' + (r.email||'—') + '</td>' +
+        '</tr>';
+    }).join('') || '<tr><td colspan="3" style="padding:24px;text-align:center;color:var(--text2)">Ainda nenhum clique.</td></tr>');
+    document.getElementById('inscModal').style.display = 'flex';
+  }
+  document.getElementById('inscStage').addEventListener('click', openInscModal);
+  document.getElementById('inscClose').addEventListener('click', function(){ document.getElementById('inscModal').style.display='none'; });
+  document.getElementById('inscModal').addEventListener('click', function(e){ if(e.target===this) this.style.display='none'; });
 
   function renderTable(){
     const q = document.getElementById('search').value.toLowerCase();
