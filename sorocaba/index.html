@@ -451,9 +451,9 @@ body{
 
 <!-- ═══ UNLOCK ═══ -->
 <section class="unlock roof" id="unlock">
-  <h2>Interesse registrado!</h2>
+  <h2>Obrigado!</h2>
   <p id="unlock-text">
-    Estamos te esperando no nosso stand com o relat&oacute;rio completo impresso, para entregar em m&atilde;os &mdash; com o plano de a&ccedil;&atilde;o e o caminho da conformidade BNCC Computa&ccedil;&atilde;o.
+    Seu relat&oacute;rio est&aacute; reservado. Esperamos voc&ecirc; na <strong>Conex&atilde;o APM Sorocaba</strong> para entregar em m&atilde;os o relat&oacute;rio completo impresso &mdash; com o plano de a&ccedil;&atilde;o e o caminho da conformidade BNCC Computa&ccedil;&atilde;o.
   </p>
   <div class="event-note">
     Conex&atilde;o APM Sorocaba &middot; 26 de junho, 8h &middot; Golden Park Sorocaba, Rod. Sen. Jos&eacute; Erm&iacute;rio de Moraes &middot; Iporanga
@@ -491,6 +491,7 @@ body{
 
   /* ─── CONFIG ─── */
   var CRM_WEBHOOK = 'https://i10-audit-crm.vercel.app/api/marketing/webhooks/form';
+  var LP_INTEREST = 'https://i10-audit-crm.vercel.app/api/marketing/webhooks/lp-interest';
   var PROJECT_SLUG = 'sorocaba-2026';
   var DATA_URL = '/sorocaba/dados.json';
 
@@ -565,7 +566,7 @@ body{
 
     // Unlock text
     document.getElementById('unlock-text').innerHTML =
-      'Estamos te esperando no nosso stand com o relatório completo de <strong>' + CITY.nome + '</strong> impresso, para entregar em mãos — com o plano de ação e o caminho da conformidade BNCC Computação.';
+      'Seu relatório de <strong>' + CITY.nome + '</strong> está reservado. Esperamos você na <strong>Conexão APM Sorocaba</strong> para entregar em mãos o relatório completo impresso — com o plano de ação e o caminho da conformidade BNCC Computação.';
 
     // Form municipality field
     var fMun = document.getElementById('f-municipio');
@@ -579,10 +580,16 @@ body{
   var closeBtn = document.getElementById('modal-close');
 
   ctaBtn.addEventListener('click', function(){
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-    var first = CITY ? document.getElementById('f-nome') : document.getElementById('f-municipio');
-    setTimeout(function(){ first.focus(); }, 100);
+    // 1 clique: captura a cidade no BI (sem formulário) e mostra o agradecimento.
+    ctaBtn.disabled = true;
+    ctaBtn.textContent = 'Reservando seu relatório...';
+    fetch(LP_INTEREST, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ projectSlug: PROJECT_SLUG, ibge: IBGE ? Number(IBGE) : null, municipio: CITY ? CITY.nome : null })
+    })
+    .then(function(){ showUnlock(); })
+    .catch(function(err){ console.error('lp-interest error:', err); showUnlock(); });
   });
 
   closeBtn.addEventListener('click', closeModal);
