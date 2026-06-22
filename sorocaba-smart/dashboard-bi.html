@@ -88,6 +88,10 @@ tr:hover td{background:rgba(0,180,216,.04)}
 .tl-dot.done{border-color:var(--green);background:rgba(0,229,160,.15);color:var(--green)}
 .tl-label{font-size:9.5px;color:var(--text2);text-align:center;font-weight:500}
 .tl-sub{font-size:8.5px;color:rgba(148,163,184,.6);margin-top:-4px}
+.tl-dot.pending{opacity:.45}
+.tl-count{font-size:10px;font-weight:700;color:var(--green);min-height:13px}
+.tl-node[data-state="active"] .tl-count{color:var(--cyan)}
+.tl-node[data-state="pending"] .tl-count{color:rgba(148,163,184,.5);font-weight:500}
 
 /* Bottom Cards */
 .bottom-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -224,50 +228,59 @@ tr:hover td{background:rgba(0,180,216,.04)}
   <div class="section-hdr">Timeline de E-mails</div>
   <div class="timeline-wrap">
     <div class="timeline">
-      <div class="tl-node">
-        <div class="tl-dot active">E1</div>
+      <div class="tl-node" data-key="e1">
+        <div class="tl-dot">E1</div>
         <div class="tl-label">Convite</div>
-        <div class="tl-sub">D0</div>
+        <div class="tl-sub">17/06</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="a1">
         <div class="tl-dot">A1</div>
         <div class="tl-label">Follow-up</div>
         <div class="tl-sub">Imediato</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="a2">
         <div class="tl-dot">A2</div>
         <div class="tl-label">Lembrete</div>
         <div class="tl-sub">D-7</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="a3">
         <div class="tl-dot">A3</div>
         <div class="tl-label">Urgencia</div>
         <div class="tl-sub">D-3</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="a4">
         <div class="tl-dot">A4</div>
         <div class="tl-label">Ultimo dia</div>
         <div class="tl-sub">D-1</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="b1">
         <div class="tl-dot">B1</div>
         <div class="tl-label">Re-engage</div>
-        <div class="tl-sub">D+2</div>
+        <div class="tl-sub">19/06</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="b2">
         <div class="tl-dot">B2</div>
         <div class="tl-label">Case study</div>
-        <div class="tl-sub">D+4</div>
+        <div class="tl-sub">22/06</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="b3">
         <div class="tl-dot">B3</div>
         <div class="tl-label">Social proof</div>
-        <div class="tl-sub">D+6</div>
+        <div class="tl-sub">24/06</div>
+        <div class="tl-count"></div>
       </div>
-      <div class="tl-node">
+      <div class="tl-node" data-key="b4">
         <div class="tl-dot">B4</div>
         <div class="tl-label">Final</div>
-        <div class="tl-sub">D+8</div>
+        <div class="tl-sub">25/06</div>
+        <div class="tl-count"></div>
       </div>
     </div>
   </div>
@@ -361,6 +374,19 @@ tr:hover td{background:rgba(0,180,216,.04)}
     document.getElementById('bcReached').textContent = mu.reached||0;
     document.getElementById('bcTotal').textContent = mu.total||rows.length;
     document.getElementById('bcReachedBar').style.width = pct(mu.reached||0, mu.total||rows.length)+'%';
+    // Timeline de e-mails (estado real por etapa)
+    (s.timeline||[]).forEach(function(t){
+      var node = document.querySelector('.tl-node[data-key="'+t.key+'"]');
+      if(!node) return;
+      var dot = node.querySelector('.tl-dot');
+      dot.classList.remove('active','done','pending');
+      dot.classList.add(t.state);
+      node.setAttribute('data-state', t.state);
+      var cnt = node.querySelector('.tl-count');
+      if(cnt) cnt.textContent = t.state==='done' ? (t.sent + ' enviados')
+                              : t.state==='active' ? (t.sent>0 ? t.sent+' enviados' : 'agora') : '';
+    });
+
     // merge status por município na tabela
     rows.forEach(function(r){
       var st = by[r.ibge];
