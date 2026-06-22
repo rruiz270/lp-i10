@@ -383,8 +383,8 @@ tr:hover td{background:rgba(0,180,216,.04)}
       dot.classList.add(t.state);
       node.setAttribute('data-state', t.state);
       var cnt = node.querySelector('.tl-count');
-      if(cnt) cnt.textContent = t.state==='done' ? (t.sent + ' enviados')
-                              : t.state==='active' ? (t.sent>0 ? t.sent+' enviados' : 'agora') : '';
+      if(cnt) cnt.textContent = (t.sent>0) ? (t.sent + ' enviados')
+                              : (t.state==='active' ? 'agendado' : '');
     });
 
     // merge status por município na tabela
