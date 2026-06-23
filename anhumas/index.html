@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instituto i10 · Anhumas — Deixe seu contato</title>
+<meta name="description" content="Deixe seu contato com o Instituto i10 no evento de Anhumas e receba materiais e o acompanhamento da nossa equipe.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#030B1A;--navy-mid:#0A2463;
+  --cyan:#00B4D8;--green:#00E5A0;
+  --white:#FFFFFF;--white-80:rgba(255,255,255,.8);--white-50:rgba(255,255,255,.5);
+  --white-20:rgba(255,255,255,.2);--white-10:rgba(255,255,255,.1);--white-05:rgba(255,255,255,.05);
+  --font-sans:'Inter',system-ui,sans-serif;
+  --font-serif:'Source Serif 4',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);color:var(--white);
+  background:var(--navy);min-height:100vh;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  display:flex;flex-direction:column;
+}
+.roof{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Cpath d='M0,60 L60,25 L120,60' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-size:120px 60px;
+}
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(20px,5vw,64px);
+  background:rgba(3,11,26,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--white-10);position:sticky;top:0;z-index:100;
+}
+.topbar-left{display:flex;align-items:center;gap:14px}
+.topbar-left .i10-text{display:flex;flex-direction:column;line-height:1.1}
+.topbar-left .i10-text strong{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.topbar-left .i10-text span{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--white-50)}
+.topbar-right span{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--white-50)}
+
+.wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:clamp(40px,7vw,90px) clamp(20px,5vw,64px);position:relative;overflow:hidden}
+.wrap::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);
+  width:900px;height:900px;background:radial-gradient(circle,rgba(0,180,216,.12) 0%,transparent 60%);pointer-events:none}
+.wrap::after{content:'';position:absolute;bottom:-25%;right:-12%;
+  width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,160,.08) 0%,transparent 60%);pointer-events:none}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:100px;
+  background:rgba(0,180,216,.1);border:1px solid rgba(0,180,216,.25);
+  font-size:clamp(11px,1.3vw,13px);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--cyan);margin-bottom:24px;position:relative;z-index:1}
+h1{font-family:var(--font-serif);font-size:clamp(28px,4.2vw,48px);font-weight:700;line-height:1.15;
+  text-align:center;max-width:760px;margin:0 auto 16px;position:relative;z-index:1}
+h1 .gradient{background:linear-gradient(90deg,var(--cyan),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.subtitle{font-size:clamp(15px,1.7vw,19px);line-height:1.6;color:var(--white-80);
+  max-width:580px;margin:0 auto 36px;text-align:center;position:relative;z-index:1}
+
+.card{position:relative;z-index:1;width:100%;max-width:480px;
+  background:var(--white-05);border:1px solid var(--white-10);border-radius:20px;
+  padding:clamp(24px,4vw,40px);backdrop-filter:blur(6px);
+  box-shadow:0 24px 60px rgba(0,0,0,.4)}
+form{display:flex;flex-direction:column;gap:14px}
+label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--white-50);margin-bottom:-8px}
+input,select{font-family:var(--font-sans);font-size:16px;color:var(--white);
+  background:rgba(255,255,255,.04);border:1px solid var(--white-20);border-radius:12px;
+  padding:14px 16px;width:100%;transition:border-color .2s,background .2s}
+input::placeholder{color:rgba(255,255,255,.35)}
+input:focus,select:focus{outline:none;border-color:var(--cyan);background:rgba(0,180,216,.06)}
+select{appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300B4D8' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center}
+select option{background:var(--navy);color:var(--white)}
+.submit{margin-top:8px;font-family:var(--font-sans);font-size:17px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.5px;color:var(--navy);cursor:pointer;
+  border:none;border-radius:99px;padding:17px 24px;
+  background:linear-gradient(90deg,var(--cyan),var(--green));
+  box-shadow:0 8px 28px rgba(0,180,216,.4);transition:transform .15s,box-shadow .15s}
+.submit:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(0,180,216,.5)}
+.submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.err{color:#ff8088;font-size:14px;font-weight:600;min-height:0;display:none}
+.err.show{display:block}
+
+.success{position:relative;z-index:1;text-align:center;max-width:520px}
+.success .check{width:84px;height:84px;border-radius:50%;margin:0 auto 24px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--cyan),var(--green));box-shadow:0 16px 40px rgba(0,229,160,.35)}
+.success h2{font-family:var(--font-serif);font-size:clamp(26px,3.6vw,40px);font-weight:700;margin-bottom:14px}
+.success p{font-size:clamp(15px,1.7vw,18px);line-height:1.6;color:var(--white-80)}
+.hidden{display:none!important}
+
+.footer{padding:24px clamp(20px,5vw,64px);text-align:center;border-top:1px solid var(--white-10)}
+.footer p{font-size:11px;line-height:1.6;color:rgba(255,255,255,.4);max-width:680px;margin:0 auto}
+</style>
+</head>
+<body class="roof">
+
+<header class="topbar">
+  <div class="topbar-left">
+    <svg viewBox="0 0 170 90" width="80" height="42" aria-hidden="true">
+      <circle cx="20" cy="50" r="6" fill="#00B4D8"/><circle cx="55" cy="22" r="6" fill="#00E5A0"/>
+      <circle cx="90" cy="58" r="6" fill="#00B4D8"/><circle cx="125" cy="34" r="6" fill="#00B4D8"/>
+      <circle cx="160" cy="68" r="6" fill="#00E5A0"/>
+      <line x1="20" y1="50" x2="55" y2="22" stroke="url(#g1)" stroke-width="2.5"/>
+      <line x1="55" y1="22" x2="90" y2="58" stroke="url(#g1)" stroke-width="2.5"/>
+      <line x1="90" y1="58" x2="125" y2="34" stroke="url(#g1)" stroke-width="2.5"/>
+      <line x1="125" y1="34" x2="160" y2="68" stroke="url(#g1)" stroke-width="2.5"/>
+      <defs><linearGradient id="g1" x1="20" y1="50" x2="160" y2="50" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#00B4D8"/><stop offset="100%" stop-color="#00E5A0"/>
+      </linearGradient></defs>
+    </svg>
+    <div class="i10-text"><strong>i10</strong><span>Instituto</span></div>
+  </div>
+  <div class="topbar-right"><span>Evento Anhumas</span></div>
+</header>
+
+<main class="wrap">
+  <!-- ── FORM ── -->
+  <div id="view-form" style="width:100%;display:flex;flex-direction:column;align-items:center">
+    <span class="eyebrow">📍 Evento presencial · Anhumas</span>
+    <h1>Deixe seu <span class="gradient">contato</span> com o Instituto i10</h1>
+    <p class="subtitle">Preencha seus dados e nossa equipe entra em contato com materiais e os próximos passos.</p>
+
+    <div class="card">
+      <form id="lead-form" autocomplete="on" novalidate>
+        <label for="f-nome">Nome completo</label>
+        <input type="text" id="f-nome" name="nome" placeholder="Seu nome" required>
+
+        <label for="f-telefone">Telefone / WhatsApp</label>
+        <input type="tel" id="f-telefone" name="telefone" placeholder="(00) 00000-0000" inputmode="tel">
+
+        <label for="f-email">E-mail</label>
+        <input type="email" id="f-email" name="email" placeholder="nome@email.com">
+
+        <label for="f-cidade">Cidade</label>
+        <input type="text" id="f-cidade" name="cidade" placeholder="Sua cidade">
+
+        <label for="f-cargo">Cargo / Função</label>
+        <input type="text" id="f-cargo" name="cargo" placeholder="Ex.: Secretário(a) de Educação">
+
+        <div class="err" id="form-err"></div>
+        <button type="submit" class="submit" id="submit-btn">Enviar contato</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── SUCCESS ── -->
+  <div id="view-success" class="success hidden">
+    <div class="check">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 6.5" stroke="#030B1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2>Contato registrado!</h2>
+    <p>Obrigado, <strong id="ok-nome">amigo(a)</strong>. Recebemos seus dados e nossa equipe vai falar com você em breve. Aproveite o evento! 🙌</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>
+    Ao enviar seus dados, você concorda com o tratamento para fins de contato pelo Instituto i10, conforme a LGPD (Lei 13.709/2018).
+    Seus dados não serão compartilhados com terceiros. &copy; 2026 Instituto i10.
+  </p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var form = document.getElementById('lead-form');
+  var btn = document.getElementById('submit-btn');
+  var errBox = document.getElementById('form-err');
+
+  function showErr(msg){ errBox.textContent = msg; errBox.classList.add('show'); }
+  function clearErr(){ errBox.textContent = ''; errBox.classList.remove('show'); }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    clearErr();
+    var payload = {
+      nome: form.nome.value.trim(),
+      telefone: form.telefone.value.trim(),
+      email: form.email.value.trim(),
+      cidade: form.cidade.value.trim(),
+      cargo: form.cargo.value.trim()
+    };
+    if(!payload.nome){ showErr('Por favor, preencha seu nome.'); form.nome.focus(); return; }
+    if(!payload.telefone && !payload.email){ showErr('Informe ao menos um telefone ou e-mail para contato.'); return; }
+
+    btn.disabled = true;
+    var original = btn.textContent;
+    btn.textContent = 'Enviando…';
+
+    fetch('/api/anhumas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+    .then(function(res){
+      if(!res.ok || !res.d.ok){ throw new Error(res.d && res.d.error ? res.d.error : 'Falha ao enviar.'); }
+      document.getElementById('ok-nome').textContent = payload.nome.split(' ')[0] || 'amigo(a)';
+      document.getElementById('view-form').classList.add('hidden');
+      document.getElementById('view-success').classList.remove('hidden');
+      window.scrollTo(0,0);
+    })
+    .catch(function(e){
+      showErr(e.message || 'Não foi possível enviar. Tente novamente.');
+      btn.disabled = false;
+      btn.textContent = original;
+    });
+  });
+})();
+</script>
+</body>
+</html>
