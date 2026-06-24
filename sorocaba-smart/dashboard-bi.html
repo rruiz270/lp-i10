@@ -218,7 +218,10 @@ tr:hover td{background:rgba(0,180,216,.04)}
     <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;max-width:680px;width:100%;max-height:82vh;overflow:auto;box-shadow:0 0 60px rgba(0,180,216,.25)">
       <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card)">
         <div><div style="font-size:18px;font-weight:800;color:var(--text)">Municípios que querem o relatório</div><div style="font-size:12px;color:var(--text2)" id="inscModalSub">clicaram na LP &middot; entregar no stand</div></div>
-        <button id="inscClose" style="background:var(--border);border:none;color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px">&times;</button>
+        <div style="display:flex;align-items:center;gap:10px">
+          <button id="inscExport" style="background:linear-gradient(135deg,#06b6a4,#00b4d8);border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px">&#11015; Exportar Excel</button>
+          <button id="inscClose" style="background:var(--border);border:none;color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px">&times;</button>
+        </div>
       </div>
       <table style="width:100%;border-collapse:collapse;font-size:13px"><tbody id="inscList"></tbody></table>
     </div>
@@ -420,7 +423,22 @@ tr:hover td{background:rgba(0,180,216,.04)}
     }).join('') || '<tr><td colspan="3" style="padding:24px;text-align:center;color:var(--text2)">Ainda nenhum clique.</td></tr>');
     document.getElementById('inscModal').style.display = 'flex';
   }
+  function exportInscExcel(){
+    var list = CLICKERS.slice().sort(function(a,b){ return (a.municipio||'').localeCompare(b.municipio||''); });
+    function esc(v){ v = (v==null?'':String(v)); return '"' + v.replace(/"/g,'""') + '"'; }
+    var rowsCsv = [['Município','Departamento','E-mail']].concat(
+      list.map(function(r){ return [r.municipio||'', r.departamento||'', r.email||'']; })
+    );
+    var csv = rowsCsv.map(function(r){ return r.map(esc).join(';'); }).join('\r\n');
+    var blob = new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8;'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'sorocaba-querem-relatorio.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+  }
   document.getElementById('inscStage').addEventListener('click', openInscModal);
+  document.getElementById('inscExport').addEventListener('click', exportInscExcel);
   document.getElementById('inscClose').addEventListener('click', function(){ document.getElementById('inscModal').style.display='none'; });
   document.getElementById('inscModal').addEventListener('click', function(e){ if(e.target===this) this.style.display='none'; });
 
