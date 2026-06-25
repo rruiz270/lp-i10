@@ -24,6 +24,11 @@ body{font-family:var(--ft);background:var(--bg);color:var(--text);line-height:1.
 .hdr-right img{height:28px;width:auto;filter:drop-shadow(0 2px 6px rgba(0,0,0,.3))}
 .live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--green)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+/* Campaign switcher */
+.camp-switch{display:flex;gap:4px;background:rgba(0,180,216,.08);border:1px solid var(--border);border-radius:99px;padding:4px;flex-wrap:wrap}
+.camp-btn{border:none;background:transparent;color:var(--text2);font-family:var(--ft);font-size:13px;font-weight:600;padding:6px 16px;border-radius:99px;cursor:pointer;transition:color .2s,background .2s,box-shadow .2s;white-space:nowrap}
+.camp-btn:hover{color:var(--text)}
+.camp-btn.active{background:var(--grad);color:#03203a;box-shadow:0 2px 10px rgba(0,180,216,.3)}
 
 /* Wrap */
 .wrap{max-width:1260px;margin:0 auto;padding:24px 24px 60px}
@@ -123,10 +128,11 @@ tr:hover td{background:rgba(0,180,216,.04)}
   <div class="hdr-left">
     <div class="logo"><span class="i">i</span><span class="t">10</span></div>
     <div class="live-dot"></div>
+    <div class="camp-switch" id="campSwitch"></div>
   </div>
   <div class="hdr-center">
-    <h1>Dashboard &middot; Campanha Sorocaba 2026</h1>
-    <p>26 de junho, 8h &middot; 47 municipios &middot; Regiao de Sorocaba/SP</p>
+    <h1 id="hdrTitle">Dashboard &middot; Campanha Sorocaba 2026</h1>
+    <p id="hdrSub">26 de junho, 8h &middot; 47 municipios &middot; Regiao de Sorocaba/SP</p>
   </div>
   <div class="hdr-right">
     <img src="/sorocaba-smart/assets/apm-logo-pill.png" alt="APM" height="28">
@@ -157,9 +163,9 @@ tr:hover td{background:rgba(0,180,216,.04)}
     </div>
     <div class="kpi">
       <div class="kpi-icon">&#9201;</div>
-      <div class="kpi-val">R$ 94,6M</div>
+      <div class="kpi-val" id="kpiPotencial">R$ 94,6M</div>
       <div class="kpi-label">potencial EC 135</div>
-      <div class="kpi-badge">47 munis</div>
+      <div class="kpi-badge" id="kpiPotencialBadge">47 munis</div>
     </div>
   </div>
 
@@ -321,6 +327,27 @@ tr:hover td{background:rgba(0,180,216,.04)}
   let sortCol = 'rank';
   let sortAsc = true;
 
+  // ─── Campanhas (adicionar uma nova cidade = 1 entrada aqui) ───────────────
+  // `dados` é absoluto à raiz do site; `tl` são as datas da Trilha B p/ a timeline.
+  var CAMPAIGNS = [
+    { slug:'sorocaba-2026', label:'Sorocaba',
+      title:'Dashboard · Campanha Sorocaba 2026',
+      sub:'26 de junho, 8h · 47 municípios · Região de Sorocaba/SP',
+      dados:'/sorocaba/dados.json',
+      tl:{e1:'17/06',b1:'19/06',b2:'22/06',b3:'24/06',b4:'25/06'} },
+    { slug:'marilia-2026', label:'Marília',
+      title:'Dashboard · Campanha Marília 2026',
+      sub:'02 de julho, 8h · 50 municípios · Região de Marília/SP',
+      dados:'/marilia/dados.json',
+      tl:{e1:'25/06',b1:'26/06',b2:'29/06',b3:'30/06',b4:'01/07'} },
+  ];
+  var ACTIVE = 0;
+  function fmtMoney(n){
+    if(n>=1e6) return 'R$ '+(n/1e6).toFixed(1).replace('.',',')+'M';
+    if(n>=1e3) return 'R$ '+Math.round(n/1e3)+'K';
+    return 'R$ '+Math.round(n);
+  }
+
   function parseMoneyToNum(s){
     if(!s) return 0;
     const clean = s.replace(/[R$\s]/g,'');
@@ -343,12 +370,19 @@ tr:hover td{background:rgba(0,180,216,.04)}
       trilha: '—',
       evento: '—'
     }));
+    // KPI "potencial EC 135" = soma do BNCC compliance de todos os municípios
+    var totBncc = rows.reduce(function(a,r){ return a + (r.bnccNum||0); }, 0);
+    var potEl = document.getElementById('kpiPotencial');
+    if(potEl) potEl.textContent = fmtMoney(totBncc);
+    var potBadge = document.getElementById('kpiPotencialBadge');
+    if(potBadge) potBadge.textContent = rows.length + ' munis';
     renderTable();
     fetchStats();
   }
 
-  // Stats reais do CRM (agregados por município, sem PII)
-  var STATS_URL = 'https://i10-audit-crm.vercel.app/api/marketing/public/stats?slug=sorocaba-2026';
+  // Stats reais do CRM (agregados por município, sem PII). Setado por selectCampaign().
+  var STATS_BASE = 'https://i10-audit-crm.vercel.app/api/marketing/public/stats?slug=';
+  var STATS_URL = STATS_BASE + CAMPAIGNS[ACTIVE].slug;
   function pct(n,d){ return d>0 ? Math.round(n/d*100) : 0; }
   function setBar(fillId,pctId,p){ var f=document.getElementById(fillId),x=document.getElementById(pctId); if(f)f.style.width=p+'%'; if(x)x.textContent=p+'%'; }
   function applyStats(s){
@@ -433,7 +467,7 @@ tr:hover td{background:rgba(0,180,216,.04)}
     var blob = new Blob(['﻿' + csv], {type:'text/csv;charset=utf-8;'});
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = url; a.download = 'sorocaba-querem-relatorio.csv';
+    a.href = url; a.download = CAMPAIGNS[ACTIVE].slug + '-querem-relatorio.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
   }
@@ -490,20 +524,59 @@ tr:hover td{background:rgba(0,180,216,.04)}
   // Search
   document.getElementById('search').addEventListener('input', renderTable);
 
-  // Fetch data
-  fetch('/sorocaba/dados.json')
-    .then(r => r.json())
-    .then(loadData)
-    .catch(() => {
-      // fallback: try relative path
-      fetch('../sorocaba/dados.json')
-        .then(r => r.json())
-        .then(loadData)
-        .catch(() => {
-          document.getElementById('tbody').innerHTML =
-            '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text2)">Carregando dados... verifique o caminho /sorocaba/dados.json</td></tr>';
-        });
+  // ─── Seletor de campanha ──────────────────────────────────────────────────
+  function buildSwitcher(){
+    var wrap = document.getElementById('campSwitch');
+    if(!wrap) return;
+    wrap.innerHTML = CAMPAIGNS.map(function(c,i){
+      return '<button class="camp-btn'+(i===ACTIVE?' active':'')+'" data-i="'+i+'">'+c.label+'</button>';
+    }).join('');
+    Array.prototype.forEach.call(wrap.querySelectorAll('.camp-btn'), function(btn){
+      btn.addEventListener('click', function(){ selectCampaign(+btn.dataset.i); });
     });
+  }
+
+  function applyTimelineDates(tl){
+    if(!tl) return;
+    Object.keys(tl).forEach(function(key){
+      var node = document.querySelector('.tl-node[data-key="'+key+'"] .tl-sub');
+      if(node) node.textContent = tl[key];
+    });
+  }
+
+  function selectCampaign(i){
+    ACTIVE = i;
+    var c = CAMPAIGNS[i];
+    STATS_URL = STATS_BASE + c.slug;
+    document.getElementById('hdrTitle').innerHTML = c.title.replace('·','&middot;');
+    document.getElementById('hdrSub').textContent = c.sub;
+    document.title = c.title;
+    applyTimelineDates(c.tl);
+    // destaca o botão ativo
+    Array.prototype.forEach.call(document.querySelectorAll('#campSwitch .camp-btn'), function(b){
+      b.classList.toggle('active', +b.dataset.i === i);
+    });
+    // reset visual enquanto carrega
+    document.getElementById('tbody').innerHTML =
+      '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text2)">Carregando ' + c.label + '…</td></tr>';
+    // carrega dados.json (absoluto à raiz; fallback relativo) → loadData → fetchStats
+    fetch(c.dados)
+      .then(function(r){ return r.json(); })
+      .then(loadData)
+      .catch(function(){
+        fetch('..' + c.dados)
+          .then(function(r){ return r.json(); })
+          .then(loadData)
+          .catch(function(){
+            document.getElementById('tbody').innerHTML =
+              '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--text2)">Falha ao carregar ' + c.dados + '</td></tr>';
+          });
+      });
+  }
+
+  // Bootstrap
+  buildSwitcher();
+  selectCampaign(ACTIVE);
 })();
 </script>
 </body>
